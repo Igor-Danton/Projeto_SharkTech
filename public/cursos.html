@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cursos técnicos | CEEP Curitiba</title>
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <meta name="description" content="Lista completa dos cursos técnicos integrados ao Ensino Médio oferecidos pelo CEEP Curitiba.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/componentes.css">
+</head>
+<body>
+  <a class="pular-para-conteudo" href="#conteudo">Pular para o conteúdo</a>
+  <header class="topo" id="cabecalho"></header>
+
+  <main id="conteudo">
+    <div class="cabecalho-pagina">
+      <div class="container">
+        <p class="trilha"><a href="/">Início</a> / Cursos técnicos</p>
+        <h1>Cursos técnicos</h1>
+        <p>Todos os cursos técnicos integrados ao Ensino Médio oferecidos pela escola.</p>
+      </div>
+    </div>
+
+    <section class="secao secao--compacta">
+      <div class="container">
+        <form class="filtros" id="filtros-cursos">
+          <div class="campo">
+            <label for="filtro-q">Buscar por nome</label>
+            <input type="search" id="filtro-q" name="q" placeholder="Ex.: sistemas">
+          </div>
+          <div class="campo">
+            <label for="filtro-area">Eixo</label>
+            <select id="filtro-area" name="area"><option value="">Todos</option></select>
+          </div>
+          <div>
+            <button class="botao botao--primario" type="submit">Filtrar</button>
+            <button class="botao botao--contorno" type="reset">Limpar</button>
+          </div>
+        </form>
+
+        <p id="contador-cursos" class="trilha"></p>
+        <div class="grade grade--3" id="lista-cursos"></div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="rodape" id="rodape"></footer>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/dados.js"></script>
+  <script src="/js/app.js"></script>
+  <script src="/js/componentes.js"></script>
+  <script src="/js/cursos.js"></script>
+</body>
+</html>

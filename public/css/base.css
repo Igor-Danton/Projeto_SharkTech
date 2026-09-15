@@ -1,0 +1,136 @@
+/* =====================================================================
+   Shark Tech / CEEP Curitiba — base
+   Tokens de design, reset, tipografia e utilitarios de layout.
+   ===================================================================== */
+
+:root {
+  /* Cores */
+  --papel:        #f6f7f5;
+  --branco:       #ffffff;
+  --tinta:        #16202b;
+  --tinta-suave:  #55636f;
+  --azul:         #14425f;
+  --azul-escuro:  #0e3047;
+  --azul-claro:   #e7eef3;
+  --sinal:        #e3a008;   /* amarelo de sinalizacao (oficinas/laboratorios) */
+  --sinal-fraco:  #fdf4e0;
+  --linha:        #d7dde2;
+  --alerta:       #9a3412;
+  --alerta-fundo: #fdf1ec;
+  --ok:           #14653a;
+
+  /* Tipografia */
+  --fonte-titulo: 'Bitter', Georgia, 'Times New Roman', serif;
+  --fonte-texto:  'Inter', -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+
+  /* Escala de tamanhos */
+  --t-xs:   0.8125rem;
+  --t-sm:   0.9375rem;
+  --t-base: 1.0625rem;
+  --t-md:   1.25rem;
+  --t-lg:   1.5rem;
+  --t-xl:   2rem;
+  --t-2xl:  2.625rem;
+
+  /* Espacamento */
+  --e-1: 0.5rem;
+  --e-2: 1rem;
+  --e-3: 1.5rem;
+  --e-4: 2rem;
+  --e-5: 3rem;
+  --e-6: 4.5rem;
+
+  --largura: 1140px;
+  --raio: 4px;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--papel);
+  color: var(--tinta);
+  font-family: var(--fonte-texto);
+  font-size: var(--t-base);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--fonte-titulo);
+  line-height: 1.2;
+  margin: 0 0 var(--e-2);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+h1 { font-size: var(--t-2xl); }
+h2 { font-size: var(--t-xl); }
+h3 { font-size: var(--t-md); }
+
+p { margin: 0 0 var(--e-2); max-width: 68ch; }
+
+a { color: var(--azul); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+a:hover { color: var(--azul-escuro); }
+
+img { max-width: 100%; display: block; }
+
+:focus-visible {
+  outline: 3px solid var(--sinal);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* ------------------------- Layout ------------------------- */
+
+.container {
+  width: 100%;
+  max-width: var(--largura);
+  margin-inline: auto;
+  padding-inline: var(--e-3);
+}
+
+.secao { padding-block: var(--e-6); }
+.secao--compacta { padding-block: var(--e-5); }
+.secao--clara { background: var(--branco); }
+.secao--azul { background: var(--azul); color: var(--branco); }
+.secao--azul h2, .secao--azul h3 { color: var(--branco); }
+.secao--azul a { color: var(--sinal); }
+
+.secao__titulo { margin-bottom: var(--e-3); }
+.secao__titulo p { color: var(--tinta-suave); }
+
+.grade { display: grid; gap: var(--e-3); }
+.grade--2 { grid-template-columns: repeat(2, 1fr); }
+.grade--3 { grid-template-columns: repeat(3, 1fr); }
+.grade--4 { grid-template-columns: repeat(4, 1fr); }
+
+.pular-para-conteudo {
+  position: absolute;
+  left: -9999px;
+  background: var(--sinal);
+  color: var(--tinta);
+  padding: var(--e-1) var(--e-2);
+  z-index: 100;
+}
+.pular-para-conteudo:focus { left: var(--e-2); top: var(--e-1); }
+
+@media (max-width: 900px) {
+  .grade--4 { grid-template-columns: repeat(2, 1fr); }
+  .grade--3 { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 620px) {
+  :root { --t-2xl: 2rem; --t-xl: 1.5rem; }
+  .grade--2, .grade--3, .grade--4 { grid-template-columns: 1fr; }
+  .secao { padding-block: var(--e-5); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

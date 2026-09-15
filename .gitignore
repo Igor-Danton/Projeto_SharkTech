@@ -1,0 +1,21 @@
+# Dependencias
+node_modules/
+
+# Variaveis de ambiente (contem senhas - nunca versionar)
+.env
+
+# Logs
+*.log
+npm-debug.log*
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/*
+!.vscode/extensions.json
+.idea/
+
+# Uploads e arquivos gerados
+public/assets/uploads/

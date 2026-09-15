@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Documentos e editais | CEEP Curitiba</title>
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <meta name="description" content="Editais, formulários, regulamentos e calendários do CEEP Curitiba.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/componentes.css">
+</head>
+<body>
+  <a class="pular-para-conteudo" href="#conteudo">Pular para o conteúdo</a>
+  <header class="topo" id="cabecalho"></header>
+
+  <main id="conteudo">
+    <div class="cabecalho-pagina">
+      <div class="container">
+        <p class="trilha"><a href="/">Início</a> / Documentos e editais</p>
+        <h1>Documentos e editais</h1>
+        <p>Arquivos publicados pela escola para consulta e download.</p>
+      </div>
+    </div>
+
+    <section class="secao secao--compacta">
+      <div class="container">
+        <form class="filtros" id="filtros-documentos">
+          <div class="campo">
+            <label for="filtro-doc">Tipo de documento</label>
+            <select id="filtro-doc" name="categoria">
+              <option value="">Todos</option>
+              <option value="edital">Editais</option>
+              <option value="formulario">Formulários</option>
+              <option value="regulamento">Regulamentos</option>
+              <option value="calendario">Calendários</option>
+              <option value="outro">Outros</option>
+            </select>
+          </div>
+          <div><button class="botao botao--primario" type="submit">Filtrar</button></div>
+        </form>
+        <div class="tabela-rolagem">
+          <table class="tabela">
+            <thead><tr><th>Documento</th><th>Tipo</th><th>Publicado em</th><th>Arquivo</th></tr></thead>
+            <tbody id="lista-documentos"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="rodape" id="rodape"></footer>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/dados.js"></script>
+  <script src="/js/app.js"></script>
+  <script src="/js/componentes.js"></script>
+  <script src="/js/documentos.js"></script>
+</body>
+</html>

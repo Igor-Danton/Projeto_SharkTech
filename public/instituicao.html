@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>A instituição | CEEP Curitiba</title>
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <meta name="description" content="História, missão e indicadores do Centro Estadual de Educação Profissional de Curitiba.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/componentes.css">
+</head>
+<body>
+  <a class="pular-para-conteudo" href="#conteudo">Pular para o conteúdo</a>
+  <header class="topo" id="cabecalho"></header>
+
+  <main id="conteudo">
+    <div class="cabecalho-pagina">
+      <div class="container">
+        <p class="trilha"><a href="/">Início</a> / A instituição</p>
+        <h1>A instituição</h1>
+        <p>Quem somos, nossa história e os números da escola.</p>
+      </div>
+    </div>
+
+    <section class="secao secao--compacta">
+      <div class="container colunas-artigo">
+        <div>
+          <h2>Apresentação</h2>
+          <p>
+            O Centro Estadual de Educação Profissional de Curitiba é uma instituição
+            pública estadual de educação profissional, localizada no bairro Boqueirão.
+            A escola atende o Ensino Médio na modalidade de curso técnico integrado.
+          </p>
+
+          <h2 style="margin-top:var(--e-4)">Linha do tempo</h2>
+          <ul class="linha-tempo" id="linha-tempo"></ul>
+
+          <h2 style="margin-top:var(--e-4)">Indicadores educacionais</h2>
+          <div class="tabela-rolagem">
+            <table class="tabela">
+              <caption class="pular-para-conteudo">Indicadores do CEEP Curitiba</caption>
+              <thead><tr><th>Indicador</th><th>Valor</th><th>Fonte</th></tr></thead>
+              <tbody id="tabela-indicadores"></tbody>
+            </table>
+          </div>
+          <p class="trilha" style="margin-top:var(--e-1)">
+            Os percentuais do Saeb indicam a proporção de estudantes com aprendizagem
+            adequada na avaliação de 2023. Os demais dados são do Censo Escolar 2025.
+          </p>
+        </div>
+
+        <aside class="caixa-lateral">
+          <h3>Identificação</h3>
+          <ul class="lista-limpa" id="identificacao"></ul>
+          <p style="margin-top:var(--e-2)"><a href="/estrutura.html">Estrutura e laboratórios</a></p>
+          <p><a href="/contato.html">Endereço e contato</a></p>
+        </aside>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="rodape" id="rodape"></footer>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/dados.js"></script>
+  <script src="/js/app.js"></script>
+  <script src="/js/componentes.js"></script>
+  <script src="/js/instituicao.js"></script>
+</body>
+</html>

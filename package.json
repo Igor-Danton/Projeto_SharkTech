@@ -1,0 +1,21 @@
+{
+  "name": "shark-tech-ceep",
+  "version": "1.0.0",
+  "description": "Novo site institucional do CEEP Curitiba - Shark Tech",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "criar-admin": "node scripts/criar-admin.js"
+  },
+  "keywords": ["ceep", "curitiba", "site-institucional", "projeto-integrador"],
+  "author": "Shark Tech - Igor Danton de Oliveira e Vinicius Edson do Prado Barreto de Souza",
+  "license": "MIT",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "express-session": "^1.18.0",
+    "mysql2": "^3.11.0"
+  }
+}

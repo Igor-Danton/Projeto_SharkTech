@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Resultados da busca | CEEP Curitiba</title>
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <meta name="description" content="Busca por cursos, comunicados e documentos no site do CEEP Curitiba.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/componentes.css">
+</head>
+<body>
+  <a class="pular-para-conteudo" href="#conteudo">Pular para o conteúdo</a>
+  <header class="topo" id="cabecalho"></header>
+
+  <main id="conteudo">
+    <div class="cabecalho-pagina">
+      <div class="container">
+        <p class="trilha"><a href="/">Início</a> / Resultados da busca</p>
+        <h1>Resultados da busca</h1>
+        <p></p>
+      </div>
+    </div>
+
+    <section class="secao secao--compacta">
+      <div class="container">
+        <form class="filtros" data-busca role="search">
+          <div class="campo">
+            <label for="busca-termo">Buscar no site</label>
+            <input type="search" id="busca-termo" name="q" required minlength="2">
+          </div>
+          <div><button class="botao botao--primario" type="submit">Buscar</button></div>
+        </form>
+        <div id="resultado-busca"></div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="rodape" id="rodape"></footer>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/dados.js"></script>
+  <script src="/js/app.js"></script>
+  <script src="/js/componentes.js"></script>
+  <script src="/js/busca.js"></script>
+</body>
+</html>
