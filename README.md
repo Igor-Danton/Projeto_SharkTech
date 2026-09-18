@@ -44,7 +44,7 @@ cp .env.example .env        # no Windows: copy .env.example .env
 # edite o .env com a senha do seu MySQL
 mysql -u root -p < database/schema.sql
 mysql -u root -p < database/seed.sql
-npm run criar-admin -- "Igor Danton" igor@ceep.local umaSenhaForte123
+npm run criar-admin -- "Igor Danton" igor@ceep.local SenhaTeste3355  
 npm start
 ```
 
@@ -199,7 +199,7 @@ A área administrativa utiliza autenticação por e-mail e senha.
 
 O primeiro administrador deve ser criado durante a instalação da aplicação:
 
-npm run criar-admin -- "Nome do Administrador" "email@exemplo.com" "SENHA"
+npm run criar-admin -- "Igor Danton" igor@ceep.local SenhaTeste3355  
 
 Não versionar credenciais no GitHub.
 
