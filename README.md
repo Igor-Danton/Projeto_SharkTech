@@ -44,7 +44,7 @@ cp .env.example .env        # no Windows: copy .env.example .env
 # edite o .env com a senha do seu MySQL
 mysql -u root -p < database/schema.sql
 mysql -u root -p < database/seed.sql
-npm run criar-admin -- "Igor Danton" igor@ceep.local SenhaTeste3355  
+npm run criar-admin -- "Seu Nome" "seu@email.com" "SuaSenhaAqui"
 npm start
 ```
 

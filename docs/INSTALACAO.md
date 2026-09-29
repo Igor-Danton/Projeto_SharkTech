@@ -33,7 +33,7 @@ usar o **MySQL Workbench** para rodar os scripts SQL, ou adicionar
 Se você já tem a pasta, pule para o passo 3.
 
 ```bash
-git clone https://github.com/SEU-USUARIO/shark-tech-ceep.git
+git clone https://github.com/Igor-Danton/Projeto_SharkTech.git
 cd shark-tech-ceep
 ```
 
