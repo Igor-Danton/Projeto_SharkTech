@@ -1,22 +1,31 @@
 /**
- * Conexao com o MySQL.
- * Usa pool de conexoes (reaproveita conexoes em vez de abrir uma por requisicao)
+ * Conexão com o MySQL (TiDB Serverless + Vercel).
+ * Usa pool de conexões (reaproveita conexões em vez de abrir uma por requisição)
  * e sempre consultas preparadas nas rotas, para evitar SQL Injection.
+ *
+ * IMPORTANTE para Vercel + TiDB Serverless:
+ * - connectionLimit: 1 (serverless permite apenas 1 conexão simultânea)
+ * - ssl: true (TiDB exige SSL em todas as conexões)
+ * - port: 4000 (porta padrão do TiDB, não é 3306)
+ * - enableKeepAlive: true (evita desconexões em serverless)
  */
 require('dotenv').config();
 const mysql = require('mysql2/promise');
 
 const pool = mysql.createPool({
   host: process.env.DB_HOST || 'localhost',
-  port: Number(process.env.DB_PORT) || 3306,
+  port: Number(process.env.DB_PORT) || 4000,
   user: process.env.DB_USER || 'root',
   password: process.env.DB_PASSWORD || '',
   database: process.env.DB_NAME || 'sharktech_ceep',
   waitForConnections: true,
-  connectionLimit: 10,
+  connectionLimit: process.env.NODE_ENV === 'production' ? 1 : 10,
   queueLimit: 0,
   charset: 'utf8mb4_unicode_ci',
-  dateStrings: true
+  dateStrings: true,
+  ssl: true,  // ← TiDB requer SSL
+  enableKeepAlive: true,
+  keepAliveInitialDelayMs: 0
 });
 
 async function testarConexao() {
