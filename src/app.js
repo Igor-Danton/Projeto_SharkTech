@@ -11,6 +11,7 @@ const rotasConteudo = require('./routes/conteudo.routes');
 const rotasBusca = require('./routes/busca.routes');
 const rotasAuth = require('./routes/auth.routes');
 const rotasAdmin = require('./routes/admin.routes');
+const rotasHealth = require('./routes/health.routes');
 
 const config = validateEnv();
 const app = express();
@@ -39,6 +40,7 @@ app.use('/api', rotasConteudo);
 app.use('/api/busca', rotasBusca);
 app.use('/api/auth', rotasAuth);
 app.use('/api/admin', rotasAdmin);
+app.use('/health', rotasHealth);
 
 app.use(express.static(path.join(__dirname, '..', 'public'), { extensions: ['html'] }));
 
