@@ -97,7 +97,9 @@ const pool = mysql.createPool({
   queueLimit: 0,
   charset: 'utf8mb4_unicode_ci',
   dateStrings: true,
-  ssl: true,
+  ssl: {
+    rejectUnauthorized: false
+  },
   enableKeepAlive: true,
   keepAliveInitialDelayMs: 0
 });
@@ -114,7 +116,7 @@ module.exports = { pool, testarConexao };
 ### Por que isso importa?
 
 - `DB_PORT=4000` é a porta padrão do TiDB Serverless
-- `ssl: true` é obrigatório para a maioria dos serviços serverless
+- `ssl: { rejectUnauthorized: false }` é necessário para o TiDB Cloud em alguns ambientes serverless
 - `connectionLimit: 1` evita excesso de conexões em ambiente Vercel/serverless
 
 ## 5) Atualizar o `.env.example`
