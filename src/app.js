@@ -1,6 +1,7 @@
 const path = require('path');
 const express = require('express');
 const session = require('express-session');
+const helmet = require('helmet');
 
 const validateEnv = require('./config/env');
 const { naoEncontrado, tratarErro } = require('./middlewares/erros');
@@ -16,6 +17,7 @@ const rotasHealth = require('./routes/health.routes');
 const config = validateEnv();
 const app = express();
 
+app.use(helmet());
 app.use(express.json({ limit: '100kb' }));
 app.use(express.urlencoded({ extended: true }));
 
