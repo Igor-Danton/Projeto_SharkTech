@@ -23,7 +23,9 @@ const pool = mysql.createPool({
   queueLimit: 0,
   charset: 'utf8mb4_unicode_ci',
   dateStrings: true,
-  ssl: true,  // ← TiDB requer SSL
+  ssl: {
+    rejectUnauthorized: false
+  },
   enableKeepAlive: true,
   keepAliveInitialDelayMs: 0
 });
