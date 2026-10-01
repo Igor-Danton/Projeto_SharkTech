@@ -6,7 +6,12 @@
   "scripts": {
     "start": "node src/server.js",
     "dev": "node --watch src/server.js",
-    "criar-admin": "node scripts/criar-admin.js"
+    "criar-admin": "node scripts/criar-admin.js",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "check": "npm run format:check && npm run lint"
   },
   "keywords": ["ceep", "curitiba", "site-institucional", "projeto-integrador"],
   "author": "Shark Tech - Igor Danton de Oliveira e Vinicius Edson do Prado Barreto de Souza",
@@ -17,5 +22,9 @@
     "express": "^4.19.2",
     "express-session": "^1.18.0",
     "mysql2": "^3.11.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.57.0",
+    "prettier": "^3.3.3"
   }
 }
