@@ -5,11 +5,12 @@
 const express = require('express');
 const bcrypt = require('bcryptjs');
 const { pool } = require('../config/db');
+const { loginRateLimit } = require('../middlewares/rate-limit');
 
 const router = express.Router();
 
 /** POST /api/auth/login */
-router.post('/login', async (req, res, next) => {
+router.post('/login', loginRateLimit, async (req, res, next) => {
   try {
     const email = String(req.body.email || '').trim().toLowerCase();
     const senha = String(req.body.senha || '');
@@ -36,11 +37,13 @@ router.post('/login', async (req, res, next) => {
       id: usuario.id_usuario,
       nome: usuario.nome,
       email: usuario.email,
-      perfil: usuario.perfil
+      perfil: usuario.perfil,
     };
 
     res.json({ usuario: req.session.usuario });
-  } catch (erro) { next(erro); }
+  } catch (erro) {
+    next(erro);
+  }
 });
 
 /** GET /api/auth/me — usado pelo painel para saber se a sessao continua valida */
