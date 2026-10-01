@@ -1,4 +1,3 @@
-
 # 🚀 Guia de Deploy no Vercel — SharkTech
 
 ## Visão geral
@@ -67,6 +66,8 @@ SESSION_SECRET=gere_uma_chave_forte
 node -e "console.log(require('crypto').randomBytes(32).toString('base64'))"
 ```
 
+Importante: `SESSION_SECRET` é obrigatório. O projeto agora falha no startup se ele estiver ausente ou muito curto.
+
 ## 3) Importar o schema do banco
 
 Use o cliente MySQL ou o SQL Editor do TiDB Cloud.
@@ -80,18 +81,18 @@ Se o cliente MySQL não estiver instalado localmente, use o SQL Editor do TiDB C
 
 ## 4) Ajustar a conexão do projeto
 
-O arquivo `src/config/db.js` deve estar assim:
+O arquivo `src/config/db.js` deve seguir uma configuração segura e compatível com TiDB:
 
 ```javascript
 require('dotenv').config();
 const mysql = require('mysql2/promise');
 
 const pool = mysql.createPool({
-  host: process.env.DB_HOST || 'localhost',
+  host: process.env.DB_HOST,
   port: Number(process.env.DB_PORT) || 4000,
-  user: process.env.DB_USER || 'root',
-  password: process.env.DB_PASSWORD || '',
-  database: process.env.DB_NAME || 'sharktech_ceep',
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
   waitForConnections: true,
   connectionLimit: process.env.NODE_ENV === 'production' ? 1 : 10,
   queueLimit: 0,
@@ -118,6 +119,7 @@ module.exports = { pool, testarConexao };
 - `DB_PORT=4000` é a porta padrão do TiDB Serverless
 - `ssl: { rejectUnauthorized: false }` é necessário para o TiDB Cloud em alguns ambientes serverless
 - `connectionLimit: 1` evita excesso de conexões em ambiente Vercel/serverless
+- Não use fallback `|| 'localhost'` para informações sensíveis do banco em produção; isso pode mascarar configuração quebrada
 
 ## 5) Atualizar o `.env.example`
 
@@ -178,6 +180,8 @@ DB_NAME=sharktech_ceep
 SESSION_SECRET=sua_chave_forte
 ```
 
+Importante: o Vercel não deve receber valores vazios ou fallback. Se qualquer variável obrigatória estiver ausente, a aplicação deve falhar no startup.
+
 ### Passo 3: fazer o deploy
 
 1. Faça push para o GitHub
@@ -199,14 +203,25 @@ Se tiver um endpoint `/api/health`, teste também:
 curl https://seu-projeto.vercel.app/api/health
 ```
 
-## 8) Observações importantes
+## 8) Melhorias de segurança já implementadas no projeto
+
+O projeto foi ajustado para reduzir riscos comuns de deploy e autenticação:
+
+- `src/config/env.js` valida as variáveis obrigatórias no startup
+- `SESSION_SECRET` é obrigatório e deve ter no mínimo 32 caracteres
+- `src/app.js` separa a criação do Express da inicialização do processo
+- `src/routes/auth.routes.js` usa `rate limiting` na rota de login
+- Sessão HTTP-only e `sameSite: 'lax'` continuam habilitados
+
+## 9) Observações importantes
 
 - O banco MySQL precisa ficar em provedor externo; o Vercel não hospeda banco de dados do tipo MySQL de forma nativa
 - O TiDB Cloud oferece plano gratuito inicial e é a melhor opção para esse projeto
 - O TiDB deve ser usado com SSL ativo
 - O projeto precisa expor a aplicação Express em `module.exports = app` para funcionar corretamente em serverless
+- A aplicação não deve usar fallback inseguro para configurações críticas de produção
 
-## 9) Checklist final
+## 10) Checklist final
 
 - [ ] Conta no TiDB Cloud criada
 - [ ] Cluster serverless criado
@@ -214,13 +229,16 @@ curl https://seu-projeto.vercel.app/api/health
 - [ ] Banco importado com schema e seed
 - [ ] `src/config/db.js` atualizado
 - [ ] `.env.example` ajustado
+- [ ] `src/config/env.js` validando variáveis
 - [ ] `vercel.json` presente
 - [ ] Vercel com variáveis de ambiente configuradas
+- [ ] `SESSION_SECRET` forte e obrigatório
+- [ ] Login protegido com rate limit
 - [ ] Deploy realizado com sucesso
 - [ ] Aplicação acessível no domínio do Vercel
 - [ ] API funcionando em produção
 
-## 10) Recomendação final
+## 11) Recomendação final
 
 Para esse projeto específico, a melhor combinação é:
 
@@ -228,3 +246,5 @@ Para esse projeto específico, a melhor combinação é:
 - TiDB Serverless → banco de dados gratuito e compatível com MySQL
 
 Essa combinação é a mais simples, mais estável e mais adequada para um projeto acadêmico e para uso inicial sem custos.
+
+
