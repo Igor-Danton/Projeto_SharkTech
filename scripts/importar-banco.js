@@ -11,13 +11,9 @@ const configuracao = {
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
   multipleStatements: true,
-<<<<<<< HEAD
-  ssl: true
-=======
   ssl: {
     rejectUnauthorized: false
   }
->>>>>>> e53c697524544df231946ac4e1a1e3434d3c469a
 };
 
 async function executarArquivo(nomeArquivo) {
@@ -29,32 +25,17 @@ async function executarArquivo(nomeArquivo) {
   try {
     console.log(`Executando ${nomeArquivo}...`);
     await conexao.query(sql);
-<<<<<<< HEAD
-    console.log(`${nomeArquivo} executado com sucesso.`);
-=======
     console.log(`✓ ${nomeArquivo} executado com sucesso!`);
   } catch (erro) {
     console.error(`✗ Erro ao executar ${nomeArquivo}:`);
     console.error(erro.message);
     throw erro;
->>>>>>> e53c697524544df231946ac4e1a1e3434d3c469a
   } finally {
     await conexao.end();
   }
 }
 
 async function main() {
-<<<<<<< HEAD
-  await executarArquivo('schema.sql');
-  await executarArquivo('seed.sql');
-}
-
-main().catch((erro) => {
-  console.error('Erro durante a importação:');
-  console.error(erro.message);
-  process.exitCode = 1;
-});
-
   try {
     await executarArquivo('schema.sql');
     await executarArquivo('seed.sql');
@@ -66,4 +47,3 @@ main().catch((erro) => {
 }
 
 main();
->>>>>>> e53c697524544df231946ac4e1a1e3434d3c469a
