@@ -199,7 +199,7 @@ A área administrativa utiliza autenticação por e-mail e senha.
 
 O primeiro administrador deve ser criado durante a instalação da aplicação:
 
-npm run criar-admin -- "Igor Danton" igor@ceep.local SenhaTeste3355  
+npm run criar-admin 
 
 Não versionar credenciais no GitHub.
 
