@@ -104,25 +104,7 @@
 
 /* ------------------------- Hero ------------------------- */
 
-.hero {
-  background: var(--azul);
-  color: var(--branco);
-  position: relative;
-  isolation: isolate;
-}
-.hero::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  /* camada azul por cima da foto garante que o texto branco continue legível */
-  background:
-    linear-gradient(rgba(14, 48, 71, 0.78), rgba(14, 48, 71, 0.78)),
-    url('/assets/images/fachada.jpg') center / cover no-repeat fixed;
-  /* esvanece a imagem de cima para baixo */
-  -webkit-mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);
-  mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);
-}
+.hero { background: var(--azul); color: var(--branco); position: relative; }
 .hero::after {
   /* faixa de sinalizacao: unico elemento decorativo forte do site */
   content: ''; position: absolute; inset-inline: 0; bottom: 0; height: 6px;
@@ -317,5 +299,3 @@
 }
 .painel-numeros span { display: block; font-family: var(--fonte-titulo); font-size: var(--t-lg); color: var(--azul); }
 .painel-numeros small { color: var(--tinta-suave); font-size: var(--t-xs); }
-
-.marca__logo { width: 52px; height: 52px; flex: none; }
