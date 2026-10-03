@@ -112,7 +112,7 @@ Devem aparecer 8 tabelas e 11 cursos.
 ## 6. Criar o usuário da área administrativa
 
 Não existe usuário padrão no projeto — seria uma falha de segurança deixar uma senha
-conhecida no repositório. Crie o seu: npm run criar-admin -- "Igor Danton" igor@ceep.local SenhaTeste3355  
+conhecida no repositório. Crie o seu: npm run criar-admin
 
 O acesso administrativo é criado pelo script `npm run criar-admin`.
 Consulte `docs/INSTALACAO.md` para configurar as credenciais.
