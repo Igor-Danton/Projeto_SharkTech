@@ -1,6 +1,8 @@
 const path = require("path");
 const express = require("express");
 const session = require("express-session");
+const MySQLStore = require("express-mysql-session")(session);
+const { pool } = require("./config/db");
 const helmet = require("helmet");
 
 const validateEnv = require("./config/env");
@@ -13,6 +15,7 @@ const rotasBusca = require("./routes/busca.routes");
 const rotasAuth = require("./routes/auth.routes");
 const rotasAdmin = require("./routes/admin.routes");
 const rotasHealth = require("./routes/health.routes");
+const sessionStore = new MySQLStore({}, pool);
 
 const config = validateEnv();
 const app = express();
@@ -30,10 +33,12 @@ app.use(
 app.use(express.json({ limit: "100kb" }));
 app.use(express.urlencoded({ extended: true }));
 
+
 app.use(
   session({
     name: "sharktech.sid",
     secret: config.session.secret,
+    store: sessionStore,
     resave: false,
     saveUninitialized: false,
     cookie: {
