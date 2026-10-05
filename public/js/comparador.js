@@ -1,55 +1,52 @@
 /** Comparador de exatamente dois cursos. */
 
 function formatarHorasComparador(valor) {
-  return valor
-    ? `${Number(valor).toLocaleString('pt-BR')} h`
-    : null;
+  return valor ? `${Number(valor).toLocaleString("pt-BR")} h` : null;
 }
 
 const LINHAS_COMPARACAO = [
-  { rotulo: 'Eixo tecnológico', campo: 'area' },
-  { rotulo: 'Turno', campo: 'turno' },
+  { rotulo: "Eixo tecnológico", campo: "area" },
+  { rotulo: "Turno", campo: "turno" },
   {
-    rotulo: 'Carga horária total',
-    campo: 'carga_horaria_total',
-    fmt: formatarHorasComparador
+    rotulo: "Carga horária total",
+    campo: "carga_horaria_total",
+    fmt: formatarHorasComparador,
   },
   {
-    rotulo: 'Código do itinerário',
-    campo: 'codigo_itinerario'
+    rotulo: "Código do itinerário",
+    campo: "codigo_itinerario",
   },
-  { rotulo: 'Vagas', campo: 'vagas' },
-  { rotulo: 'Descrição', campo: 'descricao' },
-  { rotulo: 'Perfil do egresso', campo: 'perfil_egresso' },
+  { rotulo: "Vagas", campo: "vagas" },
+  { rotulo: "Descrição", campo: "descricao" },
+  { rotulo: "Perfil do egresso", campo: "perfil_egresso" },
   {
-    rotulo: 'Requisitos de ingresso',
-    campo: 'requisitos_ingresso'
-  }
+    rotulo: "Requisitos de ingresso",
+    campo: "requisitos_ingresso",
+  },
 ];
 
 async function preencherSelects() {
-  const a = document.getElementById('curso-a');
-  const b = document.getElementById('curso-b');
+  const a = document.getElementById("curso-a");
+  const b = document.getElementById("curso-b");
 
   if (!a || !b) {
-    throw new Error('Campos de comparação não encontrados na página.');
+    throw new Error("Campos de comparação não encontrados na página.");
   }
 
-  const cursos = await Api.get('/cursos');
+  const cursos = await Api.get("/cursos");
 
   const opcoes = ['<option value="">Selecione…</option>']
     .concat(
       cursos.map(
-        (c) =>
-          `<option value="${c.id_curso}">${escapar(c.nome)}</option>`
-      )
+        (c) => `<option value="${c.id_curso}">${escapar(c.nome)}</option>`,
+      ),
     )
-    .join('');
+    .join("");
 
   a.innerHTML = opcoes;
   b.innerHTML = opcoes;
 
-  const preSelecionado = parametro('a');
+  const preSelecionado = parametro("a");
 
   if (preSelecionado) {
     a.value = preSelecionado;
@@ -57,15 +54,15 @@ async function preencherSelects() {
 }
 
 async function comparar(idA, idB) {
-  const alvo = document.getElementById('resultado-comparacao');
-  const aviso = document.getElementById('aviso-comparar');
+  const alvo = document.getElementById("resultado-comparacao");
+  const aviso = document.getElementById("aviso-comparar");
 
   aviso.hidden = true;
-  alvo.innerHTML = '<p>Comparando…</p>';
+  alvo.innerHTML = "<p>Comparando…</p>";
 
   try {
     const [cursoA, cursoB] = await Api.get(
-      `/cursos/comparar?a=${idA}&b=${idB}`
+      `/cursos/comparar?a=${idA}&b=${idB}`,
     );
 
     alvo.innerHTML = `
@@ -96,63 +93,51 @@ async function comparar(idA, idB) {
                 <td>${ouPendente(
                   linha.fmt
                     ? linha.fmt(cursoA[linha.campo])
-                    : cursoA[linha.campo]
+                    : cursoA[linha.campo],
                 )}</td>
 
                 <td>${ouPendente(
                   linha.fmt
                     ? linha.fmt(cursoB[linha.campo])
-                    : cursoB[linha.campo]
+                    : cursoB[linha.campo],
                 )}</td>
-              </tr>`
-            ).join('')}
+              </tr>`,
+            ).join("")}
           </tbody>
         </table>
       </div>`;
   } catch (erro) {
-    alvo.innerHTML = '';
-    mostrarAviso(aviso, erro.message, 'erro');
+    alvo.innerHTML = "";
+    mostrarAviso(aviso, erro.message, "erro");
   }
 }
 
-document.addEventListener('layout-pronto', async () => {
-  const form = document.getElementById('form-comparar');
-  const aviso = document.getElementById('aviso-comparar');
+document.addEventListener("layout-pronto", async () => {
+  const form = document.getElementById("form-comparar");
+  const aviso = document.getElementById("aviso-comparar");
 
   try {
     await preencherSelects();
   } catch (erro) {
-    console.error('Erro ao carregar cursos para comparação:', erro);
+    console.error("Erro ao carregar cursos para comparação:", erro);
 
-    mostrarAviso(
-      aviso,
-      'Não foi possível carregar a lista de cursos.',
-      'erro'
-    );
+    mostrarAviso(aviso, "Não foi possível carregar a lista de cursos.", "erro");
 
     return;
   }
 
-  form.addEventListener('submit', (evento) => {
+  form.addEventListener("submit", (evento) => {
     evento.preventDefault();
 
-    const a = document.getElementById('curso-a').value;
-    const b = document.getElementById('curso-b').value;
+    const a = document.getElementById("curso-a").value;
+    const b = document.getElementById("curso-b").value;
 
     if (!a || !b) {
-      return mostrarAviso(
-        aviso,
-        'Escolha os dois cursos.',
-        'erro'
-      );
+      return mostrarAviso(aviso, "Escolha os dois cursos.", "erro");
     }
 
     if (a === b) {
-      return mostrarAviso(
-        aviso,
-        'Escolha dois cursos diferentes.',
-        'erro'
-      );
+      return mostrarAviso(aviso, "Escolha dois cursos diferentes.", "erro");
     }
 
     comparar(a, b);

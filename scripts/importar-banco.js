@@ -1,8 +1,8 @@
-require('dotenv').config();
+require("dotenv").config();
 
-const fs = require('fs');
-const path = require('path');
-const mysql = require('mysql2/promise');
+const fs = require("fs");
+const path = require("path");
+const mysql = require("mysql2/promise");
 
 const configuracao = {
   host: process.env.DB_HOST,
@@ -12,13 +12,13 @@ const configuracao = {
   database: process.env.DB_NAME,
   multipleStatements: true,
   ssl: {
-    rejectUnauthorized: false
-  }
+    rejectUnauthorized: false,
+  },
 };
 
 async function executarArquivo(nomeArquivo) {
-  const caminho = path.join(__dirname, '..', 'database', nomeArquivo);
-  const sql = fs.readFileSync(caminho, 'utf8');
+  const caminho = path.join(__dirname, "..", "database", nomeArquivo);
+  const sql = fs.readFileSync(caminho, "utf8");
 
   const conexao = await mysql.createConnection(configuracao);
 
@@ -37,11 +37,11 @@ async function executarArquivo(nomeArquivo) {
 
 async function main() {
   try {
-    await executarArquivo('schema.sql');
-    await executarArquivo('seed.sql');
-    console.log('\n✓ Importação concluída com sucesso!');
+    await executarArquivo("schema.sql");
+    await executarArquivo("seed.sql");
+    console.log("\n✓ Importação concluída com sucesso!");
   } catch (erro) {
-    console.error('\n✗ Falha na importação do banco de dados');
+    console.error("\n✗ Falha na importação do banco de dados");
     process.exitCode = 1;
   }
 }

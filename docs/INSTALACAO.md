@@ -7,11 +7,11 @@ Os comandos do Windows estão indicados quando forem diferentes.
 
 ## 1. Programas necessários
 
-| Programa | Versão | Onde baixar |
-|---|---|---|
-| Node.js | 18 ou superior | <https://nodejs.org> (versão LTS) |
-| MySQL Server | 8.0 ou superior | <https://dev.mysql.com/downloads/mysql/> |
-| Git | qualquer versão atual | <https://git-scm.com/downloads> |
+| Programa     | Versão                | Onde baixar                              |
+| ------------ | --------------------- | ---------------------------------------- |
+| Node.js      | 18 ou superior        | <https://nodejs.org> (versão LTS)        |
+| MySQL Server | 8.0 ou superior       | <https://dev.mysql.com/downloads/mysql/> |
+| Git          | qualquer versão atual | <https://git-scm.com/downloads>          |
 
 Confira se instalou certo. No **PowerShell** (Windows) ou no terminal do VS Code:
 
@@ -58,11 +58,13 @@ O `.env` guarda a senha do banco. Ele **nunca** pode ir para o GitHub — já es
 `.gitignore`.
 
 **Windows (PowerShell ou CMD):**
+
 ```powershell
 copy .env.example .env
 ```
 
 **Linux ou macOS:**
+
 ```bash
 cp .env.example .env
 ```
@@ -87,6 +89,7 @@ O `schema.sql` **apaga e recria** o banco `sharktech_ceep`. Se você já tiver d
 lá dentro, eles serão perdidos.
 
 **Pelo terminal:**
+
 ```bash
 mysql -u root -p < database/schema.sql
 mysql -u root -p < database/seed.sql
@@ -151,17 +154,17 @@ Para parar o servidor: **Ctrl + C** no terminal.
 
 ## 8. O que testar
 
-| Onde | O que fazer | Resultado esperado |
-|---|---|---|
-| `/` | abrir a home | indicadores, 6 cursos e o bloco de notícias |
-| `/cursos.html` | filtrar por eixo | a lista diminui conforme o filtro |
-| `/curso.html?id=2` | abrir Desenvolvimento de Sistemas | dados pendentes aparecem marcados em vermelho |
-| `/comparador.html` | escolher dois cursos | tabela lado a lado |
-| busca do topo | digitar "sistemas" | leva para `/busca.html` com resultados |
-| `/area-do-aluno.html` | enviar uma avaliação | mensagem de que ficará aguardando análise |
-| `/admin/` | entrar com o usuário criado | painel com a avaliação na fila |
-| painel → aprovar | aprovar a avaliação | ela passa a aparecer na página do curso |
-| celular (F12 → modo responsivo) | navegar | menu vira botão "Menu" |
+| Onde                            | O que fazer                       | Resultado esperado                            |
+| ------------------------------- | --------------------------------- | --------------------------------------------- |
+| `/`                             | abrir a home                      | indicadores, 6 cursos e o bloco de notícias   |
+| `/cursos.html`                  | filtrar por eixo                  | a lista diminui conforme o filtro             |
+| `/curso.html?id=2`              | abrir Desenvolvimento de Sistemas | dados pendentes aparecem marcados em vermelho |
+| `/comparador.html`              | escolher dois cursos              | tabela lado a lado                            |
+| busca do topo                   | digitar "sistemas"                | leva para `/busca.html` com resultados        |
+| `/area-do-aluno.html`           | enviar uma avaliação              | mensagem de que ficará aguardando análise     |
+| `/admin/`                       | entrar com o usuário criado       | painel com a avaliação na fila                |
+| painel → aprovar                | aprovar a avaliação               | ela passa a aparecer na página do curso       |
+| celular (F12 → modo responsivo) | navegar                           | menu vira botão "Menu"                        |
 
 ---
 

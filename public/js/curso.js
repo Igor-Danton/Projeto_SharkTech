@@ -19,19 +19,18 @@ function listaAvaliacoes(itens, vazio) {
     <article class="avaliacao">
       <div class="avaliacao__cabecalho">
         <span>${escapar(item.aluno)}${
-          item.turma ? ' — ' + escapar(item.turma) : ''
+          item.turma ? " — " + escapar(item.turma) : ""
         }</span>
         <span>${formatarData(item.data_avaliacao)}</span>
       </div>
-      ${item.nota ? estrelas(item.nota) : ''}
+      ${item.nota ? estrelas(item.nota) : ""}
       <p>${escapar(item.comentario)}</p>
-    </article>`
+    </article>`,
     )
-    .join('');
+    .join("");
 }
 
-const celula = (v) =>
-  v === null || v === undefined ? '—' : escapar(v);
+const celula = (v) => (v === null || v === undefined ? "—" : escapar(v));
 
 function tabelaSeries(series) {
   if (!series.length) {
@@ -60,9 +59,9 @@ function tabelaSeries(series) {
             <td>${celula(s.itinerario_anual)}</td>
             <td>${celula(s.total_semanal)}</td>
             <td>${celula(s.total_anual)}</td>
-          </tr>`
+          </tr>`,
             )
-            .join('')}
+            .join("")}
         </tbody>
       </table>
     </div>`;
@@ -71,16 +70,14 @@ function tabelaSeries(series) {
 function tabelaComum(linhas, bloco) {
   const itens = linhas.filter((l) => l.bloco === bloco);
 
-  if (!itens.length) return '';
+  if (!itens.length) return "";
 
   const val = (aulas, horas) => {
-    if (aulas === null || aulas === undefined) return '';
+    if (aulas === null || aulas === undefined) return "";
 
     return (
       escapar(aulas) +
-      (horas !== null && horas !== undefined
-        ? ` · ${escapar(horas)} h`
-        : '')
+      (horas !== null && horas !== undefined ? ` · ${escapar(horas)} h` : "")
     );
   };
 
@@ -102,13 +99,13 @@ function tabelaComum(linhas, bloco) {
               (l) => `
           <tr>
             <td>${escapar(l.nome)}</td>
-            <td>${val(l.aulas_s1, l.horas_s1) || '—'}</td>
-            <td>${val(l.aulas_s2, l.horas_s2) || '—'}</td>
-            <td>${val(l.aulas_s3, l.horas_s3) || '—'}</td>
-            <td>${l.observacao ? escapar(l.observacao) : ''}</td>
-          </tr>`
+            <td>${val(l.aulas_s1, l.horas_s1) || "—"}</td>
+            <td>${val(l.aulas_s2, l.horas_s2) || "—"}</td>
+            <td>${val(l.aulas_s3, l.horas_s3) || "—"}</td>
+            <td>${l.observacao ? escapar(l.observacao) : ""}</td>
+          </tr>`,
             )
-            .join('')}
+            .join("")}
         </tbody>
       </table>
     </div>`;
@@ -119,9 +116,7 @@ function blocoDisciplinas(disciplinas) {
     return '<div class="vazio">Os componentes técnicos deste curso ainda não foram cadastrados.</div>';
   }
 
-  const temDetalhe = disciplinas.some(
-    (d) => d.carga_horaria || d.professor
-  );
+  const temDetalhe = disciplinas.some((d) => d.carga_horaria || d.professor);
 
   if (temDetalhe) {
     return `
@@ -141,14 +136,12 @@ function blocoDisciplinas(disciplinas) {
             <tr>
               <td>${escapar(d.nome)}</td>
               <td>${
-                d.carga_horaria
-                  ? escapar(d.carga_horaria) + ' h'
-                  : '—'
+                d.carga_horaria ? escapar(d.carga_horaria) + " h" : "—"
               }</td>
-              <td>${d.professor ? escapar(d.professor) : '—'}</td>
-            </tr>`
+              <td>${d.professor ? escapar(d.professor) : "—"}</td>
+            </tr>`,
               )
-              .join('')}
+              .join("")}
           </tbody>
         </table>
       </div>`;
@@ -156,9 +149,7 @@ function blocoDisciplinas(disciplinas) {
 
   return `
     <ul>
-      ${disciplinas
-        .map((d) => `<li>${escapar(d.nome)}</li>`)
-        .join('')}
+      ${disciplinas.map((d) => `<li>${escapar(d.nome)}</li>`).join("")}
     </ul>
     <p class="trilha">
       A carga horária de cada componente e a distribuição por série
@@ -167,8 +158,8 @@ function blocoDisciplinas(disciplinas) {
 }
 
 async function carregarCurso() {
-  const alvo = document.getElementById('detalhe-curso');
-  const id = Number(parametro('id'));
+  const alvo = document.getElementById("detalhe-curso");
+  const id = Number(parametro("id"));
 
   if (!Number.isInteger(id)) {
     alvo.innerHTML =
@@ -179,14 +170,12 @@ async function carregarCurso() {
   try {
     const [curso, comum] = await Promise.all([
       Api.get(`/cursos/${id}`),
-      Api.get('/cursos/matriz-comum').catch(() => [])
+      Api.get("/cursos/matriz-comum").catch(() => []),
     ]);
 
     document.title = `${curso.nome} | CEEP Curitiba`;
 
-    const cabecalho = document.querySelector(
-      '.cabecalho-pagina .container'
-    );
+    const cabecalho = document.querySelector(".cabecalho-pagina .container");
 
     cabecalho.innerHTML = `
       <p class="trilha">
@@ -196,11 +185,11 @@ async function carregarCurso() {
       </p>
       <h1>${escapar(curso.nome)}</h1>
       <p>
-        ${curso.area ? escapar(curso.area) : 'Eixo tecnológico a confirmar'}
+        ${curso.area ? escapar(curso.area) : "Eixo tecnológico a confirmar"}
         ${
           curso.media_notas
             ? ` · nota média ${curso.media_notas} em ${curso.total_avaliacoes} avaliações`
-            : ''
+            : ""
         }
       </p>`;
 
@@ -209,17 +198,14 @@ async function carregarCurso() {
           <strong>Atenção à matriz:</strong>
           ${escapar(curso.observacao_matriz)}
         </div>`
-      : '';
+      : "";
 
     alvo.innerHTML = `
       <div class="colunas-artigo">
         <div>
-          ${blocoTexto('Sobre o curso', curso.descricao)}
-          ${blocoTexto('Perfil do egresso', curso.perfil_egresso)}
-          ${blocoTexto(
-            'Requisitos de ingresso',
-            curso.requisitos_ingresso
-          )}
+          ${blocoTexto("Sobre o curso", curso.descricao)}
+          ${blocoTexto("Perfil do egresso", curso.perfil_egresso)}
+          ${blocoTexto("Requisitos de ingresso", curso.requisitos_ingresso)}
 
           <h2>Carga horária por série</h2>
           ${aviso}
@@ -237,25 +223,25 @@ async function carregarCurso() {
             <p class="trilha">
               Aulas por semana; subtotais também em horas-relógio anuais.
             </p>
-            ${tabelaComum(comum, 'FGB')}
+            ${tabelaComum(comum, "FGB")}
 
             <h2 style="margin-top:var(--e-4)">
               Parte Flexível Obrigatória
             </h2>
-            ${tabelaComum(comum, 'PFO')}`
-              : ''
+            ${tabelaComum(comum, "PFO")}`
+              : ""
           }
 
           <h2 style="margin-top:var(--e-4)">Avaliações de alunos</h2>
           ${listaAvaliacoes(
             curso.avaliacoes,
-            'Este curso ainda não tem avaliações aprovadas.'
+            "Este curso ainda não tem avaliações aprovadas.",
           )}
 
           <h2 style="margin-top:var(--e-4)">Depoimentos de egressos</h2>
           ${listaAvaliacoes(
             curso.depoimentos,
-            'Este curso ainda não tem depoimentos aprovados.'
+            "Este curso ainda não tem depoimentos aprovados.",
           )}
         </div>
 
@@ -265,9 +251,7 @@ async function carregarCurso() {
           <ul class="lista-limpa">
             <li>
               <strong>Carga horária total:</strong>
-              ${ouPendente(
-                formatarHoras(curso.carga_horaria_total)
-              )}
+              ${ouPendente(formatarHoras(curso.carga_horaria_total))}
             </li>
 
             <li>
@@ -322,4 +306,4 @@ async function carregarCurso() {
   }
 }
 
-document.addEventListener('layout-pronto', carregarCurso);
+document.addEventListener("layout-pronto", carregarCurso);

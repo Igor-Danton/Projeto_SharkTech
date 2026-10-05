@@ -111,9 +111,9 @@ Todas as versões fixadas no `package.json`.
 ---
 
 **Verificação rápida:**
+
 ```bash
 npm run check          # linting + formatação
 npm start              # inicia servidor
 curl http://localhost:3000/health  # verifica saúde
 ```
-

@@ -19,7 +19,9 @@ Regra: preservar os nomes e números das matrizes; não inventar informações a
 ## Formação Geral Básica (comum às matrizes enviadas)
 
 ### Componentes e distribuição semanal
+
 1ª / 2ª / 3ª série:
+
 - Arte: 2 / 0 / 0
 - Educação Física: 2 / 0 / 2
 - Língua Inglesa: conforme matriz, há registros de P/NP em algumas versões; não simplificar para um valor que não esteja explicitado.
@@ -36,6 +38,7 @@ Regra: preservar os nomes e números das matrizes; não inventar informações a
 Subtotal FGB em todas as matrizes: 24 / 18 / 12 aulas semanais; 800 / 600 / 400 horas-relógio anuais.
 
 ### Parte Flexível Obrigatória (PFO)
+
 - Projeto de Vida: 2 / 1 / 1 aulas semanais; 67 / 33 / 33 horas anuais.
 - Educação Financeira: 1 / 1 / 1 aulas semanais; 33 / 33 / 33 horas anuais.
 - Subtotal PFO: 3 / 2 / 2 aulas semanais; 100 / 66 / 66 horas anuais.
@@ -43,6 +46,7 @@ Subtotal FGB em todas as matrizes: 24 / 18 / 12 aulas semanais; 800 / 600 / 400 
 ## Cursos técnicos
 
 ### 1. Técnico em Desenvolvimento de Sistemas
+
 - Carga horária total: 3.234 horas
 - Turno: Manhã e Tarde
 - Código do itinerário: não informado no PDF
@@ -63,6 +67,7 @@ Subtotal FGB em todas as matrizes: 24 / 18 / 12 aulas semanais; 800 / 600 / 400 
   - Computação Gráfica
 
 ### 2. Técnico em Programação de Jogos Digitais
+
 - Carga horária total: 3.032 horas
 - Turno: Manhã e Tarde
 - Código do itinerário: não informado no PDF
@@ -85,6 +90,7 @@ Subtotal FGB em todas as matrizes: 24 / 18 / 12 aulas semanais; 800 / 600 / 400 
   - Programação Web Aplicada a Jogos Digitais
 
 ### 3. Técnico em Química
+
 - Carga horária total: 3.233 horas
 - Turno: Manhã e Tarde na matriz padrão; a versão operacional apresenta turno como campo a preencher
 - Código do itinerário: 1615
@@ -101,6 +107,7 @@ Subtotal FGB em todas as matrizes: 24 / 18 / 12 aulas semanais; 800 / 600 / 400 
   - Química Orgânica
 
 ### 4. Técnico em Meio Ambiente
+
 - Carga horária total: 3.233 horas
 - Turno: Manhã e Tarde
 - Código do itinerário: 1609
@@ -120,6 +127,7 @@ Subtotal FGB em todas as matrizes: 24 / 18 / 12 aulas semanais; 800 / 600 / 400 
   - Sistemas de Gestão Ambiental
 
 ### 5. Técnico em Farmácia
+
 - Carga horária total: 3.233 horas
 - Turno: Manhã e Tarde
 - Código do itinerário: não informado no PDF
@@ -148,6 +156,7 @@ Subtotal FGB em todas as matrizes: 24 / 18 / 12 aulas semanais; 800 / 600 / 400 
   - Primeiros Socorros
 
 ### 6. Técnico em Edificações
+
 - Carga horária total: 3.233 horas
 - Turno: Manhã e Tarde
 - Código do itinerário: 1603
@@ -171,6 +180,7 @@ Subtotal FGB em todas as matrizes: 24 / 18 / 12 aulas semanais; 800 / 600 / 400 
   - Topografia
 
 ### 7. Técnico em Biotecnologia
+
 - Carga horária total: 3.233 horas
 - Turno: Manhã e Tarde
 - Código do itinerário: 1602

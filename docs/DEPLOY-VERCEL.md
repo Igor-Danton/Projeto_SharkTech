@@ -84,8 +84,8 @@ Se o cliente MySQL não estiver instalado localmente, use o SQL Editor do TiDB C
 O arquivo `src/config/db.js` deve seguir uma configuração segura e compatível com TiDB:
 
 ```javascript
-require('dotenv').config();
-const mysql = require('mysql2/promise');
+require("dotenv").config();
+const mysql = require("mysql2/promise");
 
 const pool = mysql.createPool({
   host: process.env.DB_HOST,
@@ -94,15 +94,15 @@ const pool = mysql.createPool({
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
   waitForConnections: true,
-  connectionLimit: process.env.NODE_ENV === 'production' ? 1 : 10,
+  connectionLimit: process.env.NODE_ENV === "production" ? 1 : 10,
   queueLimit: 0,
-  charset: 'utf8mb4_unicode_ci',
+  charset: "utf8mb4_unicode_ci",
   dateStrings: true,
   ssl: {
-    rejectUnauthorized: false
+    rejectUnauthorized: false,
   },
   enableKeepAlive: true,
-  keepAliveInitialDelayMs: 0
+  keepAliveInitialDelayMs: 0,
 });
 
 async function testarConexao() {
@@ -246,5 +246,3 @@ Para esse projeto específico, a melhor combinação é:
 - TiDB Serverless → banco de dados gratuito e compatível com MySQL
 
 Essa combinação é a mais simples, mais estável e mais adequada para um projeto acadêmico e para uso inicial sem custos.
-
-
