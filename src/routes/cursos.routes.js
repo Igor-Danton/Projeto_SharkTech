@@ -1,7 +1,9 @@
 /**
  * Rotas publicas de cursos — RF01, RF02, RF04, RF08.
+ *
  * Todas as consultas usam placeholders (?) = protecao contra SQL Injection.
  */
+
 const express = require('express');
 const { pool } = require('../config/db');
 
@@ -9,10 +11,11 @@ const router = express.Router();
 
 const CAMPOS_LISTA = `
   c.id_curso, c.nome, c.slug, c.turno, c.duracao, c.vagas,
+  c.carga_horaria_total, c.codigo_itinerario,
   c.descricao, c.imagem_capa, a.nome AS area
 `;
 
-/** GET /api/cursos?q=&area=&turno=  — lista de cursos (RF01) */
+/** GET /api/cursos?q=&area=&turno= — lista de cursos (RF01) */
 router.get('/', async (req, res, next) => {
   try {
     const { q, area, turno } = req.query;
@@ -23,10 +26,12 @@ router.get('/', async (req, res, next) => {
       condicoes.push('(c.nome LIKE ? OR c.descricao LIKE ?)');
       valores.push(`%${q}%`, `%${q}%`);
     }
+
     if (area) {
       condicoes.push('a.nome = ?');
       valores.push(area);
     }
+
     if (turno) {
       condicoes.push('c.turno = ?');
       valores.push(turno);
@@ -40,8 +45,11 @@ router.get('/', async (req, res, next) => {
         ORDER BY c.nome`,
       valores
     );
+
     res.json(linhas);
-  } catch (erro) { next(erro); }
+  } catch (erro) {
+    next(erro);
+  }
 });
 
 /** GET /api/cursos/areas — lista de eixos usados nos filtros */
@@ -54,21 +62,29 @@ router.get('/areas', async (req, res, next) => {
         GROUP BY a.id_area, a.nome
         ORDER BY a.nome`
     );
+
     res.json(linhas);
-  } catch (erro) { next(erro); }
+  } catch (erro) {
+    next(erro);
+  }
 });
 
-/** GET /api/cursos/comparar?a=1&b=2 — comparacao entre exatamente dois cursos (RF: comparador) */
+/** GET /api/cursos/comparar?a=1&b=2 — comparacao entre exatamente dois cursos */
 router.get('/comparar', async (req, res, next) => {
   try {
     const a = Number(req.query.a);
     const b = Number(req.query.b);
 
     if (!Number.isInteger(a) || !Number.isInteger(b)) {
-      return res.status(400).json({ erro: 'Informe dois cursos para comparar.' });
+      return res.status(400).json({
+        erro: 'Informe dois cursos para comparar.'
+      });
     }
+
     if (a === b) {
-      return res.status(400).json({ erro: 'Escolha dois cursos diferentes.' });
+      return res.status(400).json({
+        erro: 'Escolha dois cursos diferentes.'
+      });
     }
 
     const [linhas] = await pool.execute(
@@ -80,18 +96,50 @@ router.get('/comparar', async (req, res, next) => {
     );
 
     if (linhas.length !== 2) {
-      return res.status(404).json({ erro: 'Um dos cursos nao foi encontrado.' });
+      return res.status(404).json({
+        erro: 'Um dos cursos nao foi encontrado.'
+      });
     }
-    // devolve na ordem pedida pelo usuario
-    res.json([linhas.find(c => c.id_curso === a), linhas.find(c => c.id_curso === b)]);
-  } catch (erro) { next(erro); }
+
+    // Devolve na ordem pedida pelo usuario
+    res.json([
+      linhas.find((c) => c.id_curso === a),
+      linhas.find((c) => c.id_curso === b)
+    ]);
+  } catch (erro) {
+    next(erro);
+  }
 });
 
-/** GET /api/cursos/:id — pagina de curso (RF02) com disciplinas, professores e avaliacoes aprovadas */
+/**
+ * GET /api/cursos/matriz-comum
+ * Formação Geral Básica (FGB) e Parte Flexível Obrigatória (PFO)
+ */
+router.get('/matriz-comum', async (req, res, next) => {
+  try {
+    const [linhas] = await pool.query(
+      `SELECT bloco, ordem, nome, aulas_s1, aulas_s2, aulas_s3,
+              horas_s1, horas_s2, horas_s3, observacao
+         FROM formacao_comum
+        ORDER BY bloco, ordem`
+    );
+
+    res.json(linhas);
+  } catch (erro) {
+    next(erro);
+  }
+});
+
+/** GET /api/cursos/:id — pagina de curso (RF02) */
 router.get('/:id', async (req, res, next) => {
   try {
     const id = Number(req.params.id);
-    if (!Number.isInteger(id)) return res.status(400).json({ erro: 'Curso invalido.' });
+
+    if (!Number.isInteger(id)) {
+      return res.status(400).json({
+        erro: 'Curso invalido.'
+      });
+    }
 
     const [cursos] = await pool.execute(
       `SELECT c.*, a.nome AS area
@@ -100,25 +148,44 @@ router.get('/:id', async (req, res, next) => {
         WHERE c.id_curso = ? AND c.ativo = 1`,
       [id]
     );
-    if (cursos.length === 0) return res.status(404).json({ erro: 'Curso nao encontrado.' });
+
+    if (cursos.length === 0) {
+      return res.status(404).json({
+        erro: 'Curso nao encontrado.'
+      });
+    }
 
     const [disciplinas] = await pool.execute(
-      `SELECT d.id_disciplina, d.nome, d.carga_horaria, d.ementa, p.nome AS professor
+      `SELECT d.id_disciplina, d.nome, d.carga_horaria, d.ementa,
+              p.nome AS professor
          FROM disciplina d
          LEFT JOIN professor p ON p.id_professor = d.id_professor
         WHERE d.id_curso = ?
-        ORDER BY d.nome`,
+        ORDER BY d.id_disciplina`,
+      [id]
+    );
+
+    const [series] = await pool.execute(
+      `SELECT serie, itinerario_semanal, itinerario_anual,
+              total_semanal, total_anual
+         FROM curso_serie
+        WHERE id_curso = ?
+        ORDER BY serie`,
       [id]
     );
 
     const [professores] = await pool.execute(
-      `SELECT id_professor, nome, especialidade FROM professor WHERE id_curso = ? ORDER BY nome`,
+      `SELECT id_professor, nome, especialidade
+         FROM professor
+        WHERE id_curso = ?
+        ORDER BY nome`,
       [id]
     );
 
     // RF04 / RF08: somente registros aprovados aparecem publicamente
     const [avaliacoes] = await pool.execute(
-      `SELECT v.id_avaliacao, v.nota, v.comentario, v.data_avaliacao, v.tipo,
+      `SELECT v.id_avaliacao, v.nota, v.comentario,
+              v.data_avaliacao, v.tipo,
               al.nome AS aluno, al.turma
          FROM avaliacao v
          JOIN aluno al ON al.id_aluno = v.id_aluno
@@ -127,21 +194,31 @@ router.get('/:id', async (req, res, next) => {
       [id]
     );
 
-    const notas = avaliacoes.filter(v => v.tipo === 'avaliacao' && v.nota);
+    const notas = avaliacoes.filter(
+      (v) => v.tipo === 'avaliacao' && v.nota
+    );
+
     const media = notas.length
-      ? Number((notas.reduce((s, v) => s + v.nota, 0) / notas.length).toFixed(1))
+      ? Number(
+          (
+            notas.reduce((s, v) => s + v.nota, 0) / notas.length
+          ).toFixed(1)
+        )
       : null;
 
     res.json({
       ...cursos[0],
       disciplinas,
+      series,
       professores,
-      avaliacoes: avaliacoes.filter(v => v.tipo === 'avaliacao'),
-      depoimentos: avaliacoes.filter(v => v.tipo === 'depoimento'),
+      avaliacoes: avaliacoes.filter((v) => v.tipo === 'avaliacao'),
+      depoimentos: avaliacoes.filter((v) => v.tipo === 'depoimento'),
       media_notas: media,
       total_avaliacoes: notas.length
     });
-  } catch (erro) { next(erro); }
+  } catch (erro) {
+    next(erro);
+  }
 });
 
 module.exports = router;
