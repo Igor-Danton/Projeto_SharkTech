@@ -1,0 +1,28 @@
+{
+  "env": {
+    "browser": true,
+    "node": true,
+    "es2021": true
+  },
+  "extends": ["eslint:recommended"],
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "script"
+  },
+  "globals": {
+    "Api": "readonly",
+    "DadosCeep": "readonly",
+    "cardCurso": "readonly",
+    "ouPendente": "readonly",
+    "escapar": "readonly",
+    "formatarData": "readonly",
+    "formatarHoras": "readonly",
+    "estrelas": "readonly",
+    "mostrarAviso": "readonly",
+    "parametro": "readonly"
+  },
+  "rules": {
+    "no-unused-vars": "off",
+    "no-console": "off"
+  }
+}
