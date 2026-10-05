@@ -17,7 +17,16 @@ const rotasHealth = require("./routes/health.routes");
 const config = validateEnv();
 const app = express();
 
-app.use(helmet());
+app.use(
+  helmet({
+    contentSecurityPolicy: {
+      directives: {
+        frameSrc: ["'self'", "https://www.openstreetmap.org"],
+      },
+    },
+  }),
+);
+
 app.use(express.json({ limit: "100kb" }));
 app.use(express.urlencoded({ extended: true }));
 
