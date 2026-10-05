@@ -15,10 +15,15 @@ const rotasBusca = require("./routes/busca.routes");
 const rotasAuth = require("./routes/auth.routes");
 const rotasAdmin = require("./routes/admin.routes");
 const rotasHealth = require("./routes/health.routes");
-const sessionStore = new MySQLStore({}, pool);
 
 const config = validateEnv();
 const app = express();
+
+if (config.nodeEnv === "production") {
+  app.set("trust proxy", 1);
+}
+
+const sessionStore = new MySQLStore({}, pool);
 
 app.use(
   helmet({
@@ -32,7 +37,6 @@ app.use(
 
 app.use(express.json({ limit: "100kb" }));
 app.use(express.urlencoded({ extended: true }));
-
 
 app.use(
   session({
