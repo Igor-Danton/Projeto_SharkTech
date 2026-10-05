@@ -1,3 +1,8 @@
+/**
+ * Conexao com o MySQL.
+ * Para MySQL local, SSL normalmente fica desligado.
+ * Para TiDB/servidores com TLS exigido, use DB_SSL=true.
+ */
 require('dotenv').config();
 const mysql = require('mysql2/promise');
 
@@ -17,3 +22,11 @@ const pool = mysql.createPool({
   ssl: sslAtivado ? { rejectUnauthorized: false } : false,
   enableKeepAlive: true,
 });
+
+async function testarConexao() {
+  const conexao = await pool.getConnection();
+  await conexao.ping();
+  conexao.release();
+}
+
+module.exports = { pool, testarConexao };
