@@ -1,102 +1,129 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Área do aluno | CEEP Curitiba</title>
-  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
-  <meta name="description" content="Serviços para alunos e ex-alunos do CEEP Curitiba: avaliação de curso, depoimentos e acesso aos sistemas oficiais.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/css/base.css">
-  <link rel="stylesheet" href="/css/componentes.css">
-</head>
-<body>
-  <a class="pular-para-conteudo" href="#conteudo">Pular para o conteúdo</a>
-  <header class="topo" id="cabecalho"></header>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Área do aluno | CEEP Curitiba</title>
+    <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
+    <meta
+      name="description"
+      content="Serviços para alunos e ex-alunos do CEEP Curitiba: avaliação de curso, depoimentos e acesso aos sistemas oficiais."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bitter:wght@500;600;700&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/css/base.css" />
+    <link rel="stylesheet" href="/css/componentes.css" />
+  </head>
+  <body>
+    <a class="pular-para-conteudo" href="#conteudo">Pular para o conteúdo</a>
+    <header class="topo" id="cabecalho"></header>
 
-  <main id="conteudo">
-    <div class="cabecalho-pagina">
-      <div class="container">
-        <p class="trilha"><a href="/">Início</a> / Área do aluno</p>
-        <h1>Área do aluno</h1>
-        <p>Espaço para alunos e ex-alunos. Serviços acadêmicos ficam nos sistemas oficiais da SEED-PR.</p>
-      </div>
-    </div>
-
-    <section class="secao secao--compacta">
-      <div class="container colunas-artigo">
-        <div>
-          <h2>Avalie seu curso</h2>
+    <main id="conteudo">
+      <div class="cabecalho-pagina">
+        <div class="container">
+          <p class="trilha"><a href="/">Início</a> / Área do aluno</p>
+          <h1>Área do aluno</h1>
           <p>
-            Sua avaliação ajuda quem ainda está escolhendo um curso técnico. Ela passa
-            por análise da equipe antes de aparecer no site.
+            Espaço para alunos e ex-alunos. Serviços acadêmicos ficam nos
+            sistemas oficiais da SEED-PR.
           </p>
-
-          <form class="formulario" id="form-avaliacao">
-            <div class="campo">
-              <label for="av-tipo">O que você quer enviar</label>
-              <select id="av-tipo" name="tipo">
-                <option value="avaliacao">Avaliação com nota</option>
-                <option value="depoimento">Depoimento de ex-aluno</option>
-              </select>
-            </div>
-            <div class="campo">
-              <label for="av-curso">Curso</label>
-              <select id="av-curso" name="id_curso" required></select>
-            </div>
-            <div class="campo" id="campo-nota">
-              <label for="av-nota">Nota</label>
-              <select id="av-nota" name="nota">
-                <option value="5">5 — Muito bom</option>
-                <option value="4">4 — Bom</option>
-                <option value="3">3 — Regular</option>
-                <option value="2">2 — Ruim</option>
-                <option value="1">1 — Muito ruim</option>
-              </select>
-            </div>
-            <div class="campo">
-              <label for="av-nome">Nome completo</label>
-              <input type="text" id="av-nome" name="nome" required minlength="3">
-            </div>
-            <div class="campo">
-              <label for="av-email">E-mail</label>
-              <input type="email" id="av-email" name="email" required>
-              <p class="campo__ajuda">Usado apenas para identificar o envio. Não aparece no site.</p>
-            </div>
-            <div class="campo">
-              <label for="av-turma">Turma (opcional)</label>
-              <input type="text" id="av-turma" name="turma">
-            </div>
-            <div class="campo">
-              <label for="av-comentario">Comentário</label>
-              <textarea id="av-comentario" name="comentario" required minlength="10"></textarea>
-            </div>
-            <div class="aviso" id="aviso-avaliacao" hidden></div>
-            <button class="botao botao--primario" type="submit" id="botao-enviar">Enviar</button>
-          </form>
         </div>
-
-        <aside class="caixa-lateral">
-          <h3>Serviços acadêmicos</h3>
-          <p>
-            Boletim, frequência, histórico e matrícula ficam nos sistemas oficiais da
-            rede estadual, e não neste site.
-          </p>
-          <ul class="lista-limpa" id="sistemas-oficiais-lista"></ul>
-        </aside>
       </div>
-    </section>
 
-  </main>
+      <section class="secao secao--compacta">
+        <div class="container colunas-artigo">
+          <div>
+            <h2>Avalie seu curso</h2>
+            <p>
+              Sua avaliação ajuda quem ainda está escolhendo um curso técnico.
+              Ela passa por análise da equipe antes de aparecer no site.
+            </p>
 
-  <footer class="rodape" id="rodape"></footer>
+            <form class="formulario" id="form-avaliacao">
+              <div class="campo">
+                <label for="av-tipo">O que você quer enviar</label>
+                <select id="av-tipo" name="tipo">
+                  <option value="avaliacao">Avaliação com nota</option>
+                  <option value="depoimento">Depoimento de ex-aluno</option>
+                </select>
+              </div>
+              <div class="campo">
+                <label for="av-curso">Curso</label>
+                <select id="av-curso" name="id_curso" required></select>
+              </div>
+              <div class="campo" id="campo-nota">
+                <label for="av-nota">Nota</label>
+                <select id="av-nota" name="nota">
+                  <option value="5">5 — Muito bom</option>
+                  <option value="4">4 — Bom</option>
+                  <option value="3">3 — Regular</option>
+                  <option value="2">2 — Ruim</option>
+                  <option value="1">1 — Muito ruim</option>
+                </select>
+              </div>
+              <div class="campo">
+                <label for="av-nome">Nome completo</label>
+                <input
+                  type="text"
+                  id="av-nome"
+                  name="nome"
+                  required
+                  minlength="3"
+                />
+              </div>
+              <div class="campo">
+                <label for="av-email">E-mail</label>
+                <input type="email" id="av-email" name="email" required />
+                <p class="campo__ajuda">
+                  Usado apenas para identificar o envio. Não aparece no site.
+                </p>
+              </div>
+              <div class="campo">
+                <label for="av-turma">Turma (opcional)</label>
+                <input type="text" id="av-turma" name="turma" />
+              </div>
+              <div class="campo">
+                <label for="av-comentario">Comentário</label>
+                <textarea
+                  id="av-comentario"
+                  name="comentario"
+                  required
+                  minlength="10"
+                ></textarea>
+              </div>
+              <div class="aviso" id="aviso-avaliacao" hidden></div>
+              <button
+                class="botao botao--primario"
+                type="submit"
+                id="botao-enviar"
+              >
+                Enviar
+              </button>
+            </form>
+          </div>
 
-  <script src="/js/api.js"></script>
-  <script src="/js/dados.js"></script>
-  <script src="/js/app.js"></script>
-  <script src="/js/componentes.js"></script>
-  <script src="/js/area-aluno.js"></script>
-</body>
+          <aside class="caixa-lateral">
+            <h3>Serviços acadêmicos</h3>
+            <p>
+              Boletim, frequência, histórico e matrícula ficam nos sistemas
+              oficiais da rede estadual, e não neste site.
+            </p>
+            <ul class="lista-limpa" id="sistemas-oficiais-lista"></ul>
+          </aside>
+        </div>
+      </section>
+    </main>
+
+    <footer class="rodape" id="rodape"></footer>
+
+    <script src="/js/api.js"></script>
+    <script src="/js/dados.js"></script>
+    <script src="/js/app.js"></script>
+    <script src="/js/componentes.js"></script>
+    <script src="/js/area-aluno.js"></script>
+  </body>
 </html>

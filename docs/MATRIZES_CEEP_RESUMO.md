@@ -24,29 +24,29 @@
 
 ### Distribuição semanal por série (1ª / 2ª / 3ª)
 
-| Componente | 1ª série | 2ª série | 3ª série |
-|---|---|---|---|
-| Língua Portuguesa | 3 | 3 | 4 |
-| Matemática | 3 | 3 | 4 |
-| Educação Física | 2 | 0 | 2 |
-| História | 2 | 2 | 0 |
-| Geografia | 2 | 2 | 0 |
-| Filosofia | 2 | 0 | 0 |
-| Sociologia | 0 | 2 | 0 |
-| Língua Inglesa | Conforme matriz |  |  |
-| Arte | 2 | 0 | 0 |
-| Física | 2 | 0 | 2 |
-| Química | 2 | 2 | 0 |
-| Biologia | 2 | 2 | 0 |
+| Componente        | 1ª série        | 2ª série | 3ª série |
+| ----------------- | --------------- | -------- | -------- |
+| Língua Portuguesa | 3               | 3        | 4        |
+| Matemática        | 3               | 3        | 4        |
+| Educação Física   | 2               | 0        | 2        |
+| História          | 2               | 2        | 0        |
+| Geografia         | 2               | 2        | 0        |
+| Filosofia         | 2               | 0        | 0        |
+| Sociologia        | 0               | 2        | 0        |
+| Língua Inglesa    | Conforme matriz |          |          |
+| Arte              | 2               | 0        | 0        |
+| Física            | 2               | 0        | 2        |
+| Química           | 2               | 2        | 0        |
+| Biologia          | 2               | 2        | 0        |
 
 **Subtotal FGB:** 24 / 18 / 12 aulas semanais
 
 ### Parte Flexível Obrigatória (PFO)
 
-| Componente | 1ª série | 2ª série | 3ª série |
-|---|---|---|---|
-| Projeto de Vida | 2 | 1 | 1 |
-| Educação Financeira | 1 | 1 | 1 |
+| Componente          | 1ª série | 2ª série | 3ª série |
+| ------------------- | -------- | -------- | -------- |
+| Projeto de Vida     | 2        | 1        | 1        |
+| Educação Financeira | 1        | 1        | 1        |
 
 **Subtotal PFO:** 3 / 2 / 2 aulas semanais
 
@@ -64,6 +64,7 @@
 - **Total anual:** 1.067 / 1.067 / 1.100 horas
 
 **Componentes técnicos:**
+
 - Análise e Projeto de Sistemas
 - Banco de Dados
 - Ciência da Computação
@@ -87,6 +88,7 @@
 - **Total anual:** 1.032 / 1.000 / 1.000 horas
 
 **Componentes técnicos:**
+
 - Análise e Projetos de Jogos Digitais I
 - Análise e Projetos de Jogos Digitais II
 - Banco de Dados
@@ -112,6 +114,7 @@
 - **Total anual:** 1.000 / 1.133 / 1.101 horas
 
 **Componentes técnicos:**
+
 - Físico-Química
 - Legislação e Normas
 - Processos Industriais
@@ -132,6 +135,7 @@
 - **Total anual:** 1.000 / 1.099 / 1.133 horas
 
 **Componentes técnicos:**
+
 - Análise, Controle e Química Ambiental
 - Educação Ambiental
 - Estudo de Impactos e Riscos Ambientais
@@ -153,6 +157,7 @@
 - **Total anual:** 1.033 / 1.100 / 1.100 horas
 
 **Componentes técnicos:**
+
 - Bases Biológicas Aplicadas à Saúde
 - Biossegurança e Segurança do Trabalho
 - Controle de Qualidade
@@ -184,6 +189,7 @@
 - **Total anual:** 1.000 / 1.099 / 1.133 horas
 
 **Componentes técnicos:**
+
 - Administração de Obras
 - Controle e Proteção Ambiental
 - Instalações Elétricas
@@ -210,6 +216,7 @@
 - **Total anual:** 1.000 / 1.133 / 1.099 horas
 
 **Componentes técnicos:**
+
 - Análise Ambiental
 - Bioquímica
 - Bromatologia

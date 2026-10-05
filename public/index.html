@@ -1,126 +1,184 @@
-<!DOCTYPE html>
+```html
+<!doctype html>
 <html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>CEEP Curitiba — Centro Estadual de Educação Profissional</title>
-  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
-  <meta name="description" content="Portal do Centro Estadual de Educação Profissional de Curitiba: cursos técnicos integrados ao Ensino Médio, formas de ingresso, secretaria e contato.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/css/base.css">
-  <link rel="stylesheet" href="/css/componentes.css">
-</head>
-<body>
-  <a class="pular-para-conteudo" href="#conteudo">Pular para o conteúdo</a>
-  <header class="topo" id="cabecalho"></header>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CEEP Curitiba — Centro Estadual de Educação Profissional</title>
+    <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
+    <meta
+      name="description"
+      content="Portal do Centro Estadual de Educação Profissional de Curitiba: cursos técnicos integrados ao Ensino Médio, formas de ingresso, secretaria e contato."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bitter:wght@500;600;700&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/css/base.css" />
+    <link rel="stylesheet" href="/css/componentes.css" />
+  </head>
+  <body>
+    <a class="pular-para-conteudo" href="#conteudo">Pular para o conteúdo</a>
+    <header class="topo" id="cabecalho"></header>
 
-  <main id="conteudo">
-    <section class="hero">
-      <div class="container">
-        <h1>Educação profissional pública em Curitiba desde 1941</h1>
-        <p class="hero__apoio">
-          Onze cursos técnicos integrados ao Ensino Médio, em uma escola estadual
-          com laboratórios próprios para cada área de formação.
-        </p>
+    <main id="conteudo">
+      <section class="hero">
+        <div class="container">
+          <h1>Educação profissional pública em Curitiba desde 1941</h1>
 
-        <form class="hero__busca" data-busca role="search">
-          <label for="busca-hero" class="pular-para-conteudo">Buscar no site</label>
-          <input type="search" id="busca-hero" name="q" placeholder="Buscar curso, comunicado ou documento" required minlength="2">
-          <button class="botao botao--sinal" type="submit">Buscar</button>
-        </form>
+          <p class="hero__apoio">
+            Sete cursos técnicos integrados ao Ensino Médio, em uma escola
+            estadual com laboratórios próprios para cada área de formação.
+          </p>
 
-        <div class="indicadores" id="indicadores"></div>
-      </div>
-    </section>
+          <form class="hero__busca" data-busca role="search">
+            <label for="busca-hero" class="pular-para-conteudo">
+              Buscar no site
+            </label>
 
-    <section class="secao secao--clara">
-      <div class="container">
-        <div class="secao__titulo">
-          <h2>Cursos técnicos</h2>
-          <p>Formação técnica integrada ao Ensino Médio. Escolha um curso para ver os detalhes.</p>
+            <input
+              type="search"
+              id="busca-hero"
+              name="q"
+              placeholder="Buscar curso, comunicado ou documento"
+              required
+              minlength="2"
+            />
+
+            <button class="botao botao--sinal" type="submit">Buscar</button>
+          </form>
+
+          <div class="indicadores" id="indicadores"></div>
         </div>
-        <div class="grade grade--3" id="cursos-destaque"></div>
-        <p style="margin-top:var(--e-3)">
-          <a class="botao botao--contorno" href="/cursos.html">Ver todos os cursos</a>
-          <a class="botao botao--contorno" href="/comparador.html">Comparar dois cursos</a>
-        </p>
-      </div>
-    </section>
+      </section>
 
-    <section class="secao">
-      <div class="container colunas-artigo">
-        <div>
-          <h2>Uma escola técnica com história</h2>
-          <p>
-            O CEEP Curitiba é uma instituição pública estadual de educação profissional.
-            Fundada em 1941 como Instituto Técnico de Agronomia, Veterinária e Química do
-            Paraná, passou por diferentes denominações até se tornar o atual Centro Estadual
-            de Educação Profissional de Curitiba.
-          </p>
-          <p>
-            Hoje a escola oferece cursos técnicos em áreas que vão da indústria à saúde e à
-            tecnologia da informação, sempre integrados ao Ensino Médio.
-          </p>
-          <p>
-            <a class="botao botao--primario" href="/instituicao.html">Conhecer a instituição</a>
-          </p>
-        </div>
-        <aside class="caixa-lateral">
-          <h3>Estrutura</h3>
-          <p>
-            A escola conta com biblioteca, laboratórios de informática e de ciências,
-            quadra de esportes, dependências com acessibilidade e alimentação escolar.
-          </p>
-          <p><a href="/estrutura.html">Ver estrutura e laboratórios</a></p>
-        </aside>
-      </div>
-    </section>
-
-    <section class="secao secao--clara">
-      <div class="container">
-        <div class="secao__titulo">
-          <h2>Notícias e comunicados</h2>
-        </div>
-        <div class="grade grade--3" id="noticias-home"></div>
-        <p style="margin-top:var(--e-3)">
-          <a href="/noticias.html">Ver todas as notícias e comunicados</a>
-        </p>
-      </div>
-    </section>
-
-    <section class="secao secao--azul">
-      <div class="container">
-        <div class="grade grade--2">
-          <div>
-            <h2>Como ingressar</h2>
+      <section class="secao secao--clara">
+        <div class="container">
+          <div class="secao__titulo">
+            <h2>Cursos técnicos</h2>
             <p>
-              A inscrição e a matrícula acontecem nos canais oficiais da Secretaria de
-              Estado da Educação do Paraná. Aqui você encontra a orientação e o caminho
-              para o sistema correto.
+              Formação técnica integrada ao Ensino Médio. Escolha um curso para
+              ver os detalhes.
             </p>
-            <p><a class="botao botao--sinal" href="/como-ingressar.html">Ver formas de ingresso</a></p>
           </div>
+
+          <div class="grade grade--3" id="cursos-destaque"></div>
+
+          <p style="margin-top: var(--e-3)">
+            <a class="botao botao--contorno" href="/cursos.html">
+              Ver todos os cursos
+            </a>
+
+            <a class="botao botao--contorno" href="/comparador.html">
+              Comparar dois cursos
+            </a>
+          </p>
+        </div>
+      </section>
+
+      <section class="secao">
+        <div class="container colunas-artigo">
           <div>
-            <h2>Fale com a escola</h2>
+            <h2>Uma escola técnica com história</h2>
+
             <p>
-              Rua Frederico Maurer, 3015 — Boqueirão, Curitiba/PR<br>
-              Telefone: (41) 3276-9534
+              O CEEP Curitiba é uma instituição pública estadual de educação
+              profissional. Fundada em 1941 como Instituto Técnico de Agronomia,
+              Veterinária e Química do Paraná, passou por diferentes
+              denominações até se tornar o atual Centro Estadual de Educação
+              Profissional de Curitiba.
             </p>
-            <p><a class="botao botao--contorno" href="/contato.html">Abrir página de contato</a></p>
+
+            <p>
+              Hoje a escola oferece cursos técnicos em áreas que vão da
+              indústria à saúde e à tecnologia da informação, sempre integrados
+              ao Ensino Médio.
+            </p>
+
+            <p>
+              <a class="botao botao--primario" href="/instituicao.html">
+                Conhecer a instituição
+              </a>
+            </p>
+          </div>
+
+          <aside class="caixa-lateral">
+            <h3>Estrutura</h3>
+
+            <p>
+              A escola conta com biblioteca, laboratórios de informática e de
+              ciências, quadra de esportes, dependências com acessibilidade e
+              alimentação escolar.
+            </p>
+
+            <p>
+              <a href="/estrutura.html"> Ver estrutura e laboratórios </a>
+            </p>
+          </aside>
+        </div>
+      </section>
+
+      <section class="secao secao--clara">
+        <div class="container">
+          <div class="secao__titulo">
+            <h2>Notícias e comunicados</h2>
+          </div>
+
+          <div class="grade grade--3" id="noticias-home"></div>
+
+          <p style="margin-top: var(--e-3)">
+            <a href="/noticias.html"> Ver todas as notícias e comunicados </a>
+          </p>
+        </div>
+      </section>
+
+      <section class="secao secao--azul">
+        <div class="container">
+          <div class="grade grade--2">
+            <div>
+              <h2>Como ingressar</h2>
+
+              <p>
+                A inscrição e a matrícula acontecem nos canais oficiais da
+                Secretaria de Estado da Educação do Paraná. Aqui você encontra a
+                orientação e o caminho para o sistema correto.
+              </p>
+
+              <p>
+                <a class="botao botao--sinal" href="/como-ingressar.html">
+                  Ver formas de ingresso
+                </a>
+              </p>
+            </div>
+
+            <div>
+              <h2>Fale com a escola</h2>
+
+              <p>
+                Rua Frederico Maurer, 3015 — Boqueirão, Curitiba/PR<br />
+                Telefone: (41) 3276-9534
+              </p>
+
+              <p>
+                <a class="botao botao--contorno" href="/contato.html">
+                  Abrir página de contato
+                </a>
+              </p>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
-  </main>
+      </section>
+    </main>
 
-  <footer class="rodape" id="rodape"></footer>
+    <footer class="rodape" id="rodape"></footer>
 
-  <script src="/js/api.js"></script>
-  <script src="/js/dados.js"></script>
-  <script src="/js/app.js"></script>
-  <script src="/js/componentes.js"></script>
-  <script src="/js/home.js"></script>
-</body>
+    <script src="/js/api.js"></script>
+    <script src="/js/dados.js"></script>
+    <script src="/js/app.js"></script>
+    <script src="/js/componentes.js"></script>
+    <script src="/js/home.js"></script>
+  </body>
 </html>
+```

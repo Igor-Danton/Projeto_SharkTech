@@ -36,16 +36,19 @@ O projeto Shark Tech foi auditado em sua totalidade:
 ### Como Usar
 
 **Criar ou resetar senha do administrador:**
+
 ```bash
 npm run criar-admin -- "Nome Completo" "email@exemplo.com" "SenhaForte123"
 ```
 
 **Login no painel:**
+
 1. Acesse http://localhost:3000/admin/
 2. Use o e-mail e senha criados
 3. Você terá acesso ao painel de administração
 
 **Trocar senha (do painel ou via API):**
+
 ```javascript
 // Via API (autenticado)
 PUT /api/auth/mudar-senha
@@ -68,17 +71,17 @@ PUT /api/auth/mudar-senha
 
 ### Schema Verificado
 
-| Tabela | Status | Notas |
-|--------|--------|-------|
-| `usuario_admin` | ✅ OK | Chave primária, email único, senha_hash VARCHAR(255) |
-| `curso` | ✅ OK | 11 cursos pré-cadastrados, slug único |
-| `area_conhecimento` | ✅ OK | 5 eixos tecnológicos |
-| `aluno` | ✅ OK | Email único, relacionado a curso |
-| `avaliacao` | ✅ OK | Status (pendente/aprovada/rejeitada), tipo (avaliacao/depoimento) |
-| `disciplina` | ✅ OK | Relacionada a curso e professor |
-| `professor` | ✅ OK | Especialidade e curso associado |
-| `noticia` | ✅ OK | Categoria, publicada (boolean) |
-| `documento` | ✅ OK | Categoria, publicado (boolean) |
+| Tabela              | Status | Notas                                                             |
+| ------------------- | ------ | ----------------------------------------------------------------- |
+| `usuario_admin`     | ✅ OK  | Chave primária, email único, senha_hash VARCHAR(255)              |
+| `curso`             | ✅ OK  | 11 cursos pré-cadastrados, slug único                             |
+| `area_conhecimento` | ✅ OK  | 5 eixos tecnológicos                                              |
+| `aluno`             | ✅ OK  | Email único, relacionado a curso                                  |
+| `avaliacao`         | ✅ OK  | Status (pendente/aprovada/rejeitada), tipo (avaliacao/depoimento) |
+| `disciplina`        | ✅ OK  | Relacionada a curso e professor                                   |
+| `professor`         | ✅ OK  | Especialidade e curso associado                                   |
+| `noticia`           | ✅ OK  | Categoria, publicada (boolean)                                    |
+| `documento`         | ✅ OK  | Categoria, publicado (boolean)                                    |
 
 ### Queries Verificadas
 
@@ -94,20 +97,20 @@ PUT /api/auth/mudar-senha
 
 ### Funcionalidades Testadas
 
-| Feature | Status | Rota |
-|---------|--------|------|
-| Login | ✅ OK | POST /api/auth/login |
-| Check sessão | ✅ OK | GET /api/auth/me |
-| Logout | ✅ OK | POST /api/auth/logout |
-| Mudar senha | ✅ OK | PUT /api/auth/mudar-senha |
-| Listar cursos | ✅ OK | GET /api/admin/cursos (via GET /api/cursos) |
-| Editar curso | ✅ OK | PUT /api/admin/cursos/:id |
-| Criar curso | ✅ OK | POST /api/admin/cursos |
-| Avaliacoes | ✅ OK | GET /api/admin/avaliacoes |
-| Aprovar/Rejeitar | ✅ OK | PATCH /api/admin/avaliacoes/:id |
-| Notícias | ✅ OK | GET/POST/PATCH /api/admin/noticias |
-| Documentos | ✅ OK | GET/POST /api/admin/documentos |
-| Resumo | ✅ OK | GET /api/admin/resumo |
+| Feature          | Status | Rota                                        |
+| ---------------- | ------ | ------------------------------------------- |
+| Login            | ✅ OK  | POST /api/auth/login                        |
+| Check sessão     | ✅ OK  | GET /api/auth/me                            |
+| Logout           | ✅ OK  | POST /api/auth/logout                       |
+| Mudar senha      | ✅ OK  | PUT /api/auth/mudar-senha                   |
+| Listar cursos    | ✅ OK  | GET /api/admin/cursos (via GET /api/cursos) |
+| Editar curso     | ✅ OK  | PUT /api/admin/cursos/:id                   |
+| Criar curso      | ✅ OK  | POST /api/admin/cursos                      |
+| Avaliacoes       | ✅ OK  | GET /api/admin/avaliacoes                   |
+| Aprovar/Rejeitar | ✅ OK  | PATCH /api/admin/avaliacoes/:id             |
+| Notícias         | ✅ OK  | GET/POST/PATCH /api/admin/noticias          |
+| Documentos       | ✅ OK  | GET/POST /api/admin/documentos              |
+| Resumo           | ✅ OK  | GET /api/admin/resumo                       |
 
 ### Proteção de Rotas
 
@@ -121,16 +124,16 @@ PUT /api/auth/mudar-senha
 
 ### Vulnerabilidades Checadas
 
-| Tipo | Status | Resultado |
-|------|--------|-----------|
-| SQL Injection | ✅ Safe | Todas as queries usam placeholders |
-| XSS | ✅ Safe | Função `escapar()` aplicada a dados do banco |
-| CSRF | ✅ Safe | Cookie sameSite=lax + sessão httpOnly |
-| Brute Force | ✅ Protected | Rate limiting no login |
-| Exposição de Credenciais | ✅ Safe | Nenhuma senha real em código, Git, SQL |
-| Mensagens de Erro | ✅ Safe | Mensagens genéricas para usuário |
-| Senhas em Texto Puro | ✅ Safe | Apenas bcrypt hash |
-| HTTPS | ✅ Configurable | Cookie `secure` ativável em produção |
+| Tipo                     | Status          | Resultado                                    |
+| ------------------------ | --------------- | -------------------------------------------- |
+| SQL Injection            | ✅ Safe         | Todas as queries usam placeholders           |
+| XSS                      | ✅ Safe         | Função `escapar()` aplicada a dados do banco |
+| CSRF                     | ✅ Safe         | Cookie sameSite=lax + sessão httpOnly        |
+| Brute Force              | ✅ Protected    | Rate limiting no login                       |
+| Exposição de Credenciais | ✅ Safe         | Nenhuma senha real em código, Git, SQL       |
+| Mensagens de Erro        | ✅ Safe         | Mensagens genéricas para usuário             |
+| Senhas em Texto Puro     | ✅ Safe         | Apenas bcrypt hash                           |
+| HTTPS                    | ✅ Configurable | Cookie `secure` ativável em produção         |
 
 ### Headers de Segurança
 
@@ -190,7 +193,8 @@ Permite que o administrador autenticado troque sua própria senha.
 
 ### 2. Documentação Completa ✅
 
-**Adicionado:** 
+**Adicionado:**
+
 - `docs/SEGURANCA.md` — checklist completo de segurança
 - Atualizado: `docs/INSTALACAO.md` — guia completo com troubleshooting
 - Atualizado: `README.md` — instruções de admin e segurança
@@ -198,6 +202,7 @@ Permite que o administrador autenticado troque sua própria senha.
 ### 3. Validações Melhoradas ✅
 
 **Atualizado:** `src/config/env.js`
+
 - Mensagens de erro mais claras
 - Instruções para gerar SESSION_SECRET
 - Validação de todos os requisitos
@@ -236,7 +241,7 @@ curl http://localhost:3000/api/admin/resumo
 # ❌ Resposta: 401 Não autenticado
 
 # Com autenticação
-curl http://localhost:3000/api/admin/resumo --cookie "session=..." 
+curl http://localhost:3000/api/admin/resumo --cookie "session=..."
 # ✅ Resposta: resumo com números
 ```
 
@@ -253,15 +258,15 @@ curl http://localhost:3000/api/admin/resumo --cookie "session=..."
 
 ### Verificadas
 
-| Pacote | Versão | Propósito | Status |
-|--------|--------|----------|--------|
-| express | ^4.19.2 | Servidor web | ✅ |
-| bcryptjs | ^2.4.3 | Hash de senha | ✅ |
-| mysql2 | ^3.11.0 | Conexão BD | ✅ |
-| express-session | ^1.18.0 | Gerenciamento de sessão | ✅ |
-| helmet | ^8.3.0 | Headers de segurança | ✅ |
-| express-rate-limit | ^7.4.0 | Proteção brute force | ✅ |
-| dotenv | ^16.4.5 | Variáveis de ambiente | ✅ |
+| Pacote             | Versão  | Propósito               | Status |
+| ------------------ | ------- | ----------------------- | ------ |
+| express            | ^4.19.2 | Servidor web            | ✅     |
+| bcryptjs           | ^2.4.3  | Hash de senha           | ✅     |
+| mysql2             | ^3.11.0 | Conexão BD              | ✅     |
+| express-session    | ^1.18.0 | Gerenciamento de sessão | ✅     |
+| helmet             | ^8.3.0  | Headers de segurança    | ✅     |
+| express-rate-limit | ^7.4.0  | Proteção brute force    | ✅     |
+| dotenv             | ^16.4.5 | Variáveis de ambiente   | ✅     |
 
 Todas as dependências estão presentes e nenhuma foi removida do `package.json`.
 
@@ -292,6 +297,7 @@ Todas as dependências estão presentes e nenhuma foi removida do `package.json`
 ### Para Desenvolvimento
 
 1. **Testar localmente:**
+
    ```bash
    npm install
    cp .env.example .env  # preencha com dados locais
@@ -323,6 +329,7 @@ Todas as dependências estão presentes e nenhuma foi removida do `package.json`
 **Status: ✅ APROVADO PARA USO**
 
 O projeto Shark Tech foi completamente auditado e está:
+
 - Seguro contra as principais vulnerabilidades web
 - Funcional em autenticação administrativa
 - Bem documentado
@@ -335,4 +342,3 @@ Nenhuma credencial real foi exposta em nenhum momento do repositório.
 **Auditor:** GitHub Copilot  
 **Data:** 2026-10-05  
 **Próxima revisão recomendada:** 2027-01-05
-

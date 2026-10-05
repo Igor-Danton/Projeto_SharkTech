@@ -8,23 +8,23 @@ cada item, em vez de copiar tudo.
 
 Cada conteúdo do site atual recebe uma classificação:
 
-| Classificação | Significado |
-|---|---|
-| **Manter** | vai para o novo site sem mudança |
-| **Atualizar** | conteúdo certo, dado desatualizado |
-| **Reescrever** | assunto necessário, texto ruim ou confuso |
+| Classificação   | Significado                                |
+| --------------- | ------------------------------------------ |
+| **Manter**      | vai para o novo site sem mudança           |
+| **Atualizar**   | conteúdo certo, dado desatualizado         |
+| **Reescrever**  | assunto necessário, texto ruim ou confuso  |
 | **Reorganizar** | conteúdo bom, no lugar errado da navegação |
-| **Remover** | duplicado, obsoleto ou fora do escopo |
-| **Pendente** | precisa de decisão ou informação da escola |
+| **Remover**     | duplicado, obsoleto ou fora do escopo      |
+| **Pendente**    | precisa de decisão ou informação da escola |
 
 ## Planilha de inventário
 
 Preencha durante a Etapa 3 (análise do site atual), navegando página por página:
 
-| # | Página atual | URL | Conteúdo | Classificação | Destino no novo site | Responsável |
-|---|---|---|---|---|---|---|
-| 1 | | | | | | |
-| 2 | | | | | | |
+| #   | Página atual | URL | Conteúdo | Classificação | Destino no novo site | Responsável |
+| --- | ------------ | --- | -------- | ------------- | -------------------- | ----------- |
+| 1   |              |     |          |               |                      |             |
+| 2   |              |     |          |               |                      |             |
 
 ## O que observar em cada página
 
@@ -43,8 +43,8 @@ Monte a lista **de → para** durante o inventário e implemente os redirecionam
 no servidor no momento da publicação.
 
 | Endereço antigo | Endereço novo |
-|---|---|
-| | |
+| --------------- | ------------- |
+|                 |               |
 
 ## Fora do escopo
 
