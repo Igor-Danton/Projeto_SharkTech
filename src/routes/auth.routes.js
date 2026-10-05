@@ -6,6 +6,7 @@ const express = require('express');
 const bcrypt = require('bcryptjs');
 const { pool } = require('../config/db');
 const { loginRateLimit } = require('../middlewares/rate-limit');
+const { exigirAdmin } = require('../middlewares/auth');
 
 const router = express.Router();
 
@@ -24,8 +25,6 @@ router.post('/login', loginRateLimit, async (req, res, next) => {
       [email]
     );
 
-    // Mensagem igual para usuario inexistente e senha errada:
-    // evita que alguem descubra quais e-mails existem no sistema.
     const generico = { erro: 'E-mail ou senha incorretos.' };
     if (!linhas.length) return res.status(401).json(generico);
 
@@ -58,6 +57,55 @@ router.post('/logout', (req, res) => {
     res.clearCookie('sharktech.sid');
     res.json({ mensagem: 'Sessao encerrada.' });
   });
+});
+
+/**
+ * PUT /api/auth/reset-senha
+ * Permite que o administrador autenticado troque a propria senha.
+ * Exige senha atual, nova senha e confirmacao.
+ */
+router.put('/reset-senha', exigirAdmin, async (req, res, next) => {
+  try {
+    const senhaAtual = String(req.body.senhaAtual || '').trim();
+    const novaSenha = String(req.body.novaSenha || '').trim();
+    const confirmaSenha = String(req.body.confirmaSenha || '').trim();
+
+    if (!senhaAtual || !novaSenha || !confirmaSenha) {
+      return res.status(400).json({ erro: 'Informe senha atual, nova senha e confirmacao.' });
+    }
+
+    if (novaSenha.length < 8) {
+      return res.status(400).json({ erro: 'A nova senha deve ter no minimo 8 caracteres.' });
+    }
+
+    if (novaSenha !== confirmaSenha) {
+      return res.status(400).json({ erro: 'As senhas nao conferem.' });
+    }
+
+    const [linhas] = await pool.execute(
+      'SELECT senha_hash FROM usuario_admin WHERE id_usuario = ?',
+      [req.session.usuario.id]
+    );
+
+    if (!linhas.length) {
+      return res.status(404).json({ erro: 'Usuario nao encontrado.' });
+    }
+
+    const senhaCorreta = await bcrypt.compare(senhaAtual, linhas[0].senha_hash);
+    if (!senhaCorreta) {
+      return res.status(401).json({ erro: 'Senha atual incorreta.' });
+    }
+
+    const novoHash = await bcrypt.hash(novaSenha, 10);
+    await pool.execute(
+      'UPDATE usuario_admin SET senha_hash = ? WHERE id_usuario = ?',
+      [novoHash, req.session.usuario.id]
+    );
+
+    res.json({ mensagem: 'Senha atualizada com sucesso.' });
+  } catch (erro) {
+    next(erro);
+  }
 });
 
 module.exports = router;
