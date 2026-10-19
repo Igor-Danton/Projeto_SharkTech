@@ -34,6 +34,8 @@ const Api = (() => {
     requisitar(caminho, { method: "PUT", body: JSON.stringify(corpo) });
   const patch = (caminho, corpo) =>
     requisitar(caminho, { method: "PATCH", body: JSON.stringify(corpo) });
+  const del = (caminho) =>
+    requisitar(caminho, { method: "DELETE" });
 
-  return { get, post, put, patch };
+  return { get, post, put, patch, del };
 })();

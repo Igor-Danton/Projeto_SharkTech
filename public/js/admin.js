@@ -84,19 +84,29 @@ async function abaAvaliacoes(status = "pendente") {
       .forEach((botao) => {
         botao.addEventListener("click", async () => {
           const id = botao.dataset.aprovar || botao.dataset.rejeitar;
-          const novoStatus = botao.dataset.aprovar ? "aprovada" : "rejeitada";
+          const isAprovar = !!botao.dataset.aprovar;
+
           try {
-            const r = await Api.patch(`/admin/avaliacoes/${id}`, {
-              status: novoStatus,
-            });
-            mostrarAviso(painel.aviso, r.mensagem, "ok");
-            abaAvaliacoes(status);
+            if (isAprovar) {
+              const r = await Api.patch(`/admin/avaliacoes/${id}`, {
+                status: "aprovada",
+              });
+              mostrarAviso(painel.aviso, r.mensagem, "ok");
+            } else {
+              if (!confirm("Tem certeza que deseja excluir esta avaliação? Esta ação é permanente.")) {
+                return;
+              }
+              const r = await Api.del(`/admin/avaliacoes/${id}`);
+              mostrarAviso(painel.aviso, r.mensagem, "ok");
+            }
+            // Atualiza a lista e indicadores após a operação
+            abaAvaliacoes(document.getElementById("status-avaliacao").value);
             carregarResumo();
           } catch (erro) {
             erroPainel(erro);
           }
         });
-      });
+      })
   } catch (erro) {
     erroPainel(erro);
   }

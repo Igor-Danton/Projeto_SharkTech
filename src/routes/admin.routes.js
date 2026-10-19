@@ -128,7 +128,7 @@ router.patch("/avaliacoes/:id", async (req, res, next) => {
   try {
     const id = Number(req.params.id);
     const status = req.body.status;
-    if (!["aprovada", "rejeitada", "pendente"].includes(status)) {
+    if (!["aprovada", "pendente"].includes(status)) {
       return res.status(400).json({ erro: "Status invalido." });
     }
     const [r] = await pool.execute(
@@ -138,6 +138,24 @@ router.patch("/avaliacoes/:id", async (req, res, next) => {
     if (r.affectedRows === 0)
       return res.status(404).json({ erro: "Registro nao encontrado." });
     res.json({ mensagem: `Registro marcado como ${status}.` });
+  } catch (erro) {
+    next(erro);
+  }
+});
+
+router.delete("/avaliacoes/:id", async (req, res, next) => {
+  try {
+    const id = Number(req.params.id);
+    if (!id || id <= 0) {
+      return res.status(400).json({ erro: "ID invalido." });
+    }
+    const [r] = await pool.execute(
+      "DELETE FROM avaliacao WHERE id_avaliacao = ?",
+      [id],
+    );
+    if (r.affectedRows === 0)
+      return res.status(404).json({ erro: "Registro nao encontrado." });
+    res.json({ mensagem: "Avaliação excluída com sucesso." });
   } catch (erro) {
     next(erro);
   }
