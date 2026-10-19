@@ -338,7 +338,23 @@
 
 .card-curso {
   border-top: 3px solid var(--azul);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: var(--branco);
+  border: 1px solid var(--tinta-suave);
+  border-radius: var(--r-1);
+  overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
 }
+
+.card-curso__imagem {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-bottom: 1px solid var(--tinta-suave);
+}
+
 .card-curso__area {
   font-size: var(--t-xs);
   color: var(--tinta-suave);
