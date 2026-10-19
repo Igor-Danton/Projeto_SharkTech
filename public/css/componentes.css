@@ -52,6 +52,14 @@
   text-decoration: none;
   color: inherit;
 }
+
+.marca__logo {
+  height: 60px;
+  width: auto;
+  object-fit: contain;
+  margin-right: 0.5rem;
+}
+
 .marca__selo {
   width: 46px;
   height: 46px;

@@ -6,6 +6,7 @@ function cardCurso(curso) {
 
   return `
     <article class="card card-curso">
+      <img src="/assets/img/cursos/${curso.slug}.png" alt="Capa do curso ${escapar(curso.nome)}" class="card-curso__imagem" onerror="this.style.display='none'">
       <span class="card-curso__area">${curso.area ? escapar(curso.area) : "Eixo a confirmar"}</span>
 
       <h3>
