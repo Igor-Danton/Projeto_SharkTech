@@ -1,63 +1,84 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Entrar | Área administrativa — CEEP Curitiba</title>
-  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
-  <meta name="robots" content="noindex">
-  <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/css/base.css">
-  <link rel="stylesheet" href="/css/componentes.css">
-</head>
-<body>
-  <main class="admin-login">
-    <form class="formulario" id="form-login">
-      <h1 style="font-size:var(--t-lg)">Área administrativa</h1>
-      <p style="font-size:var(--t-sm);color:var(--tinta-suave)">
-        Acesso restrito à equipe do CEEP Curitiba.
-      </p>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Entrar | Área administrativa — CEEP Curitiba</title>
+    <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
+    <meta name="robots" content="noindex" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bitter:wght@500;600;700&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/css/base.css" />
+    <link rel="stylesheet" href="/css/componentes.css" />
+  </head>
+  <body>
+    <main class="admin-login">
+      <form class="formulario" id="form-login">
+        <h1 style="font-size: var(--t-lg)">Área administrativa</h1>
+        <p style="font-size: var(--t-sm); color: var(--tinta-suave)">
+          Acesso restrito à equipe do CEEP Curitiba.
+        </p>
 
-      <div class="campo">
-        <label for="email">E-mail</label>
-        <input type="email" id="email" name="email" required autocomplete="username">
-      </div>
-      <div class="campo">
-        <label for="senha">Senha</label>
-        <input type="password" id="senha" name="senha" required autocomplete="current-password">
-      </div>
+        <div class="campo">
+          <label for="email">E-mail</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            required
+            autocomplete="username"
+          />
+        </div>
+        <div class="campo">
+          <label for="senha">Senha</label>
+          <input
+            type="password"
+            id="senha"
+            name="senha"
+            required
+            autocomplete="current-password"
+          />
+        </div>
 
-      <div class="aviso" id="aviso-login" hidden></div>
-      <button class="botao botao--primario" type="submit" id="botao-entrar">Entrar</button>
-      <p style="margin-top:var(--e-2)"><a href="/">Voltar ao site</a></p>
-    </form>
-  </main>
+        <div class="aviso" id="aviso-login" hidden></div>
+        <button class="botao botao--primario" type="submit" id="botao-entrar">
+          Entrar
+        </button>
+        <p style="margin-top: var(--e-2)"><a href="/">Voltar ao site</a></p>
+      </form>
+    </main>
 
-  <script src="/js/api.js"></script>
-  <script src="/js/app.js"></script>
-  <script>
-    const formLogin = document.getElementById('form-login');
-    const avisoLogin = document.getElementById('aviso-login');
-    const botaoEntrar = document.getElementById('botao-entrar');
+    <script src="/js/api.js"></script>
+    <script src="/js/app.js"></script>
+    <script>
+      const formLogin = document.getElementById("form-login");
+      const avisoLogin = document.getElementById("aviso-login");
+      const botaoEntrar = document.getElementById("botao-entrar");
 
-    // se ja existe sessao valida, vai direto para o painel
-    Api.get('/auth/me').then(() => { window.location.href = '/admin/painel.html'; }).catch(() => {});
+      // se ja existe sessao valida, vai direto para o painel
+      Api.get("/auth/me")
+        .then(() => {
+          window.location.href = "/admin/painel.html";
+        })
+        .catch(() => {});
 
-    formLogin.addEventListener('submit', async (evento) => {
-      evento.preventDefault();
-      botaoEntrar.disabled = true;
-      avisoLogin.hidden = true;
-      try {
-        await Api.post('/auth/login', {
-          email: formLogin.email.value,
-          senha: formLogin.senha.value
-        });
-        window.location.href = '/admin/painel.html';
-      } catch (erro) {
-        mostrarAviso(avisoLogin, erro.message, 'erro');
-        botaoEntrar.disabled = false;
-      }
-    });
-  </script>
-</body>
+      formLogin.addEventListener("submit", async (evento) => {
+        evento.preventDefault();
+        botaoEntrar.disabled = true;
+        avisoLogin.hidden = true;
+        try {
+          await Api.post("/auth/login", {
+            email: formLogin.email.value,
+            senha: formLogin.senha.value,
+          });
+          window.location.href = "/admin/painel.html";
+        } catch (erro) {
+          mostrarAviso(avisoLogin, erro.message, "erro");
+          botaoEntrar.disabled = false;
+        }
+      });
+    </script>
+  </body>
 </html>

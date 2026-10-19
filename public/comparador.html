@@ -1,57 +1,66 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Comparar cursos | CEEP Curitiba</title>
-  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
-  <meta name="description" content="Compare dois cursos técnicos do CEEP Curitiba lado a lado.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/css/base.css">
-  <link rel="stylesheet" href="/css/componentes.css">
-</head>
-<body>
-  <a class="pular-para-conteudo" href="#conteudo">Pular para o conteúdo</a>
-  <header class="topo" id="cabecalho"></header>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Comparar cursos | CEEP Curitiba</title>
+    <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
+    <meta
+      name="description"
+      content="Compare dois cursos técnicos do CEEP Curitiba lado a lado."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bitter:wght@500;600;700&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/css/base.css" />
+    <link rel="stylesheet" href="/css/componentes.css" />
+  </head>
+  <body>
+    <a class="pular-para-conteudo" href="#conteudo">Pular para o conteúdo</a>
+    <header class="topo" id="cabecalho"></header>
 
-  <main id="conteudo">
-    <div class="cabecalho-pagina">
-      <div class="container">
-        <p class="trilha"><a href="/">Início</a> / Comparar cursos</p>
-        <h1>Comparar cursos</h1>
-        <p>Escolha dois cursos para ver as informações lado a lado.</p>
+    <main id="conteudo">
+      <div class="cabecalho-pagina">
+        <div class="container">
+          <p class="trilha"><a href="/">Início</a> / Comparar cursos</p>
+          <h1>Comparar cursos</h1>
+          <p>Escolha dois cursos para ver as informações lado a lado.</p>
+        </div>
       </div>
-    </div>
 
-    <section class="secao secao--compacta">
-      <div class="container">
-        <form class="filtros" id="form-comparar">
-          <div class="campo">
-            <label for="curso-a">Primeiro curso</label>
-            <select id="curso-a" required></select>
-          </div>
-          <div class="campo">
-            <label for="curso-b">Segundo curso</label>
-            <select id="curso-b" required></select>
-          </div>
-          <div><button class="botao botao--primario" type="submit">Comparar</button></div>
-        </form>
+      <section class="secao secao--compacta">
+        <div class="container">
+          <form class="filtros" id="form-comparar">
+            <div class="campo">
+              <label for="curso-a">Primeiro curso</label>
+              <select id="curso-a" required></select>
+            </div>
+            <div class="campo">
+              <label for="curso-b">Segundo curso</label>
+              <select id="curso-b" required></select>
+            </div>
+            <div>
+              <button class="botao botao--primario" type="submit">
+                Comparar
+              </button>
+            </div>
+          </form>
 
-        <div class="aviso" id="aviso-comparar" hidden></div>
-        <div id="resultado-comparacao"></div>
-      </div>
-    </section>
+          <div class="aviso" id="aviso-comparar" hidden></div>
+          <div id="resultado-comparacao"></div>
+        </div>
+      </section>
+    </main>
 
-  </main>
+    <footer class="rodape" id="rodape"></footer>
 
-  <footer class="rodape" id="rodape"></footer>
-
-  <script src="/js/api.js"></script>
-  <script src="/js/dados.js"></script>
-  <script src="/js/app.js"></script>
-  <script src="/js/componentes.js"></script>
-  <script src="/js/comparador.js"></script>
-</body>
+    <script src="/js/api.js"></script>
+    <script src="/js/dados.js"></script>
+    <script src="/js/app.js"></script>
+    <script src="/js/componentes.js"></script>
+    <script src="/js/comparador.js"></script>
+  </body>
 </html>

@@ -1,43 +1,58 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Painel | Área administrativa — CEEP Curitiba</title>
-  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
-  <meta name="robots" content="noindex">
-  <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/css/base.css">
-  <link rel="stylesheet" href="/css/componentes.css">
-</head>
-<body>
-  <header class="painel-topo">
-    <div class="container">
-      <strong>CEEP Curitiba — painel administrativo</strong>
-      <span>
-        <span id="usuario-logado" style="font-size:var(--t-sm)"></span>
-        <a class="botao botao--sinal botao--pequeno" href="/" target="_blank">Ver site</a>
-        <button class="botao botao--contorno botao--pequeno" id="botao-sair">Sair</button>
-      </span>
-    </div>
-  </header>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Painel | Área administrativa — CEEP Curitiba</title>
+    <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
+    <meta name="robots" content="noindex" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bitter:wght@500;600;700&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/css/base.css" />
+    <link rel="stylesheet" href="/css/componentes.css" />
+  </head>
+  <body>
+    <header class="painel-topo">
+      <div class="container">
+        <strong>CEEP Curitiba — painel administrativo</strong>
+        <span>
+          <span id="usuario-logado" style="font-size: var(--t-sm)"></span>
+          <a class="botao botao--sinal botao--pequeno" href="/" target="_blank"
+            >Ver site</a
+          >
+          <button class="botao botao--contorno botao--pequeno" id="botao-sair">
+            Sair
+          </button>
+        </span>
+      </div>
+    </header>
 
-  <main class="container secao secao--compacta">
-    <div class="painel-numeros" id="resumo"></div>
+    <main class="container secao secao--compacta">
+      <div class="painel-numeros" id="resumo"></div>
 
-    <div class="abas" role="tablist">
-      <button role="tab" data-aba="avaliacoes" aria-selected="true">Avaliações e depoimentos</button>
-      <button role="tab" data-aba="cursos" aria-selected="false">Cursos</button>
-      <button role="tab" data-aba="noticias" aria-selected="false">Notícias</button>
-      <button role="tab" data-aba="documentos" aria-selected="false">Documentos</button>
-    </div>
+      <div class="abas" role="tablist">
+        <button role="tab" data-aba="avaliacoes" aria-selected="true">
+          Avaliações e depoimentos
+        </button>
+        <button role="tab" data-aba="cursos" aria-selected="false">
+          Cursos
+        </button>
+        <button role="tab" data-aba="noticias" aria-selected="false">
+          Notícias
+        </button>
+        <button role="tab" data-aba="documentos" aria-selected="false">
+          Documentos
+        </button>
+      </div>
 
-    <div class="aviso" id="aviso-painel" hidden></div>
-    <section id="conteudo-aba"></section>
-  </main>
+      <div class="aviso" id="aviso-painel" hidden></div>
+      <section id="conteudo-aba"></section>
+    </main>
 
-  <script src="/js/api.js"></script>
-  <script src="/js/app.js"></script>
-  <script src="/js/admin.js"></script>
-</body>
+    <script src="/js/api.js"></script>
+    <script src="/js/app.js"></script>
+    <script src="/js/admin.js"></script>
+  </body>
 </html>
