@@ -25,29 +25,32 @@
     <main id="conteudo">
       <section class="hero">
         <div class="container">
-          <h1>Educação profissional pública em Curitiba desde 1941</h1>
+          <h1 class="hero__titulo">Educação profissional pública em Curitiba desde 1941</h1>
 
           <p class="hero__apoio">
             Sete cursos técnicos integrados ao Ensino Médio, em uma escola
             estadual com laboratórios próprios para cada área de formação.
           </p>
 
-          <form class="hero__busca" data-busca role="search">
-            <label for="busca-hero" class="pular-para-conteudo">
-              Buscar no site
-            </label>
+          <div class="hero__acoes">
+            <form class="hero__busca" data-busca role="search">
+              <label for="busca-hero" class="pular-para-conteudo">
+                Buscar no site
+              </label>
 
-            <input
-              type="search"
-              id="busca-hero"
-              name="q"
-              placeholder="Buscar curso, comunicado ou documento"
-              required
-              minlength="2"
-            />
+              <input
+                type="search"
+                id="busca-hero"
+                name="q"
+                placeholder="Buscar curso, comunicado ou documento"
+                required
+                minlength="2"
+              />
 
-            <button class="botao botao--sinal" type="submit">Buscar</button>
-          </form>
+              <button class="botao botao--sinal" type="submit">Buscar</button>
+            </form>
+            <a class="botao botao--primario" href="/cursos.html">Conhecer os Cursos</a>
+          </div>
 
           <div class="indicadores" id="indicadores"></div>
         </div>
