@@ -2,7 +2,7 @@ function cardCurso(curso) {
   const resumo = curso.descricao
     ? escapar(curso.descricao).slice(0, 150) +
       (curso.descricao.length > 150 ? "…" : "")
-    : '<span class="pendente">Descrição pendente de validação pela coordenação</span>';
+    : '<span class="pendente">Informações em atualização</span>';
 
   return `
     <article class="card card-curso">
