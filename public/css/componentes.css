@@ -239,13 +239,16 @@
 }
 .botao--contorno {
   border-color: var(--azul);
-  background: transparent;
+  background: var(--branco);
   color: var(--azul);
+  transition: all 0.2s ease;
 }
 .botao--contorno:hover {
   background: var(--azul-claro);
+  color: var(--azul-escuro);
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(30, 58, 138, 0.1);
+  border-color: var(--azul-escuro);
 }
 .botao--pequeno {
   padding: 0.4rem 0.8rem;
