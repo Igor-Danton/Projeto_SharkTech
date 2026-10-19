@@ -1,0 +1,1040 @@
+[
+  {
+    "id": "TC001",
+    "title": "Log in to access the admin dashboard",
+    "description": "This test verifies that an administrator can sign in and reach the protected admin dashboard.",
+    "category": "Institutional navigation",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /admin/index.html"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the username field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the admin dashboard is displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC002",
+    "title": "Block access to the admin dashboard before login",
+    "description": "This test verifies that an unauthenticated visitor is not allowed to open the protected admin dashboard.",
+    "category": "Institutional navigation",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /admin/painel.html"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify access to the admin dashboard is blocked"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the login page or access restriction message is displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC003",
+    "title": "Sign in to the administrator dashboard",
+    "description": "An administrator can log in with valid credentials and reach the protected dashboard.",
+    "category": "Administrator authentication",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /admin/index.html"
+      },
+      {
+        "type": "action",
+        "description": "Fill in administrator email with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in administrator password with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit login credentials"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the user lands on the administration dashboard"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify dashboard content is displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC004",
+    "title": "Browse the public home page to institutional pages",
+    "description": "This test verifies that a visitor can move from the home page to key institutional pages and back through the shared navigation.",
+    "category": "Institutional navigation",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Click the link to the institutional information page"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the institutional information page is displayed"
+      },
+      {
+        "type": "action",
+        "description": "Click the link to return to the home page"
+      },
+      {
+        "type": "action",
+        "description": "Click the link to the admissions information page"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the admissions information page is displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC005",
+    "title": "Search the site and open a matching result",
+    "description": "This test verifies that a visitor can search across site content and open a matching result from the search page.",
+    "category": "Site search",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /busca.html?q=curso"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the search field with curso"
+      },
+      {
+        "type": "action",
+        "description": "Submit the search"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify matching search results are displayed"
+      },
+      {
+        "type": "action",
+        "description": "Open a matching result"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the selected result opens"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC006",
+    "title": "Open a course detail from the catalog",
+    "description": "This test verifies that a visitor can open a course from the catalog and view its details.",
+    "category": "Course catalog and filters",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /cursos.html"
+      },
+      {
+        "type": "action",
+        "description": "Open a course detail page from the catalog"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the course detail page is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify course information is displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC007",
+    "title": "Load the course catalog when the page opens",
+    "description": "This test verifies that the course catalog page shows available courses when opened directly.",
+    "category": "Course catalog and filters",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /cursos.html"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the course list is displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC008",
+    "title": "Filter the course catalog by search term and filters",
+    "description": "This test verifies that a visitor can narrow the course catalog using a search term, technological area, and shift.",
+    "category": "Course catalog and filters",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /cursos.html"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the course search field with a valid search term"
+      },
+      {
+        "type": "action",
+        "description": "Select a technological area filter"
+      },
+      {
+        "type": "action",
+        "description": "Select a shift filter"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the filtered course results are displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC009",
+    "title": "Access the protected dashboard only after signing in",
+    "description": "An unauthenticated visitor trying to open the admin dashboard is kept out until signing in successfully.",
+    "category": "Administrator authentication",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /admin/painel.html"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify access is restricted from the protected dashboard"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to /admin/index.html"
+      },
+      {
+        "type": "action",
+        "description": "Fill in administrator email with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in administrator password with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit login credentials"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the user lands on the administration dashboard"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC010",
+    "title": "Search the site for a known topic and open a result",
+    "description": "This test verifies that a visitor can use site search to find relevant content and continue browsing from a result page.",
+    "category": "Institutional navigation",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /busca.html?q=curso"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify search results are displayed"
+      },
+      {
+        "type": "action",
+        "description": "Open a matching result"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the matching content page is displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC011",
+    "title": "Use the shared navigation to reach course, news, and document pages",
+    "description": "This test verifies that a visitor can use the shared navigation to open the main content sections of the site.",
+    "category": "Institutional navigation",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Click the link to the courses catalog"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the course catalog is displayed"
+      },
+      {
+        "type": "action",
+        "description": "Click the link to the news page"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the news page is displayed"
+      },
+      {
+        "type": "action",
+        "description": "Click the link to the documents page"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the documents page is displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC012",
+    "title": "View full course information and approved evaluations",
+    "description": "This test verifies that a visitor can read a course page and review its published details and evaluations.",
+    "category": "Course details",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /cursos.html"
+      },
+      {
+        "type": "action",
+        "description": "Open a course detail page from the catalog"
+      },
+      {
+        "type": "action",
+        "description": "Scroll to the course details section"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify course curriculum and entry requirements are displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify approved evaluations are displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC013",
+    "title": "Open the contact page from the public navigation",
+    "description": "This test verifies that a visitor can reach the contact page from the shared site navigation.",
+    "category": "Institutional navigation",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Click the link to the contact page"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the contact information page is displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC014",
+    "title": "Compare two courses and review the results",
+    "description": "This test verifies that a visitor can select two courses and view a side-by-side comparison of their differences.",
+    "category": "Course comparison",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /comparador.html"
+      },
+      {
+        "type": "action",
+        "description": "Select a first course"
+      },
+      {
+        "type": "action",
+        "description": "Select a second course"
+      },
+      {
+        "type": "action",
+        "description": "Compare the selected courses"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the comparison results are displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify course differences are displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC015",
+    "title": "Use the student area to submit an evaluation",
+    "description": "This test verifies that a current student or alumni can submit a course evaluation from the student area and receive confirmation.",
+    "category": "Course details",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /area-do-aluno.html"
+      },
+      {
+        "type": "action",
+        "description": "Open the course evaluation form"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the evaluation form with valid information"
+      },
+      {
+        "type": "action",
+        "description": "Submit the evaluation form"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a submission confirmation is visible"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC016",
+    "title": "Submit a course evaluation successfully",
+    "description": "A current student or alumni can complete the evaluation form and receive submission feedback after sending a valid evaluation.",
+    "category": "Student evaluation submission",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /area-do-aluno.html"
+      },
+      {
+        "type": "action",
+        "description": "Choose the evaluation type"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the evaluation form with valid information"
+      },
+      {
+        "type": "action",
+        "description": "Submit the form"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a submission confirmation is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the submitted evaluation is reflected in the feedback area"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC017",
+    "title": "Review and approve a pending evaluation",
+    "description": "An administrator can open pending evaluations in the dashboard and approve one so it is no longer pending.",
+    "category": "Administration content management",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /admin/index.html"
+      },
+      {
+        "type": "action",
+        "description": "Fill in administrator email with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in administrator password with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit login credentials"
+      },
+      {
+        "type": "action",
+        "description": "View dashboard data"
+      },
+      {
+        "type": "action",
+        "description": "Review pending evaluations"
+      },
+      {
+        "type": "action",
+        "description": "Approve an evaluation"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the evaluation is no longer pending"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the updated moderation state is displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC018",
+    "title": "Adjust the catalog search to update the results",
+    "description": "This test verifies that a visitor can change or clear a catalog search and see the course list update accordingly.",
+    "category": "Course catalog and filters",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /cursos.html"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the course search field with a valid search term"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify matching courses are displayed"
+      },
+      {
+        "type": "action",
+        "description": "Clear the course search field"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the broader course list is displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC019",
+    "title": "Update search terms and see refreshed results",
+    "description": "This test verifies that changing the search query updates the visible search results on the site search page.",
+    "category": "Site search",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /busca.html?q=noticia"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the search field with documento"
+      },
+      {
+        "type": "action",
+        "description": "Submit the search"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify updated search results are displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the previous results are no longer displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC020",
+    "title": "Open the news and documents pages from the public site",
+    "description": "This test verifies that a visitor can browse from the public site to the news and documents sections.",
+    "category": "Institutional navigation",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Click the link to the news page"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the news page is displayed"
+      },
+      {
+        "type": "action",
+        "description": "Click the link to the documents page"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the documents page is displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC021",
+    "title": "Submit a testimonial successfully",
+    "description": "A current student or alumni can switch to testimonial mode, complete the form, and receive confirmation that the testimonial was sent for moderation.",
+    "category": "Student evaluation submission",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /area-do-aluno.html"
+      },
+      {
+        "type": "action",
+        "description": "Choose the testimonial type"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the testimonial form with valid information"
+      },
+      {
+        "type": "action",
+        "description": "Submit the form"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a submission confirmation is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the testimonial submission feedback is displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC022",
+    "title": "Browse news and open a publication",
+    "description": "This test verifies that a visitor can browse published news items and open one to read its details.",
+    "category": "News and documents",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /noticias.html"
+      },
+      {
+        "type": "action",
+        "description": "Browse published news"
+      },
+      {
+        "type": "action",
+        "description": "Open a news item"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the news item details are displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify published news content is visible"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC023",
+    "title": "Create or edit published content from the dashboard",
+    "description": "An administrator can create or edit news or document content and see the saved changes reflected in the dashboard.",
+    "category": "Administration content management",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /admin/index.html"
+      },
+      {
+        "type": "action",
+        "description": "Fill in administrator email with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in administrator password with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit login credentials"
+      },
+      {
+        "type": "action",
+        "description": "View dashboard data"
+      },
+      {
+        "type": "action",
+        "description": "Open the content editor for news or documents"
+      },
+      {
+        "type": "action",
+        "description": "Save the content changes"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the saved content appears in the dashboard"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the edited content state is displayed"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC024",
+    "title": "Browse documents and open a published file entry",
+    "description": "This test verifies that a visitor can view published documents and open a document or notice from the documents page.",
+    "category": "News and documents",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /documentos.html"
+      },
+      {
+        "type": "action",
+        "description": "Browse published documents"
+      },
+      {
+        "type": "action",
+        "description": "Open a document or notice"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the document details are displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify published documents content is visible"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC025",
+    "title": "Log out of the administrator dashboard",
+    "description": "An authenticated administrator can sign out and return to the login page.",
+    "category": "Administrator authentication",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /admin/index.html"
+      },
+      {
+        "type": "action",
+        "description": "Fill in administrator email with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in administrator password with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit login credentials"
+      },
+      {
+        "type": "action",
+        "description": "Log out from the dashboard"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the administrator login page is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the dashboard session is no longer available"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC026",
+    "title": "Reject invalid administrator credentials",
+    "description": "A user entering invalid administrator credentials sees an authentication error and cannot access the dashboard.",
+    "category": "Administrator authentication",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /admin/index.html"
+      },
+      {
+        "type": "action",
+        "description": "Fill in administrator email with invalid@example.com"
+      },
+      {
+        "type": "action",
+        "description": "Fill in administrator password with invalid-password"
+      },
+      {
+        "type": "action",
+        "description": "Submit login credentials"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify an authentication error is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the administration dashboard is not displayed"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC027",
+    "title": "Show validation when submitting an incomplete evaluation",
+    "description": "This test verifies that the student evaluation form blocks submission and shows validation feedback when required information is missing.",
+    "category": "Course details",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /area-do-aluno.html"
+      },
+      {
+        "type": "action",
+        "description": "Open the course evaluation form"
+      },
+      {
+        "type": "action",
+        "description": "Submit the evaluation form without completing required fields"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a validation error is visible"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC028",
+    "title": "Move from news to documents while browsing publications",
+    "description": "This test verifies that a visitor can continue browsing institutional publications by moving from the news page to the documents page.",
+    "category": "News and documents",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /noticias.html"
+      },
+      {
+        "type": "action",
+        "description": "Open the documents page"
+      },
+      {
+        "type": "action",
+        "description": "Review published documents"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify published documents are displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the documents page content is visible"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC029",
+    "title": "Delete managed content after confirmation",
+    "description": "An administrator can delete a managed item from the dashboard and confirm that it is removed from the admin list.",
+    "category": "Administration content management",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /admin/index.html"
+      },
+      {
+        "type": "action",
+        "description": "Fill in administrator email with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in administrator password with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit login credentials"
+      },
+      {
+        "type": "action",
+        "description": "View dashboard data"
+      },
+      {
+        "type": "action",
+        "description": "Delete managed content when controls are available"
+      },
+      {
+        "type": "action",
+        "description": "Confirm the removal"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the content item is removed from the list"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the deletion result is displayed"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC030",
+    "title": "See comparison guidance when not enough courses are selected",
+    "description": "This test verifies that the comparison page handles incomplete selection by showing guidance instead of comparison results.",
+    "category": "Course comparison",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /comparador.html"
+      },
+      {
+        "type": "action",
+        "description": "Select a first course"
+      },
+      {
+        "type": "action",
+        "description": "Compare the selected courses"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a selection guidance message is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify comparison results are not displayed"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC031",
+    "title": "Reject invalid admin credentials",
+    "description": "This test verifies that the admin login form shows an error when incorrect credentials are submitted.",
+    "category": "Institutional navigation",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /admin/index.html"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the username field with invalid-user"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with invalid-password"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a login error is visible"
+      }
+    ],
+    "priority": "Low"
+  },
+  {
+    "id": "TC032",
+    "title": "Show validation feedback for missing required evaluation data",
+    "description": "A user who submits the evaluation form without required information sees validation feedback and the form is not accepted.",
+    "category": "Student evaluation submission",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /area-do-aluno.html"
+      },
+      {
+        "type": "action",
+        "description": "Choose the evaluation type"
+      },
+      {
+        "type": "action",
+        "description": "Submit the form without completing the required fields"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a validation error is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the form remains available for correction"
+      }
+    ],
+    "priority": "Low"
+  },
+  {
+    "id": "TC033",
+    "title": "See an empty search state for an unmatched query",
+    "description": "This test verifies that the site search page shows an empty state when a query has no matching results.",
+    "category": "Site search",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /busca.html?q=zzzzzz"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the search field with zzzzzz"
+      },
+      {
+        "type": "action",
+        "description": "Submit the search"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify an empty state message is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify no search results are displayed"
+      }
+    ],
+    "priority": "Low"
+  },
+  {
+    "id": "TC034",
+    "title": "Handle an empty course search result",
+    "description": "This test verifies that the course catalog shows an empty state when a search term returns no matches.",
+    "category": "Course catalog and filters",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /cursos.html"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the course search field with a rare search term"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify an empty state message is visible"
+      }
+    ],
+    "priority": "Low"
+  }
+]
