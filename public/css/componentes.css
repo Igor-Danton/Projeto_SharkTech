@@ -60,6 +60,12 @@
   margin-right: 0.5rem;
 }
 
+@media (max-width: 600px) {
+  .marca__logo {
+    height: 40px;
+  }
+}
+
 .marca__selo {
   width: 46px;
   height: 46px;
