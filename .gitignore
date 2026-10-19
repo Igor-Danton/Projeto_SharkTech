@@ -19,3 +19,5 @@ Thumbs.db
 
 # Uploads e arquivos gerados
 public/assets/uploads/
+testsprite_tests/tmp/
+testsprite_tests/tmp/config.json

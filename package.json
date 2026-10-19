@@ -6,16 +6,37 @@
   "scripts": {
     "start": "node src/server.js",
     "dev": "node --watch src/server.js",
-    "criar-admin": "node scripts/criar-admin.js"
+    "criar-admin": "node scripts/criar-admin.js",
+    "reset-admin": "node scripts/reset-admin.js",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "check": "npm run format:check && npm run lint"
   },
-  "keywords": ["ceep", "curitiba", "site-institucional", "projeto-integrador"],
+  "keywords": [
+    "ceep",
+    "curitiba",
+    "site-institucional",
+    "projeto-integrador"
+  ],
   "author": "Shark Tech - Igor Danton de Oliveira e Vinicius Edson do Prado Barreto de Souza",
   "license": "MIT",
+  "engines": {
+    "node": "24.x"
+  },
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
+    "express-mysql-session": "^3.0.3",
+    "express-rate-limit": "^7.4.0",
     "express-session": "^1.18.0",
+    "helmet": "^8.3.0",
     "mysql2": "^3.11.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.57.0",
+    "prettier": "^3.3.3"
   }
 }
