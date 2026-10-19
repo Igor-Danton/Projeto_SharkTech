@@ -215,15 +215,17 @@
   font-size: var(--t-sm);
   font-weight: 600;
   text-decoration: none;
+  transition: all 0.2s ease;
   cursor: pointer;
-  transition: background-color 0.15s ease;
 }
 .botao--primario {
-  background: var(--azul);
+  background: var(--azul-vivo);
   color: var(--branco);
 }
 .botao--primario:hover {
-  background: var(--azul-escuro);
+  background: var(--azul);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
   color: var(--branco);
 }
 .botao--sinal {
@@ -231,15 +233,19 @@
   color: var(--tinta);
 }
 .botao--sinal:hover {
-  background: #c98d06;
+  filter: brightness(1.1);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
 }
 .botao--contorno {
-  border-color: var(--linha);
-  background: var(--branco);
+  border-color: var(--azul);
+  background: transparent;
   color: var(--azul);
 }
 .botao--contorno:hover {
-  border-color: var(--azul);
+  background: var(--azul-claro);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(30, 58, 138, 0.1);
 }
 .botao--pequeno {
   padding: 0.4rem 0.8rem;
