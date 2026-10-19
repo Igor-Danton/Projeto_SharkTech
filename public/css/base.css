@@ -9,12 +9,12 @@
   --branco: #ffffff;
   --tinta: #0f172a;
   --tinta-suave: #64748b;
-  --azul: #1e3a8a;         /* Azul-marinho institucional */
+  --azul: #172554;         /* Azul-marinho mais escuro e profissional */
   --azul-vivo: #2563eb;     /* Azul vivo para ações */
   --azul-tecnologia: #0ea5e9; /* Ciano/Azul-claro para detalhes tech */
-  --azul-escuro: #1e3a8a;
+  --azul-escuro: #0f172a;
   --azul-claro: #f1f5f9;
-  --sinal: #f59e0b;        /* Amarelo moderno para alertas/destaques */
+  --sinal: #d97706;        /* Amarelo mais fechado para melhor contraste */
   --sinal-fraco: #fffbeb;
   --linha: #e2e8f0;
   --alerta: #b91c1c;

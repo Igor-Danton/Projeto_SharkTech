@@ -52,16 +52,7 @@ const DadosCeep = {
   },
 
   fluxo: [
-    {
-      rotulo: "Reprovação",
-      valor: "0%",
-      fonte: "Censo Escolar 2025",
-    },
-    {
-      rotulo: "Abandono",
-      valor: "0%",
-      fonte: "Censo Escolar 2025",
-    },
+    // Removidos indicadores de reprovação e abandono por solicitação institucional
   ],
 
   historia: [
@@ -71,13 +62,6 @@ const DadosCeep = {
       texto:
         "A instituição é criada com o nome de Instituto Técnico de Agronomia, Veterinária e Química do Paraná.",
       classe: "confirmado",
-    },
-    {
-      ano: "Décadas seguintes",
-      titulo: "Mudanças de denominação",
-      texto:
-        "A escola passa por diferentes nomes e amplia a oferta de formação profissional. Datas e denominações específicas ainda precisam ser confirmadas na documentação institucional.",
-      classe: "pendente",
     },
     {
       ano: "Atualmente",

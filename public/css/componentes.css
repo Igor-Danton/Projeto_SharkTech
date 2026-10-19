@@ -750,3 +750,5 @@
   color: var(--tinta-suave);
   font-size: var(--t-xs);
 }
+
+.botao--vivo { background: var(--azul-vivo); color: var(--branco); } .botao--vivo:hover { background: var(--azul); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3); color: var(--branco); }
