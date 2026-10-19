@@ -4,33 +4,35 @@
    ===================================================================== */
 
 :root {
-  /* Cores */
-  --papel: #f6f7f5;
+  /* Cores - Identidade Institucional Moderna */
+  --papel: #f8fafc;
   --branco: #ffffff;
-  --tinta: #16202b;
-  --tinta-suave: #55636f;
-  --azul: #14425f;
-  --azul-escuro: #0e3047;
-  --azul-claro: #e7eef3;
-  --sinal: #e3a008; /* amarelo de sinalizacao (oficinas/laboratorios) */
-  --sinal-fraco: #fdf4e0;
-  --linha: #d7dde2;
-  --alerta: #9a3412;
-  --alerta-fundo: #fdf1ec;
-  --ok: #14653a;
+  --tinta: #0f172a;
+  --tinta-suave: #64748b;
+  --azul: #1e3a8a;         /* Azul-marinho institucional */
+  --azul-vivo: #2563eb;     /* Azul vivo para ações */
+  --azul-tecnologia: #0ea5e9; /* Ciano/Azul-claro para detalhes tech */
+  --azul-escuro: #1e3a8a;
+  --azul-claro: #f1f5f9;
+  --sinal: #f59e0b;        /* Amarelo moderno para alertas/destaques */
+  --sinal-fraco: #fffbeb;
+  --linha: #e2e8f0;
+  --alerta: #b91c1c;
+  --alerta-fundo: #fef2f2;
+  --ok: #15803d;
 
   /* Tipografia */
   --fonte-titulo: "Bitter", Georgia, "Times New Roman", serif;
   --fonte-texto: "Inter", -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
 
   /* Escala de tamanhos */
-  --t-xs: 0.8125rem;
-  --t-sm: 0.9375rem;
-  --t-base: 1.0625rem;
+  --t-xs: 0.75rem;
+  --t-sm: 0.875rem;
+  --t-base: 1rem;
   --t-md: 1.25rem;
   --t-lg: 1.5rem;
   --t-xl: 2rem;
-  --t-2xl: 2.625rem;
+  --t-2xl: 2.5rem;
 
   /* Espacamento */
   --e-1: 0.5rem;
@@ -40,8 +42,8 @@
   --e-5: 3rem;
   --e-6: 4.5rem;
 
-  --largura: 1140px;
-  --raio: 4px;
+  --largura: 1200px;
+  --raio: 12px;
 }
 
 *,
