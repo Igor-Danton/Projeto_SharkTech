@@ -2,16 +2,18 @@
  * Busca por palavra-chave — RF05.
  * Procura em cursos, noticias e documentos e devolve tudo num formato unico.
  */
-const express = require('express');
-const { pool } = require('../config/db');
+const express = require("express");
+const { pool } = require("../config/db");
 
 const router = express.Router();
 
-router.get('/', async (req, res, next) => {
+router.get("/", async (req, res, next) => {
   try {
-    const termo = String(req.query.q || '').trim();
+    const termo = String(req.query.q || "").trim();
     if (termo.length < 2) {
-      return res.status(400).json({ erro: 'Digite pelo menos 2 caracteres para buscar.' });
+      return res
+        .status(400)
+        .json({ erro: "Digite pelo menos 2 caracteres para buscar." });
     }
     const like = `%${termo}%`;
 
@@ -20,7 +22,7 @@ router.get('/', async (req, res, next) => {
          FROM curso
         WHERE ativo = 1 AND (nome LIKE ? OR descricao LIKE ? OR perfil_egresso LIKE ?)
         ORDER BY nome LIMIT 20`,
-      [like, like, like]
+      [like, like, like],
     );
 
     const [noticias] = await pool.execute(
@@ -28,7 +30,7 @@ router.get('/', async (req, res, next) => {
          FROM noticia
         WHERE publicada = 1 AND (titulo LIKE ? OR conteudo LIKE ?)
         ORDER BY data_publicacao DESC LIMIT 20`,
-      [like, like]
+      [like, like],
     );
 
     const [documentos] = await pool.execute(
@@ -36,15 +38,19 @@ router.get('/', async (req, res, next) => {
          FROM documento
         WHERE publicado = 1 AND (titulo LIKE ? OR descricao LIKE ?)
         ORDER BY data_publicacao DESC LIMIT 20`,
-      [like, like]
+      [like, like],
     );
 
     res.json({
       termo,
       total: cursos.length + noticias.length + documentos.length,
-      cursos, noticias, documentos
+      cursos,
+      noticias,
+      documentos,
     });
-  } catch (erro) { next(erro); }
+  } catch (erro) {
+    next(erro);
+  }
 });
 
 module.exports = router;
