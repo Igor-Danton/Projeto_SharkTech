@@ -5,31 +5,31 @@ USE sharktech_ceep;
 -- Eixos tecnologicos (Catalogo Nacional de Cursos Tecnicos)
 -- ---------------------------------------------------------------------
 INSERT INTO area_conhecimento (id_area, nome) VALUES
-  (1, 'Informacao e Comunicacao'),
+  (1, 'Informação e Comunicação'),
   (2, 'Controle e Processos Industriais'),
   (3, 'Infraestrutura'),
-  (4, 'Ambiente e Saude'),
-  (5, 'Producao Industrial');
+  (4, 'Ambiente e Saúde'),
+  (5, 'Produção Industrial');
 
 -- ---------------------------------------------------------------------
 -- Cursos
--- Os NOMES sao dado confirmado (constam na documentacao do projeto).
--- A vinculacao ao eixo e' PROVISORIA (baseada no CNCT) e precisa ser
--- validada pela coordenacao pedagogica.
--- Turno, duracao, vagas, descricao, perfil e requisitos: PENDENTES.
+-- Os NOMES são dado confirmado (constam na documentação do projeto).
+-- A vinculação ao eixo é PROVISÓRIA (baseada no CNCT) e precisa ser
+-- validada pela coordenação pedagógica.
+-- Turno, duração, vagas, descrição, perfil e requisitos: PENDENTES.
 -- ---------------------------------------------------------------------
 INSERT INTO curso (nome, slug, id_area) VALUES
   ('Biotecnologia',                 'biotecnologia',                 4),
   ('Desenvolvimento de Sistemas',   'desenvolvimento-de-sistemas',   1),
-  ('Edificacoes',                   'edificacoes',                   3),
-  ('Eletromecanica',                'eletromecanica',                2),
-  ('Eletronica',                    'eletronica',                    2),
-  ('Farmacia',                      'farmacia',                      4),
-  ('Manutencao Automotiva',         'manutencao-automotiva',         2),
-  ('Mecanica',                      'mecanica',                      2),
+  ('Edificações',                   'edificacoes',                   3),
+  ('Eletromecânica',                'eletromecanica',                2),
+  ('Eletrônica',                    'eletronica',                    2),
+  ('Farmácia',                      'farmacia',                      4),
+  ('Manutenção Automotiva',         'manutencao-automotiva',         2),
+  ('Mecânica',                      'mecanica',                      2),
   ('Meio Ambiente',                 'meio-ambiente',                 4),
-  ('Programacao de Jogos Digitais', 'programacao-de-jogos-digitais', 1),
-  ('Quimica',                       'quimica',                       5);
+  ('Programação de Jogos Digitais', 'programacao-de-jogos-digitais', 1),
+  ('Química',                       'quimica',                       5);
 
 -- ---------------------------------------------------------------------
 -- Conteudo de demonstracao — REMOVER ANTES DE PUBLICAR
