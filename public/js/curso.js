@@ -1,4 +1,4 @@
-﻿/** Pagina individual do curso â€” RF02, RF04 e RF08. */
+﻿/** Página individual do curso — RF02, RF04 e RF08. */
 
 function blocoTexto(titulo, valor) {
   return `
@@ -6,7 +6,7 @@ function blocoTexto(titulo, valor) {
     <p>${
       valor
         ? escapar(valor)
-        : '<span class="pendente">InformaÃ§Ã£o pendente de validaÃ§Ã£o pela coordenaÃ§Ã£o</span>'
+        : '<span class="pendente">Informação pendente de validação pela coordenação</span>'
     }</p>`;
 }
 
@@ -34,7 +34,7 @@ const celula = (v) => (v === null || v === undefined ? "â€”" : escapar(v));
 
 function tabelaSeries(series) {
   if (!series.length) {
-    return '<div class="vazio">A carga horÃ¡ria por sÃ©rie ainda nÃ£o foi cadastrada.</div>';
+    return '<div class="vazio">A carga horária por série ainda não foi cadastrada.</div>';
   }
 
   return `
@@ -42,9 +42,9 @@ function tabelaSeries(series) {
       <table class="tabela">
         <thead>
           <tr>
-            <th>SÃ©rie</th>
-            <th>ItinerÃ¡rio tÃ©cnico (aulas/semana)</th>
-            <th>ItinerÃ¡rio tÃ©cnico (h/ano)</th>
+            <th>Série</th>
+            <th>Itinerário técnico (aulas/semana)</th>
+            <th>Itinerário técnico (h/ano)</th>
             <th>Total (aulas/semana)</th>
             <th>Total (h/ano)</th>
           </tr>
@@ -54,7 +54,7 @@ function tabelaSeries(series) {
             .map(
               (s) => `
           <tr>
-            <td>${escapar(s.serie)}Âª</td>
+            <td>${escapar(s.serie)}ª</td>
             <td>${celula(s.itinerario_semanal)}</td>
             <td>${celula(s.itinerario_anual)}</td>
             <td>${celula(s.total_semanal)}</td>
@@ -77,7 +77,7 @@ function tabelaComum(linhas, bloco) {
 
     return (
       escapar(aulas) +
-      (horas !== null && horas !== undefined ? ` Â· ${escapar(horas)} h` : "")
+      (horas !== null && horas !== undefined ? ` · ${escapar(horas)} h` : "")
     );
   };
 
@@ -87,10 +87,10 @@ function tabelaComum(linhas, bloco) {
         <thead>
           <tr>
             <th>Componente</th>
-            <th>1Âª sÃ©rie</th>
-            <th>2Âª sÃ©rie</th>
-            <th>3Âª sÃ©rie</th>
-            <th>ObservaÃ§Ã£o</th>
+            <th>1ª série</th>
+            <th>2ª série</th>
+            <th>3ª série</th>
+            <th>Observação</th>
           </tr>
         </thead>
         <tbody>
@@ -113,7 +113,7 @@ function tabelaComum(linhas, bloco) {
 
 function blocoDisciplinas(disciplinas) {
   if (!disciplinas.length) {
-    return '<div class="vazio">Os componentes tÃ©cnicos deste curso ainda nÃ£o foram cadastrados.</div>';
+    return '<div class="vazio">Os componentes técnicos deste curso ainda não foram cadastrados.</div>';
   }
 
   const temDetalhe = disciplinas.some((d) => d.carga_horaria || d.professor);
@@ -125,7 +125,7 @@ function blocoDisciplinas(disciplinas) {
           <thead>
             <tr>
               <th>Disciplina</th>
-              <th>Carga horÃ¡ria</th>
+              <th>Carga horária</th>
               <th>Professor</th>
             </tr>
           </thead>
@@ -152,8 +152,8 @@ function blocoDisciplinas(disciplinas) {
       ${disciplinas.map((d) => `<li>${escapar(d.nome)}</li>`).join("")}
     </ul>
     <p class="trilha">
-      A carga horÃ¡ria de cada componente e a distribuiÃ§Ã£o por sÃ©rie
-      nÃ£o constam na matriz consolidada.
+      A carga horária de cada componente e a distribuição por série
+      não constam na matriz consolidada.
     </p>`;
 }
 
@@ -163,7 +163,7 @@ async function carregarCurso() {
 
   if (!Number.isInteger(id)) {
     alvo.innerHTML =
-      '<div class="aviso aviso--erro">Curso nÃ£o informado. <a href="/cursos.html">Ver lista de cursos</a>.</div>';
+      '<div class="aviso aviso--erro">Curso não informado. <a href="/cursos.html">Ver lista de cursos</a>.</div>';
     return;
   }
 
@@ -179,23 +179,23 @@ async function carregarCurso() {
 
     cabecalho.innerHTML = `
       <p class="trilha">
-        <a href="/">InÃ­cio</a> /
+        <a href="/">Início</a> /
         <a href="/cursos.html">Cursos</a> /
         ${escapar(curso.nome)}
       </p>
       <h1>${escapar(curso.nome)}</h1>
       <p>
-        ${curso.area ? escapar(curso.area) : "Eixo tecnolÃ³gico a confirmar"}
+        ${curso.area ? escapar(curso.area) : "Eixo tecnológico a confirmar"}
         ${
           curso.media_notas
-            ? ` Â· nota mÃ©dia ${curso.media_notas} em ${curso.total_avaliacoes} avaliaÃ§Ãµes`
+            ? ` · nota média ${curso.media_notas} em ${curso.total_avaliacoes} avaliações`
             : ""
         }
       </p>`;
 
     const aviso = curso.observacao_matriz
       ? `<div class="aviso aviso--erro" style="margin-bottom:var(--e-2)">
-          <strong>AtenÃ§Ã£o Ã  matriz:</strong>
+          <strong>Atenção à matriz:</strong>
           ${escapar(curso.observacao_matriz)}
         </div>`
       : "";
@@ -207,50 +207,50 @@ async function carregarCurso() {
           ${blocoTexto("Perfil do egresso", curso.perfil_egresso)}
           ${blocoTexto("Requisitos de ingresso", curso.requisitos_ingresso)}
 
-          <h2>Carga horÃ¡ria por sÃ©rie</h2>
+          <h2>Carga horária por série</h2>
           ${aviso}
           ${tabelaSeries(curso.series || [])}
 
-          <h2 style="margin-top:var(--e-4)">Componentes tÃ©cnicos</h2>
+          <h2 style="margin-top:var(--e-4)">Componentes técnicos</h2>
           ${blocoDisciplinas(curso.disciplinas)}
 
           ${
             comum.length
               ? `
             <h2 style="margin-top:var(--e-4)">
-              FormaÃ§Ã£o Geral BÃ¡sica (comum a todos os cursos)
+              Formação Geral Básica (comum a todos os cursos)
             </h2>
             <p class="trilha">
-              Aulas por semana; subtotais tambÃ©m em horas-relÃ³gio anuais.
+              Aulas por semana; subtotais também em horas-relógio anuais.
             </p>
             ${tabelaComum(comum, "FGB")}
 
             <h2 style="margin-top:var(--e-4)">
-              Parte FlexÃ­vel ObrigatÃ³ria
+              Parte Flexível Obrigatória
             </h2>
             ${tabelaComum(comum, "PFO")}`
               : ""
           }
 
-          <h2 style="margin-top:var(--e-4)">AvaliaÃ§Ãµes de alunos</h2>
+          <h2 style="margin-top:var(--e-4)">Avaliações de alunos</h2>
           ${listaAvaliacoes(
             curso.avaliacoes,
-            "Este curso ainda nÃ£o tem avaliaÃ§Ãµes aprovadas.",
+            "Este curso ainda não tem avaliações aprovadas.",
           )}
 
           <h2 style="margin-top:var(--e-4)">Depoimentos de egressos</h2>
           ${listaAvaliacoes(
             curso.depoimentos,
-            "Este curso ainda nÃ£o tem depoimentos aprovados.",
+            "Este curso ainda não tem depoimentos aprovados.",
           )}
         </div>
 
         <aside class="caixa-lateral">
-          <h3>InformaÃ§Ãµes do curso</h3>
+          <h3>Informações do curso</h3>
 
           <ul class="lista-limpa">
             <li>
-              <strong>Carga horÃ¡ria total:</strong>
+              <strong>Carga horária total:</strong>
               ${ouPendente(formatarHoras(curso.carga_horaria_total))}
             </li>
 
@@ -260,7 +260,7 @@ async function carregarCurso() {
             </li>
 
             <li>
-              <strong>CÃ³digo do itinerÃ¡rio:</strong>
+              <strong>Código do itinerário:</strong>
               ${ouPendente(curso.codigo_itinerario)}
             </li>
 
