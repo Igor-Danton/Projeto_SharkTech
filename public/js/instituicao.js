@@ -1,4 +1,4 @@
-/** Paginas "A instituição" e "Contato": dados vindos de dados.js. */
+/** Páginas "A instituição" e "Contato": dados vindos de dados.js. */
 
 function montarLinhaTempo() {
   const alvo = document.getElementById("linha-tempo");
