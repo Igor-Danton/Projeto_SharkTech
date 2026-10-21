@@ -1,7 +1,7 @@
-USE sharktech_ceep;
+﻿USE sharktech_ceep;
 SET NAMES utf8mb4;
 
--- Cursos sem matriz fornecida: desativados (não apagados)
+-- cursos sem matriz fornecida: desativados (não apagados)
 UPDATE curso SET ativo = 0
  WHERE slug IN ('eletromecanica','eletronica','manutencao-automotiva','mecanica');
 
@@ -181,3 +181,6 @@ INSERT INTO formacao_comum (bloco, ordem, nome, aulas_s1, aulas_s2, aulas_s3, ho
 ('PFO', 1,'Projeto de Vida',2,1,1,67,33,33,NULL),
 ('PFO', 2,'Educação Financeira',1,1,1,33,33,33,NULL),
 ('PFO',99,'Subtotal da Parte Flexível Obrigatória',3,2,2,100,66,66,NULL);
+
+
+

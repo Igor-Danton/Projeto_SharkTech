@@ -1,4 +1,4 @@
-USE sharktech_ceep;
+﻿USE sharktech_ceep;
 
 ALTER TABLE curso ADD COLUMN carga_horaria_total INT NULL AFTER vagas;
 ALTER TABLE curso ADD COLUMN codigo_itinerario VARCHAR(20) NULL AFTER carga_horaria_total;
@@ -25,3 +25,6 @@ CREATE TABLE IF NOT EXISTS formacao_comum (
   horas_s1   SMALLINT NULL, horas_s2 SMALLINT NULL, horas_s3 SMALLINT NULL,
   observacao VARCHAR(300) NULL
 ) ENGINE=InnoDB;
+
+
+

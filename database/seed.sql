@@ -1,8 +1,8 @@
-
+﻿
 USE sharktech_ceep;
 
 -- ---------------------------------------------------------------------
--- Eixos tecnologicos (Catalogo Nacional de Cursos Tecnicos)
+-- Eixos tecnologicos (Catalogo Nacional de cursos Tecnicos)
 -- ---------------------------------------------------------------------
 INSERT INTO area_conhecimento (id_area, nome) VALUES
   (1, 'Informação e Comunicação'),
@@ -12,7 +12,7 @@ INSERT INTO area_conhecimento (id_area, nome) VALUES
   (5, 'Produção Industrial');
 
 -- ---------------------------------------------------------------------
--- Cursos
+-- cursos
 -- Os NOMES são dado confirmado (constam na documentação do projeto).
 -- A vinculação ao eixo é PROVISÓRIA (baseada no CNCT) e precisa ser
 -- validada pela coordenação pedagógica.
@@ -32,19 +32,25 @@ INSERT INTO curso (nome, slug, id_area) VALUES
   ('Química',                       'quimica',                       5);
 
 -- ---------------------------------------------------------------------
--- Conteudo de demonstracao — REMOVER ANTES DE PUBLICAR
+-- Conteúdo de demonstração — REMOVER ANTES DE PUBLICAR
 -- ---------------------------------------------------------------------
-INSERT INTO noticia (titulo, resumo, conteudo, categoria, publicada) VALUES
+INSERT INTO noticia (titulo, resumo, Conteúdo, categoria, publicada) VALUES
   ('[EXEMPLO] Periodo de matriculas para o proximo ano letivo',
-   'Conteudo de demonstracao. Substituir por comunicado real da secretaria.',
+   'Conteúdo de demonstração. Substituir por comunicado real da secretaria.',
    'Este registro existe apenas para demonstrar o funcionamento da pagina de noticias e comunicados. O texto definitivo deve ser fornecido pela secretaria do CEEP Curitiba.',
    'comunicado', 1),
   ('[EXEMPLO] Mostra de projetos dos cursos tecnicos',
-   'Conteudo de demonstracao. Substituir por noticia real da instituicao.',
+   'Conteúdo de demonstração. Substituir por noticia real da instituicao.',
    'Este registro existe apenas para demonstrar o funcionamento da pagina de noticias e comunicados. O texto definitivo deve ser fornecido pela instituicao.',
    'evento', 1);
 
 INSERT INTO documento (titulo, descricao, categoria, url_arquivo, data_publicacao) VALUES
   ('[EXEMPLO] Edital de matricula',
-   'Documento de demonstracao. Substituir pelo arquivo oficial.',
+   'Documento de demonstração. Substituir pelo arquivo oficial.',
    'edital', '#', '2026-01-01');
+
+
+
+
+
+

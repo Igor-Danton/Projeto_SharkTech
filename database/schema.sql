@@ -1,4 +1,4 @@
--- =====================================================================
+﻿-- =====================================================================
 -- Shark Tech — Novo Site Institucional do CEEP Curitiba
 -- Schema do banco de dados (MySQL 8+)
 --
@@ -168,7 +168,7 @@ CREATE TABLE noticia (
   id_noticia      INT AUTO_INCREMENT PRIMARY KEY,
   titulo          VARCHAR(180) NOT NULL,
   resumo          VARCHAR(300) NULL,
-  conteudo        TEXT NOT NULL,
+  Conteúdo        TEXT NOT NULL,
   categoria       ENUM('noticia', 'comunicado', 'evento')
                   NOT NULL DEFAULT 'noticia',
   data_publicacao DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -237,3 +237,6 @@ CREATE TABLE formacao_comum (
 
   observacao  VARCHAR(300) NULL
 ) ENGINE=InnoDB;
+
+
+
