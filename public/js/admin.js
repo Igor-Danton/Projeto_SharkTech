@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Painel administrativo — RF06.
  * Cada aba carrega os dados sob demanda. Se a sessao cair, volta ao login.
  */
@@ -23,7 +23,7 @@ async function carregarResumo() {
     const r = await Api.get("/admin/resumo");
     document.getElementById("resumo").innerHTML = `
       <div><span>${r.cursos}</span><small>cursos ativos</small></div>
-      <div><span>${r.avaliacoes_pendentes}</span><small>aguardando moderação</small></div>
+      <div><span>${r.avaliacoes_pendentes}</span><small>aguardando moderaçãoo</small></div>
       <div><span>${r.noticias_publicadas}</span><small>notícias publicadas</small></div>
       <div><span>${r.cursos_incompletos}</span><small>cursos com dados pendentes</small></div>`;
   } catch (erro) {
@@ -93,13 +93,13 @@ async function abaAvaliacoes(status = "pendente") {
               });
               mostrarAviso(painel.aviso, r.mensagem, "ok");
             } else {
-              if (!confirm("Tem certeza que deseja excluir esta avaliação? Esta ação é permanente.")) {
+              if (!confirm("Tem certeza que deseja excluir esta avaliaçãoo? Esta açãoo é permanente.")) {
                 return;
               }
               const r = await Api.del(`/admin/avaliacoes/${id}`);
               mostrarAviso(painel.aviso, r.mensagem, "ok");
             }
-            // Atualiza a lista e indicadores após a operação
+            // Atualiza a lista e indicadores após a operaçãoo
             abaAvaliacoes(document.getElementById("status-avaliacao").value);
             carregarResumo();
           } catch (erro) {
@@ -127,7 +127,7 @@ async function abaCursos() {
         <div class="campo">
           <label for="curso-editar">Curso</label>
           <select id="curso-editar">
-            <option value="">Selecione…</option>
+            <option value="">Selecione €¦</option>
             ${cursos.map((c) => `<option value="${c.id_curso}">${escapar(c.nome)}</option>`).join("")}
           </select>
         </div>
@@ -162,7 +162,7 @@ async function abaCursos() {
             <input id="c-turno" value="${curso.turno ? escapar(curso.turno) : ""}" placeholder="Ex.: Manhã e tarde">
           </div>
           <div class="campo">
-            <label for="c-duracao">Duração</label>
+            <label for="c-duracao">Duraçãoo</label>
             <input id="c-duracao" value="${curso.duracao ? escapar(curso.duracao) : ""}" placeholder="Ex.: 3 anos">
           </div>
           <div class="campo">
@@ -170,7 +170,7 @@ async function abaCursos() {
             <input id="c-vagas" type="number" min="0" value="${curso.vagas ?? ""}">
           </div>
           <div class="campo">
-            <label for="c-descricao">Descrição</label>
+            <label for="c-descricao">Descriçãoo</label>
             <textarea id="c-descricao">${curso.descricao ? escapar(curso.descricao) : ""}</textarea>
           </div>
           <div class="campo">
@@ -250,7 +250,7 @@ async function abaNoticias() {
 
       <div class="tabela-rolagem">
         <table class="tabela">
-          <thead><tr><th>Título</th><th>Categoria</th><th>Data</th><th>Situação</th></tr></thead>
+          <thead><tr><th>Título</th><th>Categoria</th><th>Data</th><th>Situaçãoo</th></tr></thead>
           <tbody>
             ${
               noticias.length
@@ -338,12 +338,12 @@ async function abaDocumentos() {
           </select>
         </div>
         <div class="campo">
-          <label for="d-descricao">Descrição</label>
+          <label for="d-descricao">Descriçãoo</label>
           <input id="d-descricao" maxlength="300">
         </div>
         <div class="campo">
           <label for="d-url">Link do arquivo</label>
-          <input id="d-url" required placeholder="https://…">
+          <input id="d-url" required placeholder="https:// €¦">
           <p class="campo__ajuda">Endereço do PDF já hospedado.</p>
         </div>
         <button class="botao botao--primario" type="submit">Salvar documento</button>
@@ -432,3 +432,5 @@ document.addEventListener("DOMContentLoaded", async () => {
     window.location.href = "/admin/";
   });
 });
+
+

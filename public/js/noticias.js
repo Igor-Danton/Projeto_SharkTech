@@ -1,8 +1,8 @@
-/** Noticias, comunicados e eventos. */
+﻿/** Noticias, comunicados e eventos. */
 
 async function listarNoticias(categoria = "") {
   const alvo = document.getElementById("lista-noticias");
-  alvo.innerHTML = "<p>Carregando…</p>";
+  alvo.innerHTML = "<p>Carregando €¦</p>";
 
   try {
     const noticias = await Api.get(
@@ -37,3 +37,5 @@ document.addEventListener("layout-pronto", () => {
     listarNoticias(form.categoria.value);
   });
 });
+
+

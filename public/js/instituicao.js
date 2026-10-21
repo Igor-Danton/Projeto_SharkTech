@@ -1,4 +1,4 @@
-/** Páginas "A instituição" e "Contato": dados vindos de dados.js. */
+﻿/** Páginas "A instituição" e "Contato": dados vindos de dados.js. */
 
 function montarLinhaTempo() {
   const alvo = document.getElementById("linha-tempo");
@@ -54,7 +54,7 @@ function montarIdentificacao() {
     <li><strong>Telefone:</strong> ${escapar(c.telefone)}</li>
     <li><strong>Código INEP:</strong> ${escapar(c.inep)}</li>
     <li><strong>Dependência:</strong> Estadual</li>
-    <li><strong>Localização:</strong> Urbana</li>
+    <li><strong>Localizaçãoo:</strong> Urbana</li>
     <li><strong>Etapa:</strong> Ensino Médio — curso técnico integrado</li>`;
 }
 
@@ -63,3 +63,5 @@ document.addEventListener("layout-pronto", () => {
   montarTabelaIndicadores();
   montarIdentificacao();
 });
+
+

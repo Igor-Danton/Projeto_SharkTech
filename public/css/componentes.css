@@ -1,4 +1,4 @@
-/* =====================================================================
+﻿/* =====================================================================
    Shark Tech / CEEP Curitiba — componentes
    Header, footer, botoes, cards, formularios, tabelas, avisos e blocos
    especificos de pagina.
@@ -755,3 +755,5 @@
 }
 
 .botao--vivo { background: var(--azul-vivo); color: var(--branco); } .botao--vivo:hover { background: var(--azul); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3); color: var(--branco); }
+
+

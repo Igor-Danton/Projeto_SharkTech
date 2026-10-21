@@ -1,8 +1,8 @@
-/** Documentos e editais. */
+﻿/** Documentos e editais. */
 
 async function listarDocumentos(categoria = "") {
   const alvo = document.getElementById("lista-documentos");
-  alvo.innerHTML = '<tr><td colspan="4">Carregando…</td></tr>';
+  alvo.innerHTML = '<tr><td colspan="4">Carregando €¦</td></tr>';
 
   try {
     const documentos = await Api.get(
@@ -40,3 +40,5 @@ document.addEventListener("layout-pronto", () => {
     listarDocumentos(form.categoria.value);
   });
 });
+
+

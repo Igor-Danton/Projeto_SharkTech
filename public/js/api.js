@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Camada de acesso à API.
  * Centraliza fetch, tratamento de erro e JSON em um lugar só.
  */
@@ -19,7 +19,7 @@ const Api = (() => {
 
     if (!resposta.ok) {
       const erro = new Error(
-        (dados && dados.erro) || "Não foi possível concluir a operação.",
+        (dados && dados.erro) || "Não foi possível concluir a operaçãoo.",
       );
       erro.status = resposta.status;
       throw erro;
@@ -39,3 +39,5 @@ const Api = (() => {
 
   return { get, post, put, patch, del };
 })();
+
+

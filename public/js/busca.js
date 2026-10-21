@@ -1,4 +1,4 @@
-/** Resultados da busca por palavra-chave — RF05. */
+﻿/** Resultados da busca por palavra-chave — RF05. */
 
 function secaoResultado(titulo, itens, montarLink) {
   if (!itens.length) return "";
@@ -19,17 +19,17 @@ function secaoResultado(titulo, itens, montarLink) {
 
 async function buscar(termo) {
   const alvo = document.getElementById("resultado-busca");
-  alvo.innerHTML = "<p>Buscando…</p>";
+  alvo.innerHTML = "<p>Buscando €¦</p>";
 
   try {
     const r = await Api.get(`/busca?q=${encodeURIComponent(termo)}`);
 
     document.querySelector(".cabecalho-pagina h1").textContent =
-      `${r.total} resultado${r.total === 1 ? "" : "s"} para “${termo}”`;
+      `${r.total} resultado${r.total === 1 ? "" : "s"} para  €œ${termo} €`;
 
     if (r.total === 0) {
       alvo.innerHTML = `<div class="vazio">
-        Nenhum resultado para “${escapar(termo)}”. Tente uma palavra mais curta,
+        Nenhum resultado para  €œ${escapar(termo)} €. Tente uma palavra mais curta,
         ou veja a <a href="/cursos.html">lista completa de cursos</a>.
       </div>`;
       return;
@@ -70,3 +70,5 @@ document.addEventListener("layout-pronto", () => {
   campo.value = termo;
   buscar(termo);
 });
+
+

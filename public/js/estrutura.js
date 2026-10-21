@@ -1,4 +1,4 @@
-/** Pagina de estrutura, laboratorios e biblioteca. */
+﻿/** Pagina de estrutura, laboratorios e biblioteca. */
 
 function cartoes(lista) {
   return lista
@@ -26,5 +26,7 @@ document.addEventListener("layout-pronto", () => {
   document.getElementById("acervo-biblioteca").innerHTML = infra.biblioteca
     .acervo
     ? escapar(infra.biblioteca.acervo)
-    : '<span class="pendente">Tamanho do acervo: informação pendente de fonte atualizada.</span>';
+    : '<span class="pendente">Tamanho do acervo: Informação pendente de fonte atualizada.</span>';
 });
+
+

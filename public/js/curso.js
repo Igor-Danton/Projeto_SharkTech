@@ -19,7 +19,7 @@ function listaAvaliacoes(itens, vazio) {
     <article class="avaliacao">
       <div class="avaliacao__cabecalho">
         <span>${escapar(item.aluno)}${
-          item.turma ? " â€” " + escapar(item.turma) : ""
+          item.turma ? " — " + escapar(item.turma) : ""
         }</span>
         <span>${formatarData(item.data_avaliacao)}</span>
       </div>
@@ -30,7 +30,7 @@ function listaAvaliacoes(itens, vazio) {
     .join("");
 }
 
-const celula = (v) => (v === null || v === undefined ? "â€”" : escapar(v));
+const celula = (v) => (v === null || v === undefined ? "—" : escapar(v));
 
 function tabelaSeries(series) {
   if (!series.length) {
@@ -99,9 +99,9 @@ function tabelaComum(linhas, bloco) {
               (l) => `
           <tr>
             <td>${escapar(l.nome)}</td>
-            <td>${val(l.aulas_s1, l.horas_s1) || "â€”"}</td>
-            <td>${val(l.aulas_s2, l.horas_s2) || "â€”"}</td>
-            <td>${val(l.aulas_s3, l.horas_s3) || "â€”"}</td>
+            <td>${val(l.aulas_s1, l.horas_s1) || "—"}</td>
+            <td>${val(l.aulas_s2, l.horas_s2) || "—"}</td>
+            <td>${val(l.aulas_s3, l.horas_s3) || "—"}</td>
             <td>${l.observacao ? escapar(l.observacao) : ""}</td>
           </tr>`,
             )
@@ -136,9 +136,9 @@ function blocoDisciplinas(disciplinas) {
             <tr>
               <td>${escapar(d.nome)}</td>
               <td>${
-                d.carga_horaria ? escapar(d.carga_horaria) + " h" : "â€”"
+                d.carga_horaria ? escapar(d.carga_horaria) + " h" : "—"
               }</td>
-              <td>${d.professor ? escapar(d.professor) : "â€”"}</td>
+              <td>${d.professor ? escapar(d.professor) : "—"}</td>
             </tr>`,
               )
               .join("")}
@@ -307,4 +307,6 @@ async function carregarCurso() {
 }
 
 document.addEventListener("layout-pronto", carregarCurso);
+
+
 

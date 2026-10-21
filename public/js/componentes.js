@@ -1,8 +1,8 @@
-function cardCurso(curso) {
+﻿function cardCurso(curso) {
   const resumo = curso.descricao
     ? escapar(curso.descricao).slice(0, 150) +
-      (curso.descricao.length > 150 ? "…" : "")
-    : '<span class="pendente">Informações em atualização</span>';
+      (curso.descricao.length > 150 ? " €¦" : "")
+    : '<span class="pendente">Informações em atualizaçãoo</span>';
 
   return `
     <article class="card card-curso">
@@ -32,3 +32,5 @@ function cardCurso(curso) {
       </div>
     </article>`;
 }
+
+

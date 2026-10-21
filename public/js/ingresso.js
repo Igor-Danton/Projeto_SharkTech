@@ -1,4 +1,4 @@
-/** Blocos de encaminhamento para os sistemas oficiais da SEED-PR. */
+﻿/** Blocos de encaminhamento para os sistemas oficiais da SEED-PR. */
 
 document.addEventListener("layout-pronto", () => {
   const alvo = document.getElementById("sistemas-oficiais");
@@ -19,3 +19,5 @@ document.addEventListener("layout-pronto", () => {
     )
     .join("");
 });
+
+

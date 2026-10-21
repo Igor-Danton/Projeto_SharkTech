@@ -1,4 +1,4 @@
-/** Listagem de cursos com busca e filtro por eixo — RF01 e RF05. */
+﻿/** Listagem de cursos com busca e filtro por eixo — RF01 e RF05. */
 
 async function carregarAreas() {
   const select = document.getElementById("filtro-area");
@@ -20,7 +20,7 @@ async function carregarAreas() {
 async function listar(parametros = "") {
   const alvo = document.getElementById("lista-cursos");
   const contador = document.getElementById("contador-cursos");
-  alvo.innerHTML = "<p>Carregando…</p>";
+  alvo.innerHTML = "<p>Carregando €¦</p>";
 
   try {
     const cursos = await Api.get(`/cursos${parametros}`);
@@ -60,3 +60,5 @@ document.addEventListener("layout-pronto", () => {
 
   form.addEventListener("reset", () => setTimeout(() => listar(""), 0));
 });
+
+

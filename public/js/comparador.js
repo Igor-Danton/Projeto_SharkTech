@@ -1,4 +1,4 @@
-/** Comparador de exatamente dois cursos. */
+﻿/** Comparador de exatamente dois cursos. */
 
 function formatarHorasComparador(valor) {
   return valor ? `${Number(valor).toLocaleString("pt-BR")} h` : null;
@@ -17,7 +17,7 @@ const LINHAS_COMPARACAO = [
     campo: "codigo_itinerario",
   },
   { rotulo: "Vagas", campo: "vagas" },
-  { rotulo: "Descrição", campo: "descricao" },
+  { rotulo: "Descriçãoo", campo: "descricao" },
   { rotulo: "Perfil do egresso", campo: "perfil_egresso" },
   {
     rotulo: "Requisitos de ingresso",
@@ -30,12 +30,12 @@ async function preencherSelects() {
   const b = document.getElementById("curso-b");
 
   if (!a || !b) {
-    throw new Error("Campos de comparação não encontrados na página.");
+    throw new Error("Campos de comparaçãoo não encontrados na página.");
   }
 
   const cursos = await Api.get("/cursos");
 
-  const opcoes = ['<option value="">Selecione…</option>']
+  const opcoes = ['<option value="">Selecione €¦</option>']
     .concat(
       cursos.map(
         (c) => `<option value="${c.id_curso}">${escapar(c.nome)}</option>`,
@@ -58,7 +58,7 @@ async function comparar(idA, idB) {
   const aviso = document.getElementById("aviso-comparar");
 
   aviso.hidden = true;
-  alvo.innerHTML = "<p>Comparando…</p>";
+  alvo.innerHTML = "<p>Comparando €¦</p>";
 
   try {
     const [cursoA, cursoB] = await Api.get(
@@ -119,7 +119,7 @@ document.addEventListener("layout-pronto", async () => {
   try {
     await preencherSelects();
   } catch (erro) {
-    console.error("Erro ao carregar cursos para comparação:", erro);
+    console.error("Erro ao carregar cursos para comparaçãoo:", erro);
 
     mostrarAviso(aviso, "Não foi possível carregar a lista de cursos.", "erro");
 
@@ -143,3 +143,5 @@ document.addEventListener("layout-pronto", async () => {
     comparar(a, b);
   });
 });
+
+

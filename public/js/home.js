@@ -1,4 +1,4 @@
-/** Página inicial: indicadores, cursos em destaque e últimas notícias. */
+﻿/** Página inicial: indicadores, cursos em destaque e últimas notícias. */
 
 function montarIndicadores() {
   const alvo = document.getElementById("indicadores");
@@ -64,3 +64,5 @@ document.addEventListener("layout-pronto", () => {
   carregarCursosDestaque();
   carregarNoticiasHome();
 });
+
+

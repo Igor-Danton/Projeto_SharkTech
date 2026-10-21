@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Código compartilhado por todas as páginas do site:
  * carrega header e footer, marca o link ativo, controla o menu do celular
  * e expõe utilitários usados pelos scripts de página.
@@ -127,3 +127,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   document.dispatchEvent(new CustomEvent("layout-pronto"));
 });
+
+
+
+

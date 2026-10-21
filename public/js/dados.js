@@ -1,7 +1,7 @@
-/**
+﻿/**
  * Dados institucionais usados em várias páginas.
  *
- * REGRA DO PROJETO: cada informação aqui é classificada como
+ * REGRA DO PROJETO: cada Informação aqui é classificada como
  * confirmado | histórico | pendente
  *
  * Nada pode ser inventado. Ao receber uma fonte nova, atualize AQUI —
@@ -10,7 +10,7 @@
 
 const DadosCeep = {
   contato: {
-    nome: "Centro Estadual de Educação Profissional de Curitiba",
+    nome: "Centro Estadual de Educaçãoo Profissional de Curitiba",
     sigla: "CEEP Curitiba",
     endereco: "Rua Frederico Maurer, 3015",
     bairro: "Boqueirão",
@@ -19,7 +19,7 @@ const DadosCeep = {
     cep: "81670-020",
     telefone: "(41) 3276-9534",
     inep: "41129857",
-    email: null, // PENDENTE — não publicar sem confirmação
+    email: null, // PENDENTE — não publicar sem confirmaçãoo
     horarios: null, // PENDENTE
     redesSociais: null, // PENDENTE
   },
@@ -44,7 +44,7 @@ const DadosCeep = {
   ],
 
   aprendizagem: {
-    fonte: "Saeb 2023 — 3º ano do Ensino Médio",
+    fonte: "Saeb 2023 — 3 º ano do Ensino Médio",
     itens: [
       { area: "Português", percentual: 64 },
       { area: "Matemática", percentual: 16 },
@@ -52,20 +52,20 @@ const DadosCeep = {
   },
 
   fluxo: [
-    // Removidos indicadores de reprovação e abandono por solicitação institucional
+    // Removidos indicadores de reprovaçãoo e abandono por solicitaçãoo institucional
   ],
 
   historia: [
     {
       ano: "1941",
-      titulo: "Fundação",
+      titulo: "Fundaçãoo",
       texto:
         "A instituição é criada com o nome de Instituto Técnico de Agronomia, Veterinária e Química do Paraná.",
       classe: "confirmado",
     },
     {
       ano: "Atualmente",
-      titulo: "Centro Estadual de Educação Profissional de Curitiba",
+      titulo: "Centro Estadual de Educaçãoo Profissional de Curitiba",
       texto:
         "A instituição oferece cursos técnicos integrados ao Ensino Médio, na rede estadual do Paraná.",
       classe: "confirmado",
@@ -82,12 +82,12 @@ const DadosCeep = {
       "Sala da diretoria",
       "Sanitários",
       "Dependências com acessibilidade",
-      "Alimentação escolar",
+      "Alimentaçãoo escolar",
       "Água filtrada",
     ],
 
     laboratoriosTecnicos: [
-      "Eletromecânica",
+      "EletromecÃ¢nica",
       "Edificações",
       "Informática",
       "Matemática",
@@ -95,19 +95,19 @@ const DadosCeep = {
       "Física",
       "Química",
       "Desenvolvimento de Sistemas",
-      "Programação de Jogos Digitais",
+      "Programaçãoo de Jogos Digitais",
     ],
 
     quantidadeLaboratorios: {
       valor: "cerca de 15 laboratórios",
       classificacao: "historico",
       observacao:
-        "Número de referência histórica, para cursos básicos e específicos. A quantidade atual precisa ser confirmada pela direção antes de ser publicada como dado vigente.",
+        "Número de referência histórica, para cursos básicos e específicos. A quantidade atual precisa ser confirmada pela direçãoo antes de ser publicada como dado vigente.",
     },
 
     biblioteca: {
       texto:
-        "O CEEP Curitiba possui biblioteca. Há registros históricos de uma biblioteca central ligada aos cursos técnicos e de acervo voltado à formação profissional.",
+        "O CEEP Curitiba possui biblioteca. Há registros históricos de uma biblioteca central ligada aos cursos técnicos e de acervo voltado à formaçãoo profissional.",
       acervo: null, // PENDENTE — não publicar quantidade de livros sem fonte atual
     },
   },
@@ -116,7 +116,7 @@ const DadosCeep = {
     {
       nome: "Matrícula na rede estadual",
       descricao:
-        "A inscrição e a matrícula são feitas nos canais oficiais da Secretaria de Estado da Educação do Paraná.",
+        "A inscriçãoo e a matrícula são feitas nos canais oficiais da Secretaria de Estado da Educaçãoo do Paraná.",
       url: "https://www.educacao.pr.gov.br/",
       rotulo: "Ir para o site da SEED-PR",
     },
@@ -129,3 +129,5 @@ const DadosCeep = {
     },
   ],
 };
+
+
