@@ -1,7 +1,7 @@
 /**
- * Codigo compartilhado por todas as paginas do site:
+ * Código compartilhado por todas as páginas do site:
  * carrega header e footer, marca o link ativo, controla o menu do celular
- * e expoe utilitarios usados pelos scripts de pagina.
+ * e expõe utilitários usados pelos scripts de página.
  */
 
 /** Substitui valores vazios por uma etiqueta visivel de pendencia. */
@@ -56,7 +56,7 @@ function mostrarAviso(elemento, texto, tipo = "ok") {
   elemento.hidden = false;
 }
 
-/** Le um parametro da URL (ex.: curso.html?id=2). */
+/** Lê um parâmetro da URL (ex.: curso.html?id=2). */
 function parametro(nome) {
   return new URLSearchParams(window.location.search).get(nome);
 }
