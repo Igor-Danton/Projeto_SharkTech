@@ -1,6 +1,6 @@
 /**
- * Camada de acesso a API.
- * Centraliza fetch, tratamento de erro e JSON em um lugar so.
+ * Camada de acesso à API.
+ * Centraliza fetch, tratamento de erro e JSON em um lugar só.
  */
 const Api = (() => {
   async function requisitar(caminho, opcoes = {}) {
