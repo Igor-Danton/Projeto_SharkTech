@@ -1,11 +1,11 @@
 /**
- * Dados institucionais usados em varias paginas.
+ * Dados institucionais usados em várias páginas.
  *
- * REGRA DO PROJETO: cada informacao aqui e' classificada como
- * confirmado | historico | pendente
+ * REGRA DO PROJETO: cada informação aqui é classificada como
+ * confirmado | histórico | pendente
  *
  * Nada pode ser inventado. Ao receber uma fonte nova, atualize AQUI —
- * todas as paginas leem deste arquivo.
+ * todas as páginas leem deste arquivo.
  */
 
 const DadosCeep = {
