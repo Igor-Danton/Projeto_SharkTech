@@ -1,4 +1,4 @@
-/** Pagina inicial: indicadores, cursos em destaque e ultimas noticias. */
+/** Página inicial: indicadores, cursos em destaque e últimas notícias. */
 
 function montarIndicadores() {
   const alvo = document.getElementById("indicadores");
