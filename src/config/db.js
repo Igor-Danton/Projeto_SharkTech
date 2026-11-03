@@ -4,7 +4,10 @@
  * Para TiDB/servidores com TLS exigido, use DB_SSL=true.
  */
 require("dotenv").config();
+const net = require("node:net");
 const mysql = require("mysql2/promise");
+
+net.setDefaultAutoSelectFamily(false);
 
 const sslAtivado =
   String(process.env.DB_SSL || "false").toLowerCase() === "true";
