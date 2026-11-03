@@ -105,6 +105,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   marcarLinkAtivo();
   ativarMenu();
+  window.inicializarTema();
 
   const ano = document.getElementById("ano-atual");
 

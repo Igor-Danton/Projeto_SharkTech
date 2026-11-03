@@ -6,7 +6,9 @@
 :root {
   /* Cores — identidade acadêmica institucional */
   --papel: #f4efe8;
+  --papel-luz: #f9f6f2;
   --papel-escuro: #ede3d6;
+  --superficie: #fffdfb;
   --branco: #fffdfb;
   --tinta: #12263d;
   --tinta-suave: #53687c;
@@ -47,6 +49,28 @@
   --raio: 14px;
 }
 
+html[data-tema="escuro"] {
+  color-scheme: dark;
+  --papel: #111a23;
+  --papel-luz: #111a23;
+  --papel-escuro: #182531;
+  --superficie: #1d2b38;
+  --branco: #f5f7fa;
+  --tinta: #e6ecf2;
+  --tinta-suave: #b2bfcc;
+  --azul: #a9c7df;
+  --azul-vivo: #477fa8;
+  --azul-tecnologia: #93b8d5;
+  --azul-escuro: #0e1a25;
+  --azul-claro: #293b4b;
+  --sinal: #e0b66f;
+  --sinal-fraco: #423824;
+  --linha: #354655;
+  --alerta: #f0a196;
+  --alerta-fundo: #402a2b;
+  --ok: #8bc7a0;
+}
+
 *,
 *::before,
 *::after {
@@ -59,7 +83,7 @@ html {
 
 body {
   margin: 0;
-  background: linear-gradient(180deg, #f4efe8 0%, #f9f6f2 100%);
+  background: linear-gradient(180deg, var(--papel), var(--papel-luz));
   color: var(--tinta);
   font-family: var(--fonte-texto);
   font-size: var(--t-base);
@@ -130,8 +154,8 @@ img {
   padding-block: var(--e-5);
 }
 .secao--clara {
-  background: rgba(255, 255, 255, 0.72);
-  border-top: 1px solid rgba(22, 58, 87, 0.06);
+  background: var(--superficie);
+  border-top: 1px solid var(--linha);
 }
 .secao--azul {
   background: linear-gradient(135deg, var(--azul-escuro), var(--azul));

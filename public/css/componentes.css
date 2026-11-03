@@ -7,7 +7,7 @@
 /* ------------------------- Cabecalho ------------------------- */
 
 .topo {
-  background: rgba(255, 255, 255, 0.92);
+  background: var(--superficie);
   border-bottom: 1px solid var(--linha);
   position: sticky;
   top: 0;
@@ -39,6 +39,38 @@
 .topo__servico-links {
   display: flex;
   gap: var(--e-2);
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.tema-botao {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-height: 2rem;
+  padding: 0.3rem 0.65rem;
+  border: 1px solid rgba(223, 234, 244, 0.32);
+  border-radius: 999px;
+  background: transparent;
+  color: #f0d39d;
+  font: inherit;
+  font-size: var(--t-xs);
+  cursor: pointer;
+  transition:
+    background-color 0.18s ease,
+    border-color 0.18s ease,
+    color 0.18s ease;
+}
+
+.tema-botao:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(223, 234, 244, 0.64);
+  color: var(--branco);
+}
+
+.tema-botao__icone {
+  font-size: 1rem;
+  line-height: 1;
 }
 
 .topo__principal .container {
@@ -245,8 +277,8 @@
   box-shadow: 0 12px 24px rgba(201, 149, 74, 0.3);
 }
 .botao--contorno {
-  border-color: rgba(22, 58, 87, 0.2);
-  background: var(--branco);
+  border-color: var(--linha);
+  background: var(--superficie);
   color: var(--azul-escuro);
   transition: all 0.2s ease;
 }
@@ -375,7 +407,7 @@
   font: inherit;
   border: none;
   border-radius: var(--raio);
-  background: var(--branco);
+  background: var(--superficie);
   color: var(--tinta);
   box-shadow: 0 2px 8px rgba(7, 18, 30, 0.18);
 }
@@ -454,7 +486,7 @@
 /* ------------------------- Cards ------------------------- */
 
 .card {
-  background: rgba(255, 255, 255, 0.9);
+  background: var(--superficie);
   border: 1px solid rgba(22, 58, 87, 0.08);
   border-radius: var(--raio);
   padding: var(--e-3);
@@ -482,8 +514,8 @@
   display: flex;
   flex-direction: column;
   height: 100%;
-  background: var(--branco);
-  border: 1px solid rgba(22, 58, 87, 0.12);
+  background: var(--superficie);
+  border: 1px solid var(--linha);
   border-radius: var(--raio);
   overflow: hidden;
   transition:
@@ -552,7 +584,7 @@
 }
 
 .aviso {
-  background: var(--branco);
+  background: var(--superficie);
   border: 1px solid var(--linha);
   border-left: 4px solid var(--sinal);
   padding: var(--e-2) var(--e-3);
@@ -573,7 +605,7 @@
   padding: var(--e-4);
   text-align: center;
   color: var(--tinta-suave);
-  background: var(--branco);
+  background: var(--superficie);
 }
 
 /* ------------------------- Linha do tempo ------------------------- */
@@ -606,7 +638,7 @@
   width: 16px;
   height: 16px;
   border-radius: 50%;
-  background: var(--branco);
+  background: var(--superficie);
   border: 3px solid var(--azul);
 }
 .linha-tempo li:first-child::before {
@@ -638,7 +670,7 @@
   font-size: var(--t-sm);
   border: 1px solid var(--linha);
   border-radius: var(--raio);
-  background: var(--branco);
+  background: var(--superficie);
   color: var(--tinta);
 }
 .campo textarea {
@@ -652,7 +684,7 @@
 }
 
 .formulario {
-  background: var(--branco);
+  background: var(--superficie);
   border: 1px solid var(--linha);
   border-radius: var(--raio);
   padding: var(--e-3);
@@ -664,7 +696,7 @@
 .tabela {
   width: 100%;
   border-collapse: collapse;
-  background: var(--branco);
+  background: var(--superficie);
   font-size: var(--t-sm);
 }
 .tabela th,
@@ -696,7 +728,7 @@
 /* ------------------------- Avaliacoes ------------------------- */
 
 .avaliacao {
-  background: var(--branco);
+  background: var(--superficie);
   border: 1px solid var(--linha);
   border-left: 3px solid var(--azul-claro);
   border-radius: var(--raio);
@@ -719,11 +751,7 @@
 /* ------------------------- Paginas internas ------------------------- */
 
 .cabecalho-pagina {
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.88),
-    rgba(244, 239, 232, 0.72)
-  );
+  background: linear-gradient(180deg, var(--superficie), var(--papel));
   border-bottom: 1px solid var(--linha);
   padding-block: var(--e-4);
 }
@@ -749,8 +777,8 @@
   gap: var(--e-2);
   flex-wrap: wrap;
   align-items: flex-end;
-  background: rgba(255, 255, 255, 0.88);
-  border: 1px solid rgba(22, 58, 87, 0.08);
+  background: var(--superficie);
+  border: 1px solid var(--linha);
   border-radius: var(--raio);
   padding: var(--e-2);
   margin-bottom: var(--e-3);
@@ -775,8 +803,8 @@
 }
 
 .caixa-lateral {
-  background: linear-gradient(180deg, var(--branco), #f9f5f0);
-  border: 1px solid rgba(22, 58, 87, 0.08);
+  background: linear-gradient(180deg, var(--superficie), var(--papel));
+  border: 1px solid var(--linha);
   border-top: 3px solid var(--sinal);
   border-radius: var(--raio);
   padding: var(--e-3);
@@ -855,7 +883,7 @@
   margin-bottom: var(--e-3);
 }
 .painel-numeros div {
-  background: var(--branco);
+  background: var(--superficie);
   border: 1px solid var(--linha);
   border-radius: var(--raio);
   padding: var(--e-2) var(--e-3);
@@ -881,4 +909,66 @@
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
   color: var(--branco);
+}
+
+html[data-tema="escuro"] body {
+  background: linear-gradient(180deg, var(--papel), var(--papel-escuro));
+}
+
+html[data-tema="escuro"] .topo {
+  background: rgba(17, 26, 35, 0.96);
+}
+
+html[data-tema="escuro"] .topo__servico {
+  background: linear-gradient(90deg, #0d1b28, #203c53);
+}
+
+html[data-tema="escuro"] .marca__selo {
+  background: linear-gradient(135deg, #315d7a, #24435b);
+}
+
+html[data-tema="escuro"] .botao--primario,
+html[data-tema="escuro"] .botao--vivo {
+  background: linear-gradient(135deg, #315d7a, #24435b);
+  color: #f5f7fa;
+}
+
+html[data-tema="escuro"] .botao--primario:hover,
+html[data-tema="escuro"] .botao--vivo:hover {
+  background: linear-gradient(135deg, #284a63, #1d354a);
+}
+
+html[data-tema="escuro"] .secao--azul {
+  background: linear-gradient(135deg, #0d1822, #1b3144);
+}
+
+html[data-tema="escuro"] .card,
+html[data-tema="escuro"] .card-curso,
+html[data-tema="escuro"] .aviso,
+html[data-tema="escuro"] .vazio,
+html[data-tema="escuro"] .formulario,
+html[data-tema="escuro"] .tabela,
+html[data-tema="escuro"] .avaliacao,
+html[data-tema="escuro"] .filtros,
+html[data-tema="escuro"] .caixa-lateral,
+html[data-tema="escuro"] .painel-numeros div {
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.16);
+}
+
+html[data-tema="escuro"] .card-curso__imagem {
+  border-bottom-color: var(--linha);
+}
+
+html[data-tema="escuro"] .historico {
+  color: #f0cc85;
+}
+
+@media (max-width: 760px) {
+  .topo__servico-links {
+    gap: 0.55rem;
+  }
+
+  .tema-botao {
+    min-height: 2.4rem;
+  }
 }
