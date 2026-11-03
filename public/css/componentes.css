@@ -279,15 +279,15 @@
 .botao--contorno {
   border-color: var(--linha);
   background: var(--superficie);
-  color: var(--azul-escuro);
+  color: var(--azul);
   transition: all 0.2s ease;
 }
 .botao--contorno:hover {
   background: var(--azul-claro);
-  color: var(--azul-escuro);
+  color: var(--azul);
   transform: translateY(-2px);
   box-shadow: 0 8px 18px rgba(22, 58, 87, 0.12);
-  border-color: rgba(22, 58, 87, 0.4);
+  border-color: var(--azul);
 }
 .botao--pequeno {
   padding: 0.4rem 0.8rem;
@@ -453,6 +453,24 @@
   color: var(--sinal);
   font-size: 1.2rem;
   line-height: 1;
+}
+
+.home-cursos__acoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--e-2);
+  margin-top: var(--e-3);
+}
+
+.home-cursos__acoes .botao--contorno {
+  background: transparent;
+  border-color: var(--azul);
+  color: var(--azul);
+}
+
+.home-cursos__acoes .botao--contorno:hover {
+  background: var(--azul-claro);
+  color: var(--azul);
 }
 
 .indicadores {
@@ -903,12 +921,35 @@
 .botao--vivo {
   background: var(--azul-vivo);
   color: var(--branco);
+  border-color: transparent;
+  transition:
+    background-color 0.18s ease,
+    box-shadow 0.18s ease,
+    transform 0.18s ease;
 }
 .botao--vivo:hover {
-  background: var(--azul);
+  background: var(--azul-escuro);
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+  box-shadow: 0 8px 18px rgba(13, 36, 58, 0.22);
   color: var(--branco);
+}
+.botao--vivo:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+.secao--azul .botao--vivo {
+  background: var(--azul-vivo);
+  color: var(--branco);
+}
+
+.secao--azul .botao--vivo:hover {
+  background: var(--azul-escuro);
+  color: var(--branco);
+}
+
+.secao--azul .botao--vivo:active {
+  background: var(--azul);
 }
 
 html[data-tema="escuro"] body {
@@ -936,6 +977,16 @@ html[data-tema="escuro"] .botao--vivo {
 html[data-tema="escuro"] .botao--primario:hover,
 html[data-tema="escuro"] .botao--vivo:hover {
   background: linear-gradient(135deg, #284a63, #1d354a);
+}
+
+html[data-tema="escuro"] .secao--azul .botao--vivo {
+  background: #315d7a;
+  color: #f5f7fa;
+}
+
+html[data-tema="escuro"] .secao--azul .botao--vivo:hover {
+  background: #284a63;
+  color: #f5f7fa;
 }
 
 html[data-tema="escuro"] .secao--azul {

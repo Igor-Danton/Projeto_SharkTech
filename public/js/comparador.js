@@ -16,8 +16,7 @@ const LINHAS_COMPARACAO = [
     rotulo: "Código do itinerário",
     campo: "codigo_itinerario",
   },
-  { rotulo: "Vagas", campo: "vagas" },
-  { rotulo: "Descriçãoo", campo: "descricao" },
+  { rotulo: "Descrição", campo: "descricao" },
   { rotulo: "Perfil do egresso", campo: "perfil_egresso" },
   {
     rotulo: "Requisitos de ingresso",
@@ -30,12 +29,12 @@ async function preencherSelects() {
   const b = document.getElementById("curso-b");
 
   if (!a || !b) {
-    throw new Error("Campos de comparaçãoo não encontrados na página.");
+    throw new Error("Campos de comparação não encontrados na página.");
   }
 
   const cursos = await Api.get("/cursos");
 
-  const opcoes = ['<option value="">Selecione €¦</option>']
+  const opcoes = ['<option value="">Selecione…</option>']
     .concat(
       cursos.map(
         (c) => `<option value="${c.id_curso}">${escapar(c.nome)}</option>`,
@@ -58,11 +57,20 @@ async function comparar(idA, idB) {
   const aviso = document.getElementById("aviso-comparar");
 
   aviso.hidden = true;
-  alvo.innerHTML = "<p>Comparando €¦</p>";
+  alvo.innerHTML = "<p>Comparando…</p>";
 
   try {
     const [cursoA, cursoB] = await Api.get(
       `/cursos/comparar?a=${idA}&b=${idB}`,
+    );
+    const linhasDisponiveis = LINHAS_COMPARACAO.filter((linha) =>
+      [cursoA, cursoB].some((curso) => {
+        const valor = linha.fmt
+          ? linha.fmt(curso[linha.campo])
+          : curso[linha.campo];
+
+        return valor !== null && valor !== undefined && String(valor).trim();
+      }),
     );
 
     alvo.innerHTML = `
@@ -85,24 +93,23 @@ async function comparar(idA, idB) {
           </thead>
 
           <tbody>
-            ${LINHAS_COMPARACAO.map(
-              (linha) => `
+            ${linhasDisponiveis
+              .map((linha) => {
+                const valorA = linha.fmt
+                  ? linha.fmt(cursoA[linha.campo])
+                  : cursoA[linha.campo];
+                const valorB = linha.fmt
+                  ? linha.fmt(cursoB[linha.campo])
+                  : cursoB[linha.campo];
+
+                return `
               <tr>
                 <th scope="row">${escapar(linha.rotulo)}</th>
-
-                <td>${ouPendente(
-                  linha.fmt
-                    ? linha.fmt(cursoA[linha.campo])
-                    : cursoA[linha.campo],
-                )}</td>
-
-                <td>${ouPendente(
-                  linha.fmt
-                    ? linha.fmt(cursoB[linha.campo])
-                    : cursoB[linha.campo],
-                )}</td>
-              </tr>`,
-            ).join("")}
+                <td>${valorA ? escapar(valorA) : "—"}</td>
+                <td>${valorB ? escapar(valorB) : "—"}</td>
+              </tr>`;
+              })
+              .join("")}
           </tbody>
         </table>
       </div>`;
@@ -119,7 +126,7 @@ document.addEventListener("layout-pronto", async () => {
   try {
     await preencherSelects();
   } catch (erro) {
-    console.error("Erro ao carregar cursos para comparaçãoo:", erro);
+    console.error("Erro ao carregar cursos para comparação:", erro);
 
     mostrarAviso(aviso, "Não foi possível carregar a lista de cursos.", "erro");
 

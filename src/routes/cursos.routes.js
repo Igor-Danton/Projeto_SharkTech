@@ -10,7 +10,7 @@ const { pool } = require("../config/db");
 const router = express.Router();
 
 const CAMPOS_LISTA = `
-  c.id_curso, c.nome, c.slug, c.turno, c.duracao, c.vagas,
+  c.id_curso, c.nome, c.slug, c.turno, c.duracao,
   c.carga_horaria_total, c.codigo_itinerario,
   c.descricao, c.imagem_capa, a.nome AS area
 `;
@@ -119,7 +119,7 @@ router.get("/matriz-comum", async (req, res, next) => {
   try {
     const [linhas] = await pool.query(
       `SELECT bloco, ordem, nome, aulas_s1, aulas_s2, aulas_s3,
-              horas_s1, horas_s2, horas_s3, observacao
+              horas_s1, horas_s2, horas_s3
          FROM formacao_comum
         ORDER BY bloco, ordem`,
     );
@@ -142,7 +142,10 @@ router.get("/:id", async (req, res, next) => {
     }
 
     const [cursos] = await pool.execute(
-      `SELECT c.*, a.nome AS area
+      `SELECT c.id_curso, c.nome, c.slug, c.id_area, c.turno, c.duracao,
+              c.descricao, c.carga_horaria_total, c.codigo_itinerario,
+              c.imagem_capa, c.perfil_egresso, c.requisitos_ingresso,
+              a.nome AS area
          FROM curso c
          LEFT JOIN area_conhecimento a ON a.id_area = c.id_area
         WHERE c.id_curso = ? AND c.ativo = 1`,

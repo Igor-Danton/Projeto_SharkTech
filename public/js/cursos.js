@@ -20,7 +20,7 @@ async function carregarAreas() {
 async function listar(parametros = "") {
   const alvo = document.getElementById("lista-cursos");
   const contador = document.getElementById("contador-cursos");
-  alvo.innerHTML = "<p>Carregando €¦</p>";
+  alvo.innerHTML = "<p>Carregando…</p>";
 
   try {
     const cursos = await Api.get(`/cursos${parametros}`);

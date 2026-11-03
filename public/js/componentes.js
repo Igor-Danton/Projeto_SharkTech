@@ -1,13 +1,19 @@
 ﻿function cardCurso(curso) {
   const resumo = curso.descricao
     ? escapar(curso.descricao).slice(0, 150) +
-      (curso.descricao.length > 150 ? " €¦" : "")
-    : '<span class="pendente">Informações em atualizaçãoo</span>';
+      (curso.descricao.length > 150 ? "…" : "")
+    : "";
+  const metadados = [
+    curso.turno ? `Turno: ${escapar(curso.turno)}` : "",
+    formatarHoras(curso.carga_horaria_total)
+      ? `Carga horária: ${formatarHoras(curso.carga_horaria_total)}`
+      : "",
+  ].filter(Boolean);
 
   return `
     <article class="card card-curso">
       <img src="/assets/img/cursos/${curso.slug}.png" alt="Capa do curso ${escapar(curso.nome)}" class="card-curso__imagem" onerror="this.style.display='none'">
-      <span class="card-curso__area">${curso.area ? escapar(curso.area) : "Eixo a confirmar"}</span>
+      ${curso.area ? `<span class="card-curso__area">${escapar(curso.area)}</span>` : ""}
 
       <h3>
         <a href="/curso.html?id=${curso.id_curso}">
@@ -15,12 +21,9 @@
         </a>
       </h3>
 
-      <p>${resumo}</p>
+      ${resumo ? `<p>${resumo}</p>` : ""}
 
-      <div class="card-curso__meta">
-        <span>Turno: ${curso.turno ? escapar(curso.turno) : "—"}</span>
-        <span>Carga horária: ${formatarHoras(curso.carga_horaria_total) || "—"}</span>
-      </div>
+      ${metadados.length ? `<div class="card-curso__meta">${metadados.map((item) => `<span>${item}</span>`).join("")}</div>` : ""}
 
       <div class="card__rodape">
         <a

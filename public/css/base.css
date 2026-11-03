@@ -12,6 +12,9 @@
   --branco: #fffdfb;
   --tinta: #12263d;
   --tinta-suave: #53687c;
+  --titulo: var(--azul-escuro);
+  --link: var(--azul-vivo);
+  --link-hover: var(--azul-escuro);
   --azul: #163a57;
   --azul-vivo: #1b4f7a;
   --azul-tecnologia: #7b9bb8;
@@ -58,6 +61,9 @@ html[data-tema="escuro"] {
   --branco: #f5f7fa;
   --tinta: #e6ecf2;
   --tinta-suave: #b2bfcc;
+  --titulo: #f5f7fa;
+  --link: #a9c7df;
+  --link-hover: #e6ecf2;
   --azul: #a9c7df;
   --azul-vivo: #477fa8;
   --azul-tecnologia: #93b8d5;
@@ -100,7 +106,7 @@ h4 {
   margin: 0 0 var(--e-2);
   font-weight: 700;
   letter-spacing: -0.02em;
-  color: var(--azul-escuro);
+  color: var(--titulo);
 }
 
 h1 {
@@ -119,12 +125,12 @@ p {
 }
 
 a {
-  color: var(--azul-vivo);
+  color: var(--link);
   text-decoration-thickness: 1px;
   text-underline-offset: 3px;
 }
 a:hover {
-  color: var(--azul-escuro);
+  color: var(--link-hover);
 }
 
 img {

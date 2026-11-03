@@ -1,13 +1,11 @@
 ﻿/** Página individual do curso — RF02, RF04 e RF08. */
 
 function blocoTexto(titulo, valor) {
+  if (!valor || !String(valor).trim()) return "";
+
   return `
     <h2>${titulo}</h2>
-    <p>${
-      valor
-        ? escapar(valor)
-        : '<span class="pendente">Informação pendente de validação pela coordenação</span>'
-    }</p>`;
+    <p>${escapar(valor)}</p>`;
 }
 
 function listaAvaliacoes(itens, vazio) {
@@ -90,7 +88,6 @@ function tabelaComum(linhas, bloco) {
             <th>1ª série</th>
             <th>2ª série</th>
             <th>3ª série</th>
-            <th>Observação</th>
           </tr>
         </thead>
         <tbody>
@@ -102,7 +99,6 @@ function tabelaComum(linhas, bloco) {
             <td>${val(l.aulas_s1, l.horas_s1) || "—"}</td>
             <td>${val(l.aulas_s2, l.horas_s2) || "—"}</td>
             <td>${val(l.aulas_s3, l.horas_s3) || "—"}</td>
-            <td>${l.observacao ? escapar(l.observacao) : ""}</td>
           </tr>`,
             )
             .join("")}
@@ -176,6 +172,12 @@ async function carregarCurso() {
     document.title = `${curso.nome} | CEEP Curitiba`;
 
     const cabecalho = document.querySelector(".cabecalho-pagina .container");
+    const destaquesCurso = [
+      curso.area ? escapar(curso.area) : "",
+      curso.media_notas
+        ? `nota média ${escapar(curso.media_notas)} em ${escapar(curso.total_avaliacoes)} avaliações`
+        : "",
+    ].filter(Boolean);
 
     cabecalho.innerHTML = `
       <p class="trilha">
@@ -184,21 +186,24 @@ async function carregarCurso() {
         ${escapar(curso.nome)}
       </p>
       <h1>${escapar(curso.nome)}</h1>
-      <p>
-        ${curso.area ? escapar(curso.area) : "Eixo tecnológico a confirmar"}
-        ${
-          curso.media_notas
-            ? ` · nota média ${curso.media_notas} em ${curso.total_avaliacoes} avaliações`
-            : ""
-        }
-      </p>`;
+      ${destaquesCurso.length ? `<p>${destaquesCurso.join(" · ")}</p>` : ""}`;
 
-    const aviso = curso.observacao_matriz
-      ? `<div class="aviso aviso--erro" style="margin-bottom:var(--e-2)">
-          <strong>Atenção à matriz:</strong>
-          ${escapar(curso.observacao_matriz)}
-        </div>`
-      : "";
+    const informacoesCurso = [
+      curso.carga_horaria_total
+        ? `<li><strong>Carga horária total:</strong> ${escapar(formatarHoras(curso.carga_horaria_total))}</li>`
+        : "",
+      curso.turno
+        ? `<li><strong>Turno:</strong> ${escapar(curso.turno)}</li>`
+        : "",
+      curso.codigo_itinerario
+        ? `<li><strong>Código do itinerário:</strong> ${escapar(curso.codigo_itinerario)}</li>`
+        : "",
+      curso.area
+        ? `<li><strong>Eixo:</strong> ${escapar(curso.area)}</li>`
+        : "",
+    ]
+      .filter(Boolean)
+      .join("");
 
     alvo.innerHTML = `
       <div class="colunas-artigo">
@@ -208,7 +213,6 @@ async function carregarCurso() {
           ${blocoTexto("Requisitos de ingresso", curso.requisitos_ingresso)}
 
           <h2>Carga horária por série</h2>
-          ${aviso}
           ${tabelaSeries(curso.series || [])}
 
           <h2 style="margin-top:var(--e-4)">Componentes técnicos</h2>
@@ -221,7 +225,8 @@ async function carregarCurso() {
               Formação Geral Básica (comum a todos os cursos)
             </h2>
             <p class="trilha">
-              Aulas por semana; subtotais também em horas-relógio anuais.
+              Disciplinas da formação geral distribuídas pelas três séries.
+              Os valores mostram aulas semanais e subtotais em horas anuais.
             </p>
             ${tabelaComum(comum, "FGB")}
 
@@ -248,32 +253,7 @@ async function carregarCurso() {
         <aside class="caixa-lateral">
           <h3>Informações do curso</h3>
 
-          <ul class="lista-limpa">
-            <li>
-              <strong>Carga horária total:</strong>
-              ${ouPendente(formatarHoras(curso.carga_horaria_total))}
-            </li>
-
-            <li>
-              <strong>Turno:</strong>
-              ${ouPendente(curso.turno)}
-            </li>
-
-            <li>
-              <strong>Código do itinerário:</strong>
-              ${ouPendente(curso.codigo_itinerario)}
-            </li>
-
-            <li>
-              <strong>Vagas:</strong>
-              ${ouPendente(curso.vagas)}
-            </li>
-
-            <li>
-              <strong>Eixo:</strong>
-              ${ouPendente(curso.area)}
-            </li>
-          </ul>
+          <ul class="lista-limpa">${informacoesCurso}</ul>
 
           <p style="margin-top:var(--e-2)">
             <a
