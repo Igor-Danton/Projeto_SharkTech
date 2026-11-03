@@ -19,5 +19,3 @@ document.addEventListener("layout-pronto", () => {
     )
     .join("");
 });
-
-

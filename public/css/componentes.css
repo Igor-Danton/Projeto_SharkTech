@@ -325,9 +325,8 @@
   border-radius: var(--raio);
   background: var(--branco);
   color: var(--tinta);
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
-
 
 .indicadores {
   display: flex;
@@ -381,7 +380,9 @@
   border: 1px solid var(--tinta-suave);
   border-radius: var(--r-1);
   overflow: hidden;
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
 }
 
 .card-curso__imagem {
@@ -754,6 +755,13 @@
   font-size: var(--t-xs);
 }
 
-.botao--vivo { background: var(--azul-vivo); color: var(--branco); } .botao--vivo:hover { background: var(--azul); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3); color: var(--branco); }
-
-
+.botao--vivo {
+  background: var(--azul-vivo);
+  color: var(--branco);
+}
+.botao--vivo:hover {
+  background: var(--azul);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+  color: var(--branco);
+}

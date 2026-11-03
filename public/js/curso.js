@@ -307,6 +307,3 @@ async function carregarCurso() {
 }
 
 document.addEventListener("layout-pronto", carregarCurso);
-
-
-

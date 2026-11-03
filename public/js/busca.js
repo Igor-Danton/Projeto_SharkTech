@@ -70,5 +70,3 @@ document.addEventListener("layout-pronto", () => {
   campo.value = termo;
   buscar(termo);
 });
-
-

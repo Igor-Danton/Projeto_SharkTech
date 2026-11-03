@@ -143,5 +143,3 @@ document.addEventListener("layout-pronto", async () => {
     comparar(a, b);
   });
 });
-
-

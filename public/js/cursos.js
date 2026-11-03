@@ -60,5 +60,3 @@ document.addEventListener("layout-pronto", () => {
 
   form.addEventListener("reset", () => setTimeout(() => listar(""), 0));
 });
-
-

@@ -93,7 +93,11 @@ async function abaAvaliacoes(status = "pendente") {
               });
               mostrarAviso(painel.aviso, r.mensagem, "ok");
             } else {
-              if (!confirm("Tem certeza que deseja excluir esta avaliaçãoo? Esta açãoo é permanente.")) {
+              if (
+                !confirm(
+                  "Tem certeza que deseja excluir esta avaliaçãoo? Esta açãoo é permanente.",
+                )
+              ) {
                 return;
               }
               const r = await Api.del(`/admin/avaliacoes/${id}`);
@@ -106,7 +110,7 @@ async function abaAvaliacoes(status = "pendente") {
             erroPainel(erro);
           }
         });
-      })
+      });
   } catch (erro) {
     erroPainel(erro);
   }
@@ -432,5 +436,3 @@ document.addEventListener("DOMContentLoaded", async () => {
     window.location.href = "/admin/";
   });
 });
-
-

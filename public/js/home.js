@@ -64,5 +64,3 @@ document.addEventListener("layout-pronto", () => {
   carregarCursosDestaque();
   carregarNoticiasHome();
 });
-
-

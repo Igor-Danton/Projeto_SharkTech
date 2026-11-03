@@ -40,5 +40,3 @@ document.addEventListener("layout-pronto", () => {
     listarDocumentos(form.categoria.value);
   });
 });
-
-

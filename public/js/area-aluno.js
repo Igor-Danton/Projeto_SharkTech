@@ -73,5 +73,3 @@ document.addEventListener("layout-pronto", async () => {
     }
   });
 });
-
-

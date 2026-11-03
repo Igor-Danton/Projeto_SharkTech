@@ -28,5 +28,3 @@ document.addEventListener("layout-pronto", () => {
     ? escapar(infra.biblioteca.acervo)
     : '<span class="pendente">Tamanho do acervo: Informação pendente de fonte atualizada.</span>';
 });
-
-

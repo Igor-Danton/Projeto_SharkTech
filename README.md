@@ -8,7 +8,9 @@ desenvolvido como Projeto Integrador do Curso Técnico em Desenvolvimento de Sis
 `ash
 npm install
 cp .env.example .env
+
 # Edite o .env com as credenciais do seu MySQL / TiDB
+
 mysql -u root -p < database/schema.sql
 mysql -u root -p < database/seed.sql
 npm run criar-admin -- "Seu Nome" "admin@exemplo.com" "SenhaForte123"
@@ -20,6 +22,7 @@ Abra <http://localhost:3000>.
 ## 🔑 Área administrativa
 
 A área administrativa usa autenticação por e-mail e senha. O login fica em:
+
 - http://localhost:3000/admin/
 
 O primeiro administrador pode ser criado com o script abaixo:

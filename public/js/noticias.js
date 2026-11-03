@@ -37,5 +37,3 @@ document.addEventListener("layout-pronto", () => {
     listarNoticias(form.categoria.value);
   });
 });
-
-

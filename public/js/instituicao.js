@@ -63,5 +63,3 @@ document.addEventListener("layout-pronto", () => {
   montarTabelaIndicadores();
   montarIdentificacao();
 });
-
-

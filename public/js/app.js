@@ -127,7 +127,3 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   document.dispatchEvent(new CustomEvent("layout-pronto"));
 });
-
-
-
-
