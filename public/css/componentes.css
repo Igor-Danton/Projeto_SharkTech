@@ -84,7 +84,6 @@
 .marca {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
   text-decoration: none;
   color: inherit;
 }
@@ -93,39 +92,12 @@
   height: 60px;
   width: auto;
   object-fit: contain;
-  margin-right: 0.5rem;
 }
 
 @media (max-width: 600px) {
   .marca__logo {
     height: 40px;
   }
-}
-
-.marca__selo {
-  width: 46px;
-  height: 46px;
-  flex: none;
-  background: linear-gradient(135deg, var(--azul-vivo), var(--azul));
-  color: var(--branco);
-  display: grid;
-  place-items: center;
-  font-family: var(--fonte-titulo);
-  font-weight: 700;
-  font-size: 0.95rem;
-  border-bottom: 3px solid var(--sinal);
-  border-radius: 10px;
-}
-.marca__nome {
-  font-family: var(--fonte-titulo);
-  font-weight: 700;
-  font-size: 1.2rem;
-  line-height: 1.1;
-}
-.marca__descricao {
-  font-size: var(--t-xs);
-  color: var(--tinta-suave);
-  letter-spacing: 0.02em;
 }
 
 .menu-botao {
@@ -962,10 +934,6 @@ html[data-tema="escuro"] .topo {
 
 html[data-tema="escuro"] .topo__servico {
   background: linear-gradient(90deg, #0d1b28, #203c53);
-}
-
-html[data-tema="escuro"] .marca__selo {
-  background: linear-gradient(135deg, #315d7a, #24435b);
 }
 
 html[data-tema="escuro"] .botao--primario,
