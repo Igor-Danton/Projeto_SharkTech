@@ -4,22 +4,23 @@
    ===================================================================== */
 
 :root {
-  /* Cores - Identidade Institucional Moderna */
-  --papel: #f8fafc;
-  --branco: #ffffff;
-  --tinta: #0f172a;
-  --tinta-suave: #64748b;
-  --azul: #172554; /* Azul-marinho mais escuro e profissional */
-  --azul-vivo: #2563eb; /* Azul vivo para ações */
-  --azul-tecnologia: #0ea5e9; /* Ciano/Azul-claro para detalhes tech */
-  --azul-escuro: #0f172a;
-  --azul-claro: #f1f5f9;
-  --sinal: #d97706; /* Amarelo mais fechado para melhor contraste */
-  --sinal-fraco: #fffbeb;
-  --linha: #e2e8f0;
-  --alerta: #b91c1c;
-  --alerta-fundo: #fef2f2;
-  --ok: #15803d;
+  /* Cores — identidade acadêmica institucional */
+  --papel: #f4efe8;
+  --papel-escuro: #ede3d6;
+  --branco: #fffdfb;
+  --tinta: #12263d;
+  --tinta-suave: #53687c;
+  --azul: #163a57;
+  --azul-vivo: #1b4f7a;
+  --azul-tecnologia: #7b9bb8;
+  --azul-escuro: #0d243a;
+  --azul-claro: #eaf1f7;
+  --sinal: #c9954a;
+  --sinal-fraco: #f6f0e7;
+  --linha: #d8cfc2;
+  --alerta: #a73d2f;
+  --alerta-fundo: #fbeae6;
+  --ok: #2d6b46;
 
   /* Tipografia */
   --fonte-titulo: "Bitter", Georgia, "Times New Roman", serif;
@@ -31,8 +32,8 @@
   --t-base: 1rem;
   --t-md: 1.25rem;
   --t-lg: 1.5rem;
-  --t-xl: 2rem;
-  --t-2xl: 2.5rem;
+  --t-xl: 2.2rem;
+  --t-2xl: 3.3rem;
 
   /* Espacamento */
   --e-1: 0.5rem;
@@ -43,7 +44,7 @@
   --e-6: 4.5rem;
 
   --largura: 1200px;
-  --raio: 12px;
+  --raio: 14px;
 }
 
 *,
@@ -58,11 +59,11 @@ html {
 
 body {
   margin: 0;
-  background: var(--papel);
+  background: linear-gradient(180deg, #f4efe8 0%, #f9f6f2 100%);
   color: var(--tinta);
   font-family: var(--fonte-texto);
   font-size: var(--t-base);
-  line-height: 1.65;
+  line-height: 1.7;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -71,17 +72,18 @@ h2,
 h3,
 h4 {
   font-family: var(--fonte-titulo);
-  line-height: 1.2;
+  line-height: 1.12;
   margin: 0 0 var(--e-2);
-  font-weight: 600;
-  letter-spacing: -0.01em;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--azul-escuro);
 }
 
 h1 {
   font-size: var(--t-2xl);
 }
 h2 {
-  font-size: var(--t-xl);
+  font-size: clamp(2rem, 4vw, 2.8rem);
 }
 h3 {
   font-size: var(--t-md);
@@ -93,7 +95,7 @@ p {
 }
 
 a {
-  color: var(--azul);
+  color: var(--azul-vivo);
   text-decoration-thickness: 1px;
   text-underline-offset: 3px;
 }
@@ -128,10 +130,11 @@ img {
   padding-block: var(--e-5);
 }
 .secao--clara {
-  background: var(--branco);
+  background: rgba(255, 255, 255, 0.72);
+  border-top: 1px solid rgba(22, 58, 87, 0.06);
 }
 .secao--azul {
-  background: var(--azul);
+  background: linear-gradient(135deg, var(--azul-escuro), var(--azul));
   color: var(--branco);
 }
 .secao--azul h2,
@@ -139,7 +142,7 @@ img {
   color: var(--branco);
 }
 .secao--azul a {
-  color: var(--sinal);
+  color: #f6d79d;
 }
 
 .secao__titulo {
