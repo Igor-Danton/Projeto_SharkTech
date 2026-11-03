@@ -17,6 +17,9 @@ Thumbs.db
 !.vscode/extensions.json
 .idea/
 
+# Skills locais
+.claude/skills/
+
 # Uploads e arquivos gerados
 public/assets/uploads/
 testsprite_tests/tmp/
