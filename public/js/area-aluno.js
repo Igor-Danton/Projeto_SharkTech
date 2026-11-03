@@ -3,7 +3,7 @@
 async function carregarCursosNoFormulario() {
   const select = document.getElementById("av-curso");
   const cursos = await Api.get("/cursos");
-  select.innerHTML = ['<option value="">Selecione €¦</option>']
+  select.innerHTML = ['<option value="">Selecione…</option>']
     .concat(
       cursos.map(
         (c) => `<option value="${c.id_curso}">${escapar(c.nome)}</option>`,

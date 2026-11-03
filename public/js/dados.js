@@ -10,7 +10,7 @@
 
 const DadosCeep = {
   contato: {
-    nome: "Centro Estadual de Educaçãoo Profissional de Curitiba",
+    nome: "Centro Estadual de Educação Profissional de Curitiba",
     sigla: "CEEP Curitiba",
     endereco: "Rua Frederico Maurer, 3015",
     bairro: "Boqueirão",
@@ -58,14 +58,14 @@ const DadosCeep = {
   historia: [
     {
       ano: "1941",
-      titulo: "Fundaçãoo",
+      titulo: "Fundação",
       texto:
         "A instituição é criada com o nome de Instituto Técnico de Agronomia, Veterinária e Química do Paraná.",
       classe: "confirmado",
     },
     {
       ano: "Atualmente",
-      titulo: "Centro Estadual de Educaçãoo Profissional de Curitiba",
+      titulo: "Centro Estadual de Educação Profissional de Curitiba",
       texto:
         "A instituição oferece cursos técnicos integrados ao Ensino Médio, na rede estadual do Paraná.",
       classe: "confirmado",
