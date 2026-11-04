@@ -25,7 +25,6 @@ const DadosCeep = {
   },
 
   indicadores: [
-    { valor: "7", rotulo: "cursos técnicos", origem: "confirmado" },
     {
       valor: "1.137",
       rotulo: "matrículas — Censo Escolar 2025",
@@ -82,12 +81,12 @@ const DadosCeep = {
       "Sala da diretoria",
       "Sanitários",
       "Dependências com acessibilidade",
-      "Alimentaçãoo escolar",
+      "Alimentação escolar",
       "Água filtrada",
     ],
 
     laboratoriosTecnicos: [
-      "EletromecÃ¢nica",
+      "Eletromecânica",
       "Edificações",
       "Informática",
       "Matemática",
@@ -95,20 +94,11 @@ const DadosCeep = {
       "Física",
       "Química",
       "Desenvolvimento de Sistemas",
-      "Programaçãoo de Jogos Digitais",
+      "Programação de Jogos Digitais",
     ],
 
-    quantidadeLaboratorios: {
-      valor: "cerca de 15 laboratórios",
-      classificacao: "historico",
-      observacao:
-        "Número de referência histórica, para cursos básicos e específicos. A quantidade atual precisa ser confirmada pela direçãoo antes de ser publicada como dado vigente.",
-    },
-
     biblioteca: {
-      texto:
-        "O CEEP Curitiba possui biblioteca. Há registros históricos de uma biblioteca central ligada aos cursos técnicos e de acervo voltado à formaçãoo profissional.",
-      acervo: null, // PENDENTE — não publicar quantidade de livros sem fonte atual
+      texto: "O CEEP Curitiba possui biblioteca.",
     },
   },
 
@@ -116,7 +106,7 @@ const DadosCeep = {
     {
       nome: "Matrícula na rede estadual",
       descricao:
-        "A inscriçãoo e a matrícula são feitas nos canais oficiais da Secretaria de Estado da Educaçãoo do Paraná.",
+        "A inscrição e a matrícula são feitas nos canais oficiais da Secretaria de Estado da Educação do Paraná.",
       url: "https://www.educacao.pr.gov.br/",
       rotulo: "Ir para o site da SEED-PR",
     },

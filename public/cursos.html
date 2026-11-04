@@ -25,7 +25,7 @@
 
     <main id="conteudo">
       <div class="cabecalho-pagina">
-        <div class="container">
+        <div class="container revelar-ao-rolar" data-revelar>
           <p class="trilha"><a href="/">Início</a> / Cursos técnicos</p>
           <h1>Cursos técnicos</h1>
           <p>
@@ -61,8 +61,14 @@
             </div>
           </form>
 
-          <p id="contador-cursos" class="trilha"></p>
-          <div class="grade grade--3" id="lista-cursos"></div>
+          <p id="contador-cursos" class="trilha" aria-live="polite"></p>
+          <div
+            class="grade grade--3"
+            id="lista-cursos"
+            data-spotlight
+            aria-live="polite"
+            aria-busy="true"
+          ></div>
         </div>
       </section>
     </main>

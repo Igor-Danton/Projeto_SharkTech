@@ -33,8 +33,16 @@
       </div>
 
       <section class="secao secao--compacta">
-        <div class="container" id="detalhe-curso">
-          <p>Carregando…</p>
+        <div
+          class="container"
+          id="detalhe-curso"
+          aria-live="polite"
+          aria-busy="true"
+        >
+          <div class="detalhe-esqueleto" aria-hidden="true">
+            <span></span><span></span><span></span>
+          </div>
+          <p class="trilha">Carregando informações do curso…</p>
         </div>
       </section>
     </main>

@@ -6,7 +6,16 @@ function formatarHorasComparador(valor) {
 
 const LINHAS_COMPARACAO = [
   { rotulo: "Eixo tecnológico", campo: "area" },
+  { rotulo: "Modalidade", campo: "modalidade" },
   { rotulo: "Turno", campo: "turno" },
+  { rotulo: "Código do curso na matriz", campo: "codigo_matriz" },
+  {
+    rotulo: "Carga horária mínima",
+    campo: "carga_horaria_minima",
+    fmt: formatarHorasComparador,
+  },
+  { rotulo: "Ano de implantação", campo: "ano_implantacao" },
+  { rotulo: "Dias letivos anuais", campo: "dias_letivos_anuais" },
   {
     rotulo: "Carga horária total",
     campo: "carga_horaria_total",

@@ -20,10 +20,13 @@ async function carregarAreas() {
 async function listar(parametros = "") {
   const alvo = document.getElementById("lista-cursos");
   const contador = document.getElementById("contador-cursos");
-  alvo.innerHTML = "<p>Carregando…</p>";
+  alvo.setAttribute("aria-busy", "true");
+  contador.textContent = "Carregando cursos…";
+  alvo.innerHTML = window.cartoesEsqueleto(6);
 
   try {
     const cursos = await Api.get(`/cursos${parametros}`);
+    alvo.setAttribute("aria-busy", "false");
     contador.textContent =
       cursos.length === 1
         ? "1 curso encontrado"
@@ -32,8 +35,17 @@ async function listar(parametros = "") {
     alvo.innerHTML = cursos.length
       ? cursos.map(cardCurso).join("")
       : '<div class="vazio">Nenhum curso corresponde a esse filtro. Limpe os campos para ver todos.</div>';
+    window.ativarRevelacoes(alvo);
+    window.ativarSpotlightCursos(alvo);
   } catch (erro) {
-    alvo.innerHTML = `<div class="aviso aviso--erro">${escapar(erro.message)}</div>`;
+    alvo.setAttribute("aria-busy", "false");
+    contador.textContent = "Não foi possível carregar os cursos.";
+    alvo.innerHTML = `<div class="aviso aviso--erro" role="alert">
+      <p>Não foi possível carregar os cursos. ${escapar(erro.message)}</p>
+      <button class="botao botao--contorno botao--pequeno" type="button" data-tentar-cursos>
+        Tentar novamente
+      </button>
+    </div>`;
   }
 }
 
@@ -47,6 +59,19 @@ document.addEventListener("layout-pronto", () => {
   if (termo) form.querySelector("#filtro-q").value = termo;
 
   listar(termo ? `?q=${encodeURIComponent(termo)}` : "");
+
+  document
+    .getElementById("lista-cursos")
+    .addEventListener("click", (evento) => {
+      if (evento.target.closest("[data-tentar-cursos]")) {
+        const dados = new URLSearchParams();
+        const q = form.q.value.trim();
+        const area = form.area.value;
+        if (q) dados.set("q", q);
+        if (area) dados.set("area", area);
+        listar(dados.toString() ? `?${dados}` : "");
+      }
+    });
 
   form.addEventListener("submit", (evento) => {
     evento.preventDefault();
