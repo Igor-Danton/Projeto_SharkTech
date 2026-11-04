@@ -40,7 +40,12 @@ CREATE TABLE curso (
 
   -- Novas informacoes provenientes das matrizes curriculares
   carga_horaria_total INT NULL,
+  carga_horaria_minima INT NULL,
   codigo_itinerario   VARCHAR(20) NULL,
+  codigo_matriz       VARCHAR(20) NULL,
+  modalidade          VARCHAR(100) NULL,
+  ano_implantacao     SMALLINT NULL,
+  dias_letivos_anuais SMALLINT NULL,
 
   imagem_capa         VARCHAR(200) NULL,
   perfil_egresso      TEXT NULL,
@@ -54,7 +59,9 @@ CREATE TABLE curso (
   CONSTRAINT fk_curso_area FOREIGN KEY (id_area)
     REFERENCES area_conhecimento (id_area)
     ON UPDATE CASCADE
-    ON DELETE SET NULL
+    ON DELETE SET NULL,
+
+  UNIQUE KEY uq_curso_codigo_matriz (codigo_matriz)
 ) ENGINE=InnoDB;
 
 -- ---------------------------------------------------------------------
@@ -82,6 +89,14 @@ CREATE TABLE disciplina (
   nome          VARCHAR(120) NOT NULL,
   carga_horaria INT NULL,
   ementa        TEXT NULL,
+  grupo_curricular VARCHAR(70) NULL,
+  codigo_componente VARCHAR(20) NULL,
+  aulas_s1      TINYINT NULL,
+  aulas_s2      TINYINT NULL,
+  aulas_s3      TINYINT NULL,
+  horas_s1      SMALLINT NULL,
+  horas_s2      SMALLINT NULL,
+  horas_s3      SMALLINT NULL,
   id_curso      INT NOT NULL,
   id_professor  INT NULL,
 
@@ -93,7 +108,9 @@ CREATE TABLE disciplina (
   CONSTRAINT fk_disciplina_professor FOREIGN KEY (id_professor)
     REFERENCES professor (id_professor)
     ON UPDATE CASCADE
-    ON DELETE SET NULL
+    ON DELETE SET NULL,
+
+  UNIQUE KEY uq_disciplina_curso_codigo (id_curso, codigo_componente)
 ) ENGINE=InnoDB;
 
 -- ---------------------------------------------------------------------
@@ -203,8 +220,14 @@ CREATE TABLE documento (
 CREATE TABLE curso_serie (
   id_curso           INT NOT NULL,
   serie              TINYINT NOT NULL,
+  formacao_geral_semanal INT NULL,
+  formacao_geral_anual   INT NULL,
+  aprofundamento_semanal INT NULL,
+  aprofundamento_anual   INT NULL,
   itinerario_semanal INT NULL,
   itinerario_anual   INT NULL,
+  diversificada_semanal INT NULL,
+  diversificada_anual   INT NULL,
   total_semanal      INT NULL,
   total_anual        INT NULL,
 
@@ -218,12 +241,13 @@ CREATE TABLE curso_serie (
 
 -- ---------------------------------------------------------------------
 -- FORMACAO_COMUM
--- Formacao Geral Basica (FGB) e Parte Flexivel Obrigatoria (PFO)
+-- Componentes curriculares e distribuição por série
 -- ---------------------------------------------------------------------
 
 CREATE TABLE formacao_comum (
   id_item     INT AUTO_INCREMENT PRIMARY KEY,
-  bloco       ENUM('FGB', 'PFO') NOT NULL,
+  id_curso    INT NULL,
+  bloco       VARCHAR(60) NOT NULL,
   ordem       INT NOT NULL,
   nome        VARCHAR(120) NOT NULL,
 
@@ -235,8 +259,12 @@ CREATE TABLE formacao_comum (
   horas_s2    SMALLINT NULL,
   horas_s3    SMALLINT NULL,
 
-  observacao  VARCHAR(300) NULL
+  observacao  VARCHAR(300) NULL,
+
+  CONSTRAINT fk_formacao_comum_curso FOREIGN KEY (id_curso)
+    REFERENCES curso (id_curso)
+    ON UPDATE CASCADE
+    ON DELETE CASCADE,
+
+  UNIQUE KEY uq_formacao_curso_bloco_nome (id_curso, bloco, nome)
 ) ENGINE=InnoDB;
-
-
-

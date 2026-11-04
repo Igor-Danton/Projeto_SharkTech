@@ -93,12 +93,15 @@ lá dentro, eles serão perdidos.
 ```bash
 mysql -u root -p < database/schema.sql
 mysql -u root -p < database/seed.sql
+mysql -u root -p < database/matrizes.sql
+mysql -u root -p < database/migracao-02-cursos-documentados.sql
 ```
 
 O terminal vai pedir a senha do MySQL — ela não aparece enquanto você digita, é normal.
 
 **Pelo MySQL Workbench:** abra `database/schema.sql`, execute com o raio ⚡,
-depois faça o mesmo com `database/seed.sql`.
+depois execute `database/seed.sql`, `database/matrizes.sql` e
+`database/migracao-02-cursos-documentados.sql`, nessa ordem.
 
 Para conferir:
 
@@ -108,7 +111,28 @@ SHOW TABLES;
 SELECT id_curso, nome FROM curso;
 ```
 
-Devem aparecer 8 tabelas e 11 cursos.
+Devem aparecer 11 tabelas e 11 cursos.
+
+### Atualizar um banco já existente
+
+Não execute `database/schema.sql` em um banco com dados: ele apaga e recria a base.
+Também não execute novamente `database/matrizes.sql` em um banco existente: esse
+arquivo apaga e recarrega dados de séries e componentes.
+
+Para acrescentar as matrizes dos cursos documentados, faça backup e aplique apenas
+`database/migracao-02-cursos-documentados.sql` primeiro em um banco de desenvolvimento.
+No TiDB Cloud, selecione `sharktech_ceep` e execute o conteúdo desse arquivo no editor
+SQL. Em um banco local, o script pode ser aplicado com:
+
+```powershell
+node scripts/aplicar-sql.js migracao-02-cursos-documentados.sql
+```
+
+Esse comando usa a conexão definida no `.env`; confirme que ela aponta para o banco
+de desenvolvimento antes de executá-lo. A migration pode ser repetida e não remove
+cursos, disciplinas, avaliações ou relacionamentos. As alterações de esquema podem
+ser confirmadas pelo banco antes das alterações de dados, conforme o comportamento
+de DDL do MySQL/TiDB.
 
 ---
 
@@ -156,7 +180,7 @@ Para parar o servidor: **Ctrl + C** no terminal.
 
 | Onde                            | O que fazer                       | Resultado esperado                            |
 | ------------------------------- | --------------------------------- | --------------------------------------------- |
-| `/`                             | abrir a home                      | indicadores, 6 cursos e o bloco de notícias   |
+| `/`                             | abrir a home                      | indicadores, 11 cursos e o bloco de notícias  |
 | `/cursos.html`                  | filtrar por eixo                  | a lista diminui conforme o filtro             |
 | `/curso.html?id=2`              | abrir Desenvolvimento de Sistemas | dados pendentes aparecem marcados em vermelho |
 | `/comparador.html`              | escolher dois cursos              | tabela lado a lado                            |

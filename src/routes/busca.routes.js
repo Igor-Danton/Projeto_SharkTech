@@ -20,9 +20,11 @@ router.get("/", async (req, res, next) => {
     const [cursos] = await pool.execute(
       `SELECT id_curso AS id, nome AS titulo, descricao AS resumo
          FROM curso
-        WHERE ativo = 1 AND (nome LIKE ? OR descricao LIKE ? OR perfil_egresso LIKE ?)
+        WHERE ativo = 1
+          AND (nome LIKE ? OR descricao LIKE ? OR perfil_egresso LIKE ?
+               OR codigo_matriz LIKE ?)
         ORDER BY nome LIMIT 20`,
-      [like, like, like],
+      [like, like, like, like],
     );
 
     const [noticias] = await pool.execute(

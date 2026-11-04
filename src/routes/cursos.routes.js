@@ -11,7 +11,9 @@ const router = express.Router();
 
 const CAMPOS_LISTA = `
   c.id_curso, c.nome, c.slug, c.turno, c.duracao,
-  c.carga_horaria_total, c.codigo_itinerario,
+  c.carga_horaria_total, c.carga_horaria_minima,
+  c.codigo_itinerario, c.codigo_matriz, c.modalidade,
+  c.ano_implantacao, c.dias_letivos_anuais,
   c.descricao, c.imagem_capa, a.nome AS area
 `;
 
@@ -23,8 +25,10 @@ router.get("/", async (req, res, next) => {
     const valores = [];
 
     if (q) {
-      condicoes.push("(c.nome LIKE ? OR c.descricao LIKE ?)");
-      valores.push(`%${q}%`, `%${q}%`);
+      condicoes.push(
+        "(c.nome LIKE ? OR c.descricao LIKE ? OR c.codigo_matriz LIKE ?)",
+      );
+      valores.push(`%${q}%`, `%${q}%`, `%${q}%`);
     }
 
     if (area) {
@@ -112,17 +116,41 @@ router.get("/comparar", async (req, res, next) => {
 });
 
 /**
- * GET /api/cursos/matriz-comum
- * Formação Geral Básica (FGB) e Parte Flexível Obrigatória (PFO)
+ * GET /api/cursos/matriz-comum?curso=id
+ * Componentes gerais e parte diversificada vinculados ao curso.
  */
 router.get("/matriz-comum", async (req, res, next) => {
   try {
-    const [linhas] = await pool.query(
-      `SELECT bloco, ordem, nome, aulas_s1, aulas_s2, aulas_s3,
-              horas_s1, horas_s2, horas_s3
-         FROM formacao_comum
-        ORDER BY bloco, ordem`,
-    );
+    const curso = req.query.curso;
+    if (
+      curso !== undefined &&
+      (typeof curso !== "string" ||
+        !/^[1-9]\d*$/.test(curso) ||
+        !Number.isSafeInteger(Number(curso)))
+    ) {
+      return res.status(400).json({ erro: "Curso inválido." });
+    }
+
+    const consulta = `
+      SELECT fc.id_curso, fc.bloco, fc.ordem, fc.nome,
+             fc.aulas_s1, fc.aulas_s2, fc.aulas_s3,
+             fc.horas_s1, fc.horas_s2, fc.horas_s3, fc.observacao
+        FROM formacao_comum fc
+        ${
+          curso !== undefined
+            ? `WHERE fc.id_curso = ?
+                OR (fc.id_curso IS NULL AND NOT EXISTS (
+                  SELECT 1 FROM formacao_comum especifica
+                   WHERE especifica.id_curso = ?
+                     AND especifica.bloco = fc.bloco
+                ))`
+            : ""
+        }
+       ORDER BY fc.bloco, fc.ordem`;
+    const [linhas] =
+      curso !== undefined
+        ? await pool.execute(consulta, [Number(curso), Number(curso)])
+        : await pool.query(consulta);
 
     res.json(linhas);
   } catch (erro) {
@@ -143,7 +171,9 @@ router.get("/:id", async (req, res, next) => {
 
     const [cursos] = await pool.execute(
       `SELECT c.id_curso, c.nome, c.slug, c.id_area, c.turno, c.duracao,
-              c.descricao, c.carga_horaria_total, c.codigo_itinerario,
+              c.descricao, c.carga_horaria_total, c.carga_horaria_minima,
+              c.codigo_itinerario, c.codigo_matriz, c.modalidade,
+              c.ano_implantacao, c.dias_letivos_anuais,
               c.imagem_capa, c.perfil_egresso, c.requisitos_ingresso,
               a.nome AS area
          FROM curso c
@@ -160,6 +190,9 @@ router.get("/:id", async (req, res, next) => {
 
     const [disciplinas] = await pool.execute(
       `SELECT d.id_disciplina, d.nome, d.carga_horaria, d.ementa,
+              d.grupo_curricular, d.codigo_componente,
+              d.aulas_s1, d.aulas_s2, d.aulas_s3,
+              d.horas_s1, d.horas_s2, d.horas_s3,
               p.nome AS professor
          FROM disciplina d
          LEFT JOIN professor p ON p.id_professor = d.id_professor
@@ -170,6 +203,9 @@ router.get("/:id", async (req, res, next) => {
 
     const [series] = await pool.execute(
       `SELECT serie, itinerario_semanal, itinerario_anual,
+              formacao_geral_semanal, formacao_geral_anual,
+              aprofundamento_semanal, aprofundamento_anual,
+              diversificada_semanal, diversificada_anual,
               total_semanal, total_anual
          FROM curso_serie
         WHERE id_curso = ?
