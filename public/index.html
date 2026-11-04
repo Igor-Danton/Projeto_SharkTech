@@ -33,8 +33,8 @@
             </h1>
 
             <p class="hero__apoio">
-              Sete cursos técnicos integrados ao Ensino Médio, em uma escola
-              estadual com laboratórios próprios para cada área de formação.
+              Cursos técnicos integrados ao Ensino Médio, em uma escola estadual
+              com laboratórios voltados à formação profissional.
             </p>
 
             <div class="hero__acoes">
@@ -62,7 +62,11 @@
             <div class="indicadores" id="indicadores"></div>
           </div>
 
-          <aside class="hero__painel" aria-label="Destaques do CEEP">
+          <aside
+            class="hero__painel revelar-ao-rolar"
+            aria-label="Destaques do CEEP"
+            data-revelar
+          >
             <p class="hero__painel-titulo">Por que escolher o CEEP?</p>
             <ul class="hero__lista">
               <li>Ambiente acadêmico com foco em qualidade</li>
@@ -75,7 +79,7 @@
 
       <section class="secao secao--clara">
         <div class="container">
-          <div class="secao__titulo">
+          <div class="secao__titulo revelar-ao-rolar" data-revelar>
             <h2>Cursos técnicos</h2>
             <p>
               Formação técnica integrada ao Ensino Médio. Escolha um curso para
@@ -83,7 +87,13 @@
             </p>
           </div>
 
-          <div class="grade grade--3" id="cursos-destaque"></div>
+          <div
+            class="grade grade--3"
+            id="cursos-destaque"
+            data-spotlight
+            aria-live="polite"
+            aria-busy="true"
+          ></div>
 
           <div class="home-cursos__acoes">
             <a class="botao botao--contorno" href="/cursos.html">
@@ -98,7 +108,7 @@
       </section>
 
       <section class="secao">
-        <div class="container colunas-artigo">
+        <div class="container colunas-artigo revelar-ao-rolar" data-revelar>
           <div>
             <h2>Uma escola técnica com história</h2>
 
@@ -141,11 +151,17 @@
 
       <section class="secao secao--clara">
         <div class="container">
-          <div class="secao__titulo">
+          <div class="secao__titulo revelar-ao-rolar" data-revelar>
             <h2>Notícias e comunicados</h2>
           </div>
 
-          <div class="grade grade--3" id="noticias-home"></div>
+          <div
+            class="grade grade--3 revelar-ao-rolar"
+            id="noticias-home"
+            data-revelar
+            aria-live="polite"
+            aria-busy="true"
+          ></div>
 
           <p style="margin-top: var(--e-3)">
             <a href="/noticias.html"> Ver todas as notícias e comunicados </a>
@@ -155,7 +171,7 @@
 
       <section class="secao secao--azul">
         <div class="container">
-          <div class="grade grade--2">
+          <div class="grade grade--2 revelar-ao-rolar" data-revelar>
             <div>
               <h2>Como ingressar</h2>
 
