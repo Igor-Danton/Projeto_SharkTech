@@ -1,4 +1,4 @@
-﻿/** Pagina de estrutura, laboratorios e biblioteca. */
+/** Página de estrutura, laboratórios e biblioteca. */
 
 function cartoes(lista) {
   return lista
@@ -16,15 +16,6 @@ document.addEventListener("layout-pronto", () => {
     infra.laboratoriosTecnicos,
   );
 
-  const obs = document.getElementById("observacao-laboratorios");
-  obs.innerHTML = `
-    <span class="historico">Dado histórico: ${escapar(infra.quantidadeLaboratorios.valor)}</span>
-    <br>${escapar(infra.quantidadeLaboratorios.observacao)}`;
-
   document.getElementById("texto-biblioteca").textContent =
     infra.biblioteca.texto;
-  document.getElementById("acervo-biblioteca").innerHTML = infra.biblioteca
-    .acervo
-    ? escapar(infra.biblioteca.acervo)
-    : '<span class="pendente">Tamanho do acervo: Informação pendente de fonte atualizada.</span>';
 });
