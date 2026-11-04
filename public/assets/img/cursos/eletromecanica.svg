@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="110" y1="40" x2="1140" y2="710" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1B4160"/>
+      <stop offset="1" stop-color="#071722"/>
+    </linearGradient>
+    <linearGradient id="motor" x1="316" y1="230" x2="887" y2="538" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#D5E2E5"/>
+      <stop offset=".25" stop-color="#7F9CAA"/>
+      <stop offset=".62" stop-color="#31566A"/>
+      <stop offset="1" stop-color="#AFC5CE"/>
+    </linearGradient>
+    <linearGradient id="copper" x1="490" y1="296" x2="775" y2="474" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#E9BF79"/>
+      <stop offset=".5" stop-color="#A86F45"/>
+      <stop offset="1" stop-color="#F0CE8B"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientTransform="matrix(470 190 -170 420 782 313)" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#6AB9D0" stop-opacity=".36"/>
+      <stop offset="1" stop-color="#6AB9D0" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="blur" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="28"/>
+    </filter>
+  </defs>
+  <path fill="url(#bg)" d="M0 0h1280v720H0z"/>
+  <path fill="url(#glow)" d="M0 0h1280v720H0z"/>
+  <g opacity=".32" filter="url(#blur)" fill="#91B5C2">
+    <path d="M68 100h190v260H68zM1061 92h110v260h-110z"/>
+    <circle cx="933" cy="163" r="72"/>
+  </g>
+  <path fill="#102838" d="M0 578h1280v142H0z"/>
+  <path fill="#638493" d="M0 578h1280v9H0z"/>
+  <path fill="#18384B" stroke="#8EABB7" stroke-width="6" d="M240 212h791v321H240z"/>
+  <path fill="url(#motor)" stroke="#D1DEE2" stroke-width="7" d="M315 292c0-37 30-67 67-67h331c37 0 67 30 67 67v164c0 37-30 67-67 67H382c-37 0-67-30-67-67z"/>
+  <path fill="#26495E" stroke="#BCCED4" stroke-width="6" d="M272 315h58v118h-58zM780 310h55v128h-55z"/>
+  <path fill="#6C8997" stroke="#CEDCE0" stroke-width="6" d="M264 344h39v62h-39zM828 341h38v65h-38z"/>
+  <path fill="#152F41" stroke="#B9CDD4" stroke-width="6" d="M866 327h95v99h-95z"/>
+  <path fill="#89A6B1" d="M895 347h13v59h-13zM920 347h13v59h-13zM945 347h13v59h-13z"/>
+  <path fill="url(#copper)" stroke="#F0D8A5" stroke-width="5" d="M411 278c-24 0-43 19-43 43v108c0 24 19 43 43 43s43-19 43-43V321c0-24-19-43-43-43ZM526 278c-24 0-43 19-43 43v108c0 24 19 43 43 43s43-19 43-43V321c0-24-19-43-43-43ZM641 278c-24 0-43 19-43 43v108c0 24 19 43 43 43s43-19 43-43V321c0-24-19-43-43-43Z"/>
+  <path fill="#B5C9D0" stroke="#E1E9EB" stroke-width="6" d="M392 466h275v33H392z"/>
+  <path fill="#506F80" d="M406 500h42v78h-42zM632 500h42v78h-42z"/>
+  <path fill="#AEBFC5" d="M393 578h68v17h-68zM618 578h68v17h-68z"/>
+  <path fill="#D1A75E" d="M932 257h91v15h-91zM947 272h63v27h-63z"/>
+  <path stroke="#70C4D5" stroke-width="7" d="M974 298v-49h54v49"/>
+  <path stroke="#D1A75E" stroke-width="7" d="m972 251-17-24h-48"/>
+  <path fill="#173548" stroke="#9AB7C2" stroke-width="5" d="M742 204h156v73H742z"/>
+  <path stroke="#7BC8D6" stroke-width="6" d="M764 239h27l12-18 18 35 15-24h34"/>
+  <path stroke="#C4D8DD" stroke-opacity=".4" stroke-width="3" d="M184 628h936M226 661h851"/>
+  <circle cx="357" cy="248" r="8" fill="#E1B66D"/>
+  <circle cx="747" cy="248" r="8" fill="#69C0D4"/>
+</svg>

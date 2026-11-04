@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="120" y1="80" x2="1120" y2="700" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#173C5C"/>
+      <stop offset="1" stop-color="#071725"/>
+    </linearGradient>
+    <linearGradient id="steel" x1="310" y1="300" x2="930" y2="630" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#D8E6EC"/>
+      <stop offset=".35" stop-color="#708FA2"/>
+      <stop offset=".68" stop-color="#2D526A"/>
+      <stop offset="1" stop-color="#B9CCD5"/>
+    </linearGradient>
+    <linearGradient id="panel" x1="300" y1="270" x2="900" y2="500" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#47748D"/>
+      <stop offset="1" stop-color="#17374E"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientTransform="matrix(460 180 -180 460 780 320)" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#62B4D3" stop-opacity=".35"/>
+      <stop offset="1" stop-color="#62B4D3" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="blur" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="30"/>
+    </filter>
+  </defs>
+  <path fill="url(#bg)" d="M0 0h1280v720H0z"/>
+  <path fill="url(#glow)" d="M0 0h1280v720H0z"/>
+  <g opacity=".35" filter="url(#blur)" fill="#8AB3C2">
+    <path d="M105 150h160v210H105zM1030 80h110v260h-110z"/>
+    <circle cx="934" cy="165" r="70"/>
+  </g>
+  <path fill="#102A3D" d="M0 570h1280v150H0z"/>
+  <path fill="#31556A" d="M0 570h1280v9H0z"/>
+  <path fill="url(#panel)" stroke="#91B4C4" stroke-opacity=".55" stroke-width="5" d="M280 250h704l-30 344H300z"/>
+  <path fill="#173346" stroke="#9DB6C1" stroke-width="7" d="M332 292h360v208H332z"/>
+  <path fill="#7898A7" d="M360 319h296v18H360zM360 345h296v8H360z"/>
+  <path fill="#0C2639" d="M352 374h318v112H352z"/>
+  <path fill="#3C667C" d="M376 397h118v69H376z"/>
+  <path fill="#18384B" d="M515 397h132v13H515zM515 422h107v9H515zM515 443h121v9H515z"/>
+  <circle cx="400" cy="431" r="10" fill="#68C3D7"/>
+  <circle cx="450" cy="431" r="10" fill="#D9AF6B"/>
+  <path fill="url(#steel)" stroke="#C1D5DD" stroke-width="5" d="M700 340h189l35 35v177H700z"/>
+  <path fill="#28495D" stroke="#A8C1CC" stroke-width="6" d="M725 368h134v118H725z"/>
+  <path fill="#163347" d="M745 386h92v81h-92z"/>
+  <circle cx="789" cy="427" r="31" fill="#63889A" stroke="#C6D9E0" stroke-width="8"/>
+  <circle cx="789" cy="427" r="11" fill="#102A3D"/>
+  <path stroke="#D5E1E5" stroke-width="10" d="M819 427h134"/>
+  <path fill="#AEC4CD" d="M928 412h48v30h-48z"/>
+  <path fill="url(#steel)" d="M384 510h577v35H384z"/>
+  <path fill="#7394A4" d="M415 545h42v58h-42zM875 545h42v58h-42z"/>
+  <path fill="#D4E1E4" d="m604 489 45 4-31 31-37-4z"/>
+  <path fill="#D6A75E" d="m614 486 12 4-29 34-10-4z"/>
+  <path stroke="#B8D5DF" stroke-opacity=".42" stroke-width="3" d="M275 614h730M220 650h818"/>
+  <circle cx="948" cy="307" r="7" fill="#E2B86F"/>
+  <circle cx="972" cy="307" r="7" fill="#70C1D4"/>
+</svg>
