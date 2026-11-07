@@ -19,7 +19,7 @@ const Api = (() => {
 
     if (!resposta.ok) {
       const erro = new Error(
-        (dados && dados.erro) || "Não foi possível concluir a operaçãoo.",
+        (dados && dados.erro) || "Não foi possível concluir a operação.",
       );
       erro.status = resposta.status;
       throw erro;

@@ -14,11 +14,24 @@
 );
 
 function imagemCursoHTML(curso) {
+  const descricoesImagem = {
+    eletronica:
+      "Ilustração de uma bancada de eletrônica com circuito e instrumento de medição.",
+    eletromecanica:
+      "Ilustração de um motor elétrico com ligações e painel de controle.",
+    mecanica:
+      "Ilustração de uma máquina-ferramenta em uma oficina de mecânica.",
+    "manutencao-automotiva":
+      "Ilustração de um automóvel em manutenção em uma oficina.",
+  };
+  const textoAlternativo =
+    descricoesImagem[curso.slug] || `Capa do curso ${curso.nome}`;
+
   return `
     <div class="curso-imagem">
       <img
         src="/assets/img/cursos/${escapar(curso.slug)}.png"
-        alt="Capa do curso ${escapar(curso.nome)}"
+        alt="${escapar(textoAlternativo)}"
         class="curso-imagem__arquivo"
         width="1280"
         height="720"
