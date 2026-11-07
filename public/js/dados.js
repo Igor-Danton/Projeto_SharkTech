@@ -19,7 +19,7 @@ const DadosCeep = {
     cep: "81670-020",
     telefone: "(41) 3276-9534",
     inep: "41129857",
-    email: null, // PENDENTE — não publicar sem confirmaçãoo
+    email: null, // PENDENTE — não publicar sem confirmação
     horarios: null, // PENDENTE
     redesSociais: null, // PENDENTE
   },
@@ -51,7 +51,7 @@ const DadosCeep = {
   },
 
   fluxo: [
-    // Removidos indicadores de reprovaçãoo e abandono por solicitaçãoo institucional
+    // Removidos indicadores de reprovação e abandono por solicitação institucional
   ],
 
   historia: [
@@ -72,19 +72,6 @@ const DadosCeep = {
   ],
 
   infraestrutura: {
-    confirmada: [
-      "Biblioteca",
-      "Cozinha",
-      "Laboratório de informática",
-      "Laboratório de ciências",
-      "Quadra de esportes",
-      "Sala da diretoria",
-      "Sanitários",
-      "Dependências com acessibilidade",
-      "Alimentação escolar",
-      "Água filtrada",
-    ],
-
     laboratoriosTecnicos: [
       "Eletromecânica",
       "Edificações",
@@ -96,10 +83,6 @@ const DadosCeep = {
       "Desenvolvimento de Sistemas",
       "Programação de Jogos Digitais",
     ],
-
-    biblioteca: {
-      texto: "O CEEP Curitiba possui biblioteca.",
-    },
   },
 
   sistemasOficiais: [
