@@ -18,6 +18,10 @@ Thumbs.db
 !.vscode/mcp.json
 .idea/
 
+# Originais de mídia fornecidos localmente; versões otimizadas ficam no site
+/public/assets/img/*.[hH][eE][iI][cC]
+/public/assets/img/*.[mM][oO][vV]
+
 # Skills locais
 .claude/skills/
 
