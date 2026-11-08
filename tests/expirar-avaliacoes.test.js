@@ -17,6 +17,7 @@ test("expira somente avaliações rejeitadas há pelo menos 14 dias", async () =
 
   assert.equal(removidas, 2);
   assert.match(consulta, /status = 'rejeitada'/);
+  assert.match(consulta, /rejeitada_em IS NOT NULL/);
   assert.match(
     consulta,
     /rejeitada_em <= DATE_SUB\(CURRENT_TIMESTAMP, INTERVAL 14 DAY\)/,

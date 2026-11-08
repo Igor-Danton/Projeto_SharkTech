@@ -7,7 +7,6 @@ require("dotenv").config();
 
 const app = require("./app");
 const { pool, testarConexao } = require("./config/db");
-const { iniciarExpiracaoAvaliacoes } = require("./services/expirar-avaliacoes");
 
 const PORTA = Number(process.env.PORT) || 3000;
 
@@ -27,8 +26,6 @@ async function iniciarServidor() {
       "        Confira o arquivo .env e se o banco foi criado (schema.sql).",
     );
   }
-
-  iniciarExpiracaoAvaliacoes(pool);
 
   app.listen(PORTA, () => {
     console.log(`\nShark Tech / CEEP Curitiba`);
