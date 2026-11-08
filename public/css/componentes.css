@@ -1321,6 +1321,7 @@ html[data-tema="escuro"] .historico {
   margin-top: var(--e-6);
   padding-top: var(--e-4);
   border-top: 1px solid var(--linha);
+  scroll-margin-top: 8rem;
 }
 
 .estrutura-laboratorios__cabecalho {
@@ -1368,6 +1369,7 @@ html[data-tema="escuro"] .historico {
   margin-top: var(--e-6);
   padding-top: var(--e-4);
   border-top: 1px solid var(--linha);
+  scroll-margin-top: 8rem;
 }
 
 .estrutura-video__texto p {
@@ -1393,6 +1395,11 @@ html[data-tema="escuro"] .historico {
 }
 
 @media (max-width: 760px) {
+  .estrutura-laboratorios,
+  .estrutura-video {
+    scroll-margin-top: 20rem;
+  }
+
   .estrutura-galeria__palco {
     aspect-ratio: 4 / 3;
     max-height: 60svh;

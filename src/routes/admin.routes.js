@@ -108,12 +108,15 @@ router.get("/avaliacoes", async (req, res, next) => {
       : "pendente";
 
     const [linhas] = await pool.execute(
-      `SELECT v.id_avaliacao, v.nota, v.comentario, v.data_avaliacao, v.status, v.tipo,
+      `SELECT v.id_avaliacao, v.nota, v.comentario, v.data_avaliacao,
+              v.rejeitada_em, v.status, v.tipo,
               al.nome AS aluno, al.email, al.turma, c.nome AS curso
          FROM avaliacao v
          JOIN aluno al ON al.id_aluno = v.id_aluno
          JOIN curso c  ON c.id_curso  = v.id_curso
         WHERE v.status = ?
+          AND (v.status <> 'rejeitada'
+               OR v.rejeitada_em > DATE_SUB(CURRENT_TIMESTAMP, INTERVAL 14 DAY))
         ORDER BY v.data_avaliacao DESC`,
       [status],
     );
@@ -128,34 +131,25 @@ router.patch("/avaliacoes/:id", async (req, res, next) => {
   try {
     const id = Number(req.params.id);
     const status = req.body.status;
-    if (!["aprovada", "pendente"].includes(status)) {
+    if (!Number.isInteger(id) || id <= 0) {
+      return res.status(400).json({ erro: "ID invalido." });
+    }
+    if (!["aprovada", "pendente", "rejeitada"].includes(status)) {
       return res.status(400).json({ erro: "Status invalido." });
     }
     const [r] = await pool.execute(
-      "UPDATE avaliacao SET status = ? WHERE id_avaliacao = ?",
-      [status, id],
+      `UPDATE avaliacao
+          SET rejeitada_em = CASE
+                WHEN ? = 'rejeitada' THEN COALESCE(rejeitada_em, CURRENT_TIMESTAMP)
+                ELSE NULL
+              END,
+              status = ?
+        WHERE id_avaliacao = ?`,
+      [status, status, id],
     );
     if (r.affectedRows === 0)
       return res.status(404).json({ erro: "Registro nao encontrado." });
     res.json({ mensagem: `Registro marcado como ${status}.` });
-  } catch (erro) {
-    next(erro);
-  }
-});
-
-router.delete("/avaliacoes/:id", async (req, res, next) => {
-  try {
-    const id = Number(req.params.id);
-    if (!id || id <= 0) {
-      return res.status(400).json({ erro: "ID invalido." });
-    }
-    const [r] = await pool.execute(
-      "DELETE FROM avaliacao WHERE id_avaliacao = ?",
-      [id],
-    );
-    if (r.affectedRows === 0)
-      return res.status(404).json({ erro: "Registro nao encontrado." });
-    res.json({ mensagem: "Avaliação excluída com sucesso." });
   } catch (erro) {
     next(erro);
   }
@@ -170,6 +164,29 @@ router.get("/noticias", async (req, res, next) => {
          FROM noticia ORDER BY data_publicacao DESC`,
     );
     res.json(linhas);
+  } catch (erro) {
+    next(erro);
+  }
+});
+
+router.get("/noticias/:id", async (req, res, next) => {
+  try {
+    const id = Number(req.params.id);
+    if (!Number.isInteger(id) || id <= 0) {
+      return res.status(400).json({ erro: "ID invalido." });
+    }
+    const [linhas] = await pool.execute(
+      `SELECT id_noticia, titulo, resumo, conteudo, categoria
+         FROM noticia
+        WHERE id_noticia = ? AND publicada = 0`,
+      [id],
+    );
+    if (!linhas.length) {
+      return res
+        .status(404)
+        .json({ erro: "Rascunho nao encontrado ou ja publicado." });
+    }
+    res.json(linhas[0]);
   } catch (erro) {
     next(erro);
   }
@@ -204,6 +221,49 @@ router.post("/noticias", async (req, res, next) => {
     res
       .status(201)
       .json({ id_noticia: r.insertId, mensagem: "Noticia salva." });
+  } catch (erro) {
+    next(erro);
+  }
+});
+
+router.put("/noticias/:id", async (req, res, next) => {
+  try {
+    const id = Number(req.params.id);
+    if (!Number.isInteger(id) || id <= 0) {
+      return res.status(400).json({ erro: "ID invalido." });
+    }
+    const titulo = texto(req.body.titulo, 180);
+    const conteudo = texto(req.body.conteudo, 20000);
+    if (!titulo || !conteudo) {
+      return res
+        .status(400)
+        .json({ erro: "Titulo e conteudo sao obrigatorios." });
+    }
+    if (!["noticia", "comunicado", "evento"].includes(req.body.categoria)) {
+      return res.status(400).json({ erro: "Categoria invalida." });
+    }
+
+    const [r] = await pool.execute(
+      `UPDATE noticia
+          SET titulo = ?, resumo = ?, conteudo = ?, categoria = ?
+        WHERE id_noticia = ? AND publicada = 0`,
+      [titulo, texto(req.body.resumo, 300), conteudo, req.body.categoria, id],
+    );
+    if (r.affectedRows === 0) {
+      const [[noticia]] = await pool.execute(
+        "SELECT publicada FROM noticia WHERE id_noticia = ?",
+        [id],
+      );
+      if (!noticia) {
+        return res.status(404).json({ erro: "Noticia nao encontrada." });
+      }
+      if (noticia.publicada) {
+        return res
+          .status(409)
+          .json({ erro: "Somente rascunhos podem ser editados." });
+      }
+    }
+    res.json({ mensagem: "Rascunho atualizado." });
   } catch (erro) {
     next(erro);
   }

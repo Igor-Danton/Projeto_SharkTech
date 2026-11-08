@@ -93,14 +93,9 @@ async function abaAvaliacoes(status = "pendente") {
               });
               mostrarAviso(painel.aviso, r.mensagem, "ok");
             } else {
-              if (
-                !confirm(
-                  "Tem certeza que deseja excluir esta avaliação? Esta ação é permanente.",
-                )
-              ) {
-                return;
-              }
-              const r = await Api.del(`/admin/avaliacoes/${id}`);
+              const r = await Api.patch(`/admin/avaliacoes/${id}`, {
+                status: "rejeitada",
+              });
               mostrarAviso(painel.aviso, r.mensagem, "ok");
             }
             // Atualiza a lista e indicadores após a operação
@@ -219,13 +214,16 @@ async function abaCursos() {
 
 /* -------------------------- Aba: noticias -------------------------- */
 
-async function abaNoticias() {
+async function abaNoticias(idEdicao = null) {
   try {
     const noticias = await Api.get("/admin/noticias");
+    const noticiaEditando = idEdicao
+      ? await Api.get(`/admin/noticias/${idEdicao}`)
+      : null;
 
     painel.conteudo.innerHTML = `
       <form class="formulario" id="form-noticia" style="margin-bottom:var(--e-3)">
-        <h3>Nova notícia ou comunicado</h3>
+        <h3>${noticiaEditando ? "Editar rascunho" : "Nova notícia ou comunicado"}</h3>
         <div class="campo">
           <label for="n-titulo">Título</label>
           <input id="n-titulo" required>
@@ -246,15 +244,24 @@ async function abaNoticias() {
           <label for="n-conteudo">Texto</label>
           <textarea id="n-conteudo" required></textarea>
         </div>
-        <div class="campo">
-          <label><input type="checkbox" id="n-publicada" style="width:auto"> Publicar agora</label>
-        </div>
-        <button class="botao botao--primario" type="submit">Salvar notícia</button>
+        ${
+          noticiaEditando
+            ? '<p class="trilha">Este conteúdo continuará como rascunho ao salvar.</p>'
+            : '<div class="campo"><label><input type="checkbox" id="n-publicada" style="width:auto"> Publicar agora</label></div>'
+        }
+        <button class="botao botao--primario" type="submit">
+          ${noticiaEditando ? "Salvar rascunho" : "Salvar notícia"}
+        </button>
+        ${
+          noticiaEditando
+            ? '<button class="botao botao--contorno" type="button" data-cancelar-edicao>Cancelar edição</button>'
+            : ""
+        }
       </form>
 
       <div class="tabela-rolagem">
         <table class="tabela">
-          <thead><tr><th>Título</th><th>Categoria</th><th>Data</th><th>Situação</th></tr></thead>
+          <thead><tr><th>Título</th><th>Categoria</th><th>Data</th><th>Situação</th><th>Ações</th></tr></thead>
           <tbody>
             ${
               noticias.length
@@ -271,10 +278,13 @@ async function abaNoticias() {
                     ${n.publicada ? "Publicada — despublicar" : "Rascunho — publicar"}
                   </button>
                 </td>
+                <td>
+                  ${n.publicada ? "" : `<button class="botao botao--sinal botao--pequeno" type="button" data-editar-noticia="${n.id_noticia}">Editar</button>`}
+                </td>
               </tr>`,
                     )
                     .join("")
-                : '<tr><td colspan="4">Nenhuma notícia cadastrada.</td></tr>'
+                : '<tr><td colspan="5">Nenhuma notícia cadastrada.</td></tr>'
             }
           </tbody>
         </table>
@@ -285,19 +295,43 @@ async function abaNoticias() {
       .addEventListener("submit", async (evento) => {
         evento.preventDefault();
         try {
-          const r = await Api.post("/admin/noticias", {
+          const dados = {
             titulo: document.getElementById("n-titulo").value,
             categoria: document.getElementById("n-categoria").value,
             resumo: document.getElementById("n-resumo").value,
             conteudo: document.getElementById("n-conteudo").value,
-            publicada: document.getElementById("n-publicada").checked,
-          });
+          };
+          const r = noticiaEditando
+            ? await Api.put(`/admin/noticias/${idEdicao}`, dados)
+            : await Api.post("/admin/noticias", {
+                ...dados,
+                publicada: document.getElementById("n-publicada").checked,
+              });
           mostrarAviso(painel.aviso, r.mensagem, "ok");
           abaNoticias();
           carregarResumo();
         } catch (erro) {
           erroPainel(erro);
         }
+      });
+
+    if (noticiaEditando) {
+      document.getElementById("n-titulo").value = noticiaEditando.titulo;
+      document.getElementById("n-categoria").value = noticiaEditando.categoria;
+      document.getElementById("n-resumo").value = noticiaEditando.resumo || "";
+      document.getElementById("n-conteudo").value = noticiaEditando.conteudo;
+    }
+
+    painel.conteudo
+      .querySelector("[data-cancelar-edicao]")
+      ?.addEventListener("click", () => abaNoticias());
+
+    painel.conteudo
+      .querySelectorAll("[data-editar-noticia]")
+      .forEach((botao) => {
+        botao.addEventListener("click", () => {
+          abaNoticias(Number(botao.dataset.editarNoticia));
+        });
       });
 
     painel.conteudo.querySelectorAll("[data-publicar]").forEach((botao) => {

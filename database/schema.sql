@@ -142,6 +142,7 @@ CREATE TABLE avaliacao (
   data_avaliacao  DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   status          ENUM('pendente', 'aprovada', 'rejeitada')
                   NOT NULL DEFAULT 'pendente',
+  rejeitada_em    DATETIME NULL,
   tipo            ENUM('avaliacao', 'depoimento')
                   NOT NULL DEFAULT 'avaliacao',
   id_aluno        INT NOT NULL,
@@ -163,6 +164,8 @@ CREATE TABLE avaliacao (
 
 CREATE INDEX idx_avaliacao_curso_status
   ON avaliacao (id_curso, status, tipo);
+CREATE INDEX idx_avaliacao_status_rejeitada_em
+  ON avaliacao (status, rejeitada_em);
 
 -- ---------------------------------------------------------------------
 -- USUARIO_ADMIN [ALTERACAO]

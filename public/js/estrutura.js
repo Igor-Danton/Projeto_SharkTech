@@ -6,7 +6,6 @@
     ["Espaço livre 2", "espaco-livre-2.webp"],
     ["Espaço livre 3", "espaco-livre-3.webp"],
     ["Espaço livre 4", "espaco-livre-4.webp"],
-    ["Pedagogia", "pedagogia.webp"],
     ["Pintura da parede", "pintura-parede.webp"],
     ["Quadra", "quadra.webp"],
     ["Sala 1", "sala-1.webp"],
@@ -38,6 +37,8 @@
                         <img
                           src="/assets/img/estrutura/${arquivo}"
                           alt="Fotografia de ${escapar(nome)} no CEEP Curitiba."
+                          width="1920"
+                          height="1440"
                           ${indice ? 'loading="lazy"' : 'fetchpriority="high"'}
                           decoding="async"
                         />
@@ -71,7 +72,7 @@
             </div>
           </div>
 
-          <section class="estrutura-laboratorios" aria-labelledby="titulo-laboratorios">
+          <section class="estrutura-laboratorios" id="laboratorios-tecnicos" aria-labelledby="titulo-laboratorios">
             <div class="estrutura-laboratorios__cabecalho">
               <h3 id="titulo-laboratorios">Laboratórios técnicos</h3>
               <p>Áreas técnicas presentes na formação do CEEP Curitiba.</p>
@@ -86,10 +87,13 @@
             </ul>
           </section>
 
-          <section class="estrutura-video" aria-labelledby="titulo-video">
+          <section class="estrutura-video" id="biblioteca" aria-labelledby="titulo-video">
             <div class="estrutura-video__texto">
-              <h3 id="titulo-video">Apresentação dos espaços</h3>
-              <p>Assista ao vídeo institucional da escola.</p>
+              <h3 id="titulo-video">Biblioteca</h3>
+              <p>
+                Conheça o espaço da biblioteca e o ambiente destinado à leitura,
+                pesquisa e aprendizagem dos estudantes.
+              </p>
             </div>
             <video
               class="estrutura-video__player"
@@ -98,7 +102,7 @@
               playsinline
               preload="none"
               poster="/assets/img/estrutura/video-poster.webp"
-              aria-label="Apresentação em vídeo dos espaços do CEEP Curitiba"
+              aria-label="Vídeo da biblioteca do CEEP Curitiba"
               data-video-estrutura
             >
               <source src="/assets/img/estrutura/apresentacao-institucional.mp4" type="video/mp4" />
@@ -177,6 +181,11 @@
   function configurarVideo(alvo) {
     const video = alvo.querySelector("[data-video-estrutura]");
     const status = alvo.querySelector("[data-video-status]");
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      status.textContent =
+        "Sem áudio. Use os controles para iniciar o vídeo da biblioteca.";
+      return;
+    }
     if (!("IntersectionObserver" in window)) {
       status.textContent =
         "Sem áudio. A reprodução automática não está disponível neste navegador; use os controles para iniciar.";
@@ -238,6 +247,19 @@
 
   document.addEventListener("layout-pronto", () => {
     const alvo = document.getElementById("estrutura-institucional");
-    if (alvo) montarEstrutura(alvo);
+    if (!alvo) return;
+
+    montarEstrutura(alvo);
+
+    if (
+      location.hash === "#laboratorios-tecnicos" ||
+      location.hash === "#biblioteca"
+    ) {
+      requestAnimationFrame(() => {
+        document
+          .getElementById(location.hash.slice(1))
+          ?.scrollIntoView({ block: "start" });
+      });
+    }
   });
 })();

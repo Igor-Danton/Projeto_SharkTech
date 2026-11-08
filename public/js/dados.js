@@ -73,15 +73,13 @@ const DadosCeep = {
 
   infraestrutura: {
     laboratoriosTecnicos: [
-      "Eletromecânica",
-      "Edificações",
-      "Informática",
-      "Matemática",
-      "Biologia",
-      "Física",
-      "Química",
-      "Desenvolvimento de Sistemas",
-      "Programação de Jogos Digitais",
+      "Laboratório de Eletromecânica",
+      "Laboratório de Química",
+      "Laboratório de Edificações",
+      "Laboratório de Biologia",
+      "Laboratório de Desenvolvimento de Sistemas",
+      "Laboratório de Programação de Jogos Digitais",
+      "Laboratório de Física",
     ],
   },
 
