@@ -1,7 +1,8 @@
-﻿/** Resultados da busca por palavra-chave — RF05. */
+/** Resultados da busca por palavra-chave — RF05. */
 
 function secaoResultado(titulo, itens, montarLink) {
   if (!itens.length) return "";
+
   return `
     <h2 style="margin-top:var(--e-3)">${titulo} (${itens.length})</h2>
     <ul class="lista-limpa">
@@ -19,19 +20,26 @@ function secaoResultado(titulo, itens, montarLink) {
 
 async function buscar(termo) {
   const alvo = document.getElementById("resultado-busca");
-  alvo.innerHTML = "<p>Buscando €¦</p>";
+
+  if (!alvo) return;
+
+  alvo.innerHTML = "<p>Buscando…</p>";
+  alvo.setAttribute("aria-busy", "true");
 
   try {
     const r = await Api.get(`/busca?q=${encodeURIComponent(termo)}`);
+    const titulo = document.querySelector(".cabecalho-pagina h1");
 
-    document.querySelector(".cabecalho-pagina h1").textContent =
-      `${r.total} resultado${r.total === 1 ? "" : "s"} para  €œ${termo} €`;
+    if (titulo) {
+      titulo.textContent = `${r.total} resultado${r.total === 1 ? "" : "s"} para "${termo}"`;
+    }
 
     if (r.total === 0) {
       alvo.innerHTML = `<div class="vazio">
-        Nenhum resultado para  €œ${escapar(termo)} €. Tente uma palavra mais curta,
+        Nenhum resultado para "${escapar(termo)}". Tente uma palavra mais curta,
         ou veja a <a href="/cursos.html">lista completa de cursos</a>.
       </div>`;
+      alvo.setAttribute("aria-busy", "false");
       return;
     }
 
@@ -44,8 +52,7 @@ async function buscar(termo) {
       secaoResultado(
         "Notícias e comunicados",
         r.noticias,
-        (i) =>
-          `<a href="/noticias.html#noticia-${i.id}">${escapar(i.titulo)}</a>`,
+        (i) => `<a href="/noticias.html#noticia-${i.id}">${escapar(i.titulo)}</a>`,
       ) +
       secaoResultado(
         "Documentos",
@@ -53,20 +60,29 @@ async function buscar(termo) {
         (i) =>
           `<a href="${escapar(i.url_arquivo)}" target="_blank" rel="noopener">${escapar(i.titulo)}</a>`,
       );
+    alvo.setAttribute("aria-busy", "false");
   } catch (erro) {
-    alvo.innerHTML = `<div class="aviso aviso--erro">${escapar(erro.message)}</div>`;
+    alvo.setAttribute("aria-busy", "false");
+    alvo.innerHTML = `<div class="aviso aviso--erro" role="alert">${escapar(erro.message)}</div>`;
   }
 }
 
 document.addEventListener("layout-pronto", () => {
   const termo = parametro("q");
   const campo = document.getElementById("busca-termo");
+  const alvo = document.getElementById("resultado-busca");
+
+  if (!alvo) return;
 
   if (!termo) {
-    document.getElementById("resultado-busca").innerHTML =
-      '<div class="vazio">Digite uma palavra para buscar cursos, comunicados e documentos.</div>';
+    alvo.innerHTML =
+      '<div class="vazio" role="status">Digite uma palavra para buscar cursos, comunicados e documentos.</div>';
     return;
   }
-  campo.value = termo;
-  buscar(termo);
+
+  if (campo) {
+    campo.value = termo;
+  }
+
+  buscar(termo.trim());
 });
