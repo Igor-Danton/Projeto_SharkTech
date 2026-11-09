@@ -2,7 +2,7 @@ const formLogin = document.getElementById("form-login");
 const avisoLogin = document.getElementById("aviso-login");
 const botaoEntrar = document.getElementById("botao-entrar");
 
-if (formLogin && avisoLogin && botaoEntrar) {
+if (formLogin) {
   Api.get("/auth/me")
     .then(() => {
       window.location.href = "/admin/painel.html";
@@ -11,6 +11,7 @@ if (formLogin && avisoLogin && botaoEntrar) {
 
   formLogin.addEventListener("submit", async (evento) => {
     evento.preventDefault();
+
     const email = String(formLogin.elements.email?.value || "").trim();
     const senha = String(formLogin.elements.senha?.value || "").trim();
 
@@ -19,14 +20,21 @@ if (formLogin && avisoLogin && botaoEntrar) {
       return;
     }
 
+    if (!botaoEntrar) return;
+
     botaoEntrar.disabled = true;
-    avisoLogin.hidden = true;
+    if (avisoLogin) avisoLogin.hidden = true;
 
     try {
       await Api.post("/auth/login", { email, senha });
       window.location.href = "/admin/painel.html";
     } catch (erro) {
-      mostrarAviso(avisoLogin, erro.message || "Não foi possível entrar.", "erro");
+      mostrarAviso(
+        avisoLogin,
+        erro?.message || "Não foi possível entrar no painel.",
+        "erro",
+      );
+    } finally {
       botaoEntrar.disabled = false;
     }
   });
