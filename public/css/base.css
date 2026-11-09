@@ -1,70 +1,265 @@
+/* =====================================================================
+   Shark Tech / CEEP Curitiba — base
+   Tokens de design, reset, tipografia e utilitários de layout.
+   ===================================================================== */
+
 :root {
-  --focus-ring: rgba(27, 79, 122, 0.35);
-  --focus-ring-strong: rgba(27, 79, 122, 0.52);
-  --transition-base: 180ms ease;
+  /* Cores — identidade acadêmica institucional */
+  --papel: #f4efe8;
+  --papel-luz: #f9f6f2;
+  --papel-escuro: #ede3d6;
+  --superficie: #fffdfb;
+  --branco: #fffdfb;
+  --tinta: #12263d;
+  --tinta-suave: #53687c;
+  --titulo: var(--azul-escuro);
+  --link: var(--azul-vivo);
+  --link-hover: var(--azul-escuro);
+  --azul: #163a57;
+  --azul-vivo: #1b4f7a;
+  --azul-tecnologia: #7b9bb8;
+  --azul-escuro: #0d243a;
+  --azul-claro: #eaf1f7;
+  --sinal: #c9954a;
+  --sinal-fraco: #f6f0e7;
+  --linha: #d8cfc2;
+  --alerta: #a73d2f;
+  --alerta-fundo: #fbeae6;
+  --ok: #2d6b46;
+
+  /* Tipografia */
+  --fonte-titulo: "Bitter", Georgia, "Times New Roman", serif;
+  --fonte-texto: "Inter", -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+
+  /* Escala de tamanhos */
+  --t-xs: 0.75rem;
+  --t-sm: 0.875rem;
+  --t-base: 1rem;
+  --t-md: 1.25rem;
+  --t-lg: 1.5rem;
+  --t-xl: 2.2rem;
+  --t-2xl: 3.3rem;
+
+  /* Espacamento */
+  --e-1: 0.5rem;
+  --e-2: 1rem;
+  --e-3: 1.5rem;
+  --e-4: 2rem;
+  --e-5: 3rem;
+  --e-6: 4.5rem;
+
+  --largura: 1200px;
+  --raio: 14px;
 }
 
-*:focus-visible {
-  outline: 3px solid var(--focus-ring);
-  outline-offset: 3px;
-  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.8);
+html[data-tema="escuro"] {
+  color-scheme: dark;
+  --papel: #111a23;
+  --papel-luz: #111a23;
+  --papel-escuro: #182531;
+  --superficie: #1d2b38;
+  --branco: #f5f7fa;
+  --tinta: #e6ecf2;
+  --tinta-suave: #b2bfcc;
+  --titulo: #f5f7fa;
+  --link: #a9c7df;
+  --link-hover: #e6ecf2;
+  --azul: #a9c7df;
+  --azul-vivo: #477fa8;
+  --azul-tecnologia: #93b8d5;
+  --azul-escuro: #0e1a25;
+  --azul-claro: #293b4b;
+  --sinal: #e0b66f;
+  --sinal-fraco: #423824;
+  --linha: #354655;
+  --alerta: #f0a196;
+  --alerta-fundo: #402a2b;
+  --ok: #8bc7a0;
 }
 
-button,
-input,
-select,
-textarea,
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: linear-gradient(180deg, var(--papel), var(--papel-luz));
+  color: var(--tinta);
+  font-family: var(--fonte-texto);
+  font-size: var(--t-base);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--fonte-titulo);
+  line-height: 1.12;
+  margin: 0 0 var(--e-2);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--titulo);
+}
+
+h1 {
+  font-size: var(--t-2xl);
+}
+h2 {
+  font-size: clamp(2rem, 4vw, 2.8rem);
+}
+h3 {
+  font-size: var(--t-md);
+}
+
+p {
+  margin: 0 0 var(--e-2);
+  max-width: 68ch;
+}
+
 a {
-  transition: box-shadow var(--transition-base), border-color var(--transition-base), background-color var(--transition-base), transform var(--transition-base);
+  color: var(--link);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
 }
-
-button:hover,
-input:hover,
-select:hover,
-textarea:hover,
 a:hover {
-  transform: translateY(-1px);
+  color: var(--link-hover);
 }
 
-.botao:focus-visible,
-.menu-botao:focus-visible,
-.tema-botao:focus-visible,
-.navegacao a:focus-visible,
-.formulario input:focus-visible,
-.formulario select:focus-visible,
-.formulario textarea:focus-visible {
-  outline: 3px solid var(--focus-ring-strong);
+img {
+  max-width: 100%;
+  display: block;
+}
+
+:focus-visible {
+  outline: 3px solid var(--sinal);
   outline-offset: 2px;
+  border-radius: 2px;
 }
 
-@media (max-width: 720px) {
-  .topo__servico .container,
-  .topo__principal .container,
-  .navegacao {
-    gap: 0.5rem;
-  }
+/* ------------------------- Layout ------------------------- */
 
-  .topo__servico-links {
-    width: 100%;
-    justify-content: space-between;
-  }
+.container {
+  width: 100%;
+  max-width: var(--largura);
+  margin-inline: auto;
+  padding-inline: var(--e-3);
+}
 
-  .menu-botao {
-    min-width: 2.75rem;
-  }
+.secao {
+  padding-block: var(--e-6);
+}
+.secao--compacta {
+  padding-block: var(--e-5);
+}
+.secao--clara {
+  background: var(--superficie);
+  border-top: 1px solid var(--linha);
+}
+.secao--azul {
+  background: linear-gradient(135deg, var(--azul-escuro), var(--azul));
+  color: var(--branco);
+}
+.secao--azul h2,
+.secao--azul h3 {
+  color: var(--branco);
+}
+.secao--azul a {
+  color: #f6d79d;
+}
 
-  .painel-topo .container,
-  .topo__principal .container {
-    flex-direction: column;
-    align-items: flex-start;
+.secao__titulo {
+  margin-bottom: var(--e-3);
+}
+.secao__titulo p {
+  color: var(--tinta-suave);
+}
+
+.grade {
+  display: grid;
+  gap: var(--e-3);
+}
+.grade--2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+.grade--3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+.grade--4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.pular-para-conteudo {
+  position: absolute;
+  left: -9999px;
+  background: var(--sinal);
+  color: var(--tinta);
+  padding: var(--e-1) var(--e-2);
+  z-index: 100;
+}
+.pular-para-conteudo:focus {
+  left: var(--e-2);
+  top: var(--e-1);
+}
+
+@media (max-width: 900px) {
+  .grade--4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .grade--3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 620px) {
+  :root {
+    --t-2xl: 2rem;
+    --t-xl: 1.5rem;
+  }
+  .grade--2,
+  .grade--3,
+  .grade--4 {
+    grid-template-columns: 1fr;
+  }
+  .secao {
+    padding-block: var(--e-5);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
     animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
+  }
+}
+
+/* Melhorias de interação para navegação por teclado e telas compactas. */
+.formulario input:focus-visible,
+.formulario select:focus-visible,
+.formulario textarea:focus-visible,
+.menu-botao:focus-visible,
+.tema-botao:focus-visible {
+  outline-color: var(--azul-vivo);
+  outline-offset: 3px;
+}
+
+@media (max-width: 720px) {
+  .menu-botao {
+    min-height: 2.75rem;
+  }
+
+  .topo__servico-links {
+    row-gap: var(--e-1);
   }
 }
