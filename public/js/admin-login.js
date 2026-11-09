@@ -2,7 +2,7 @@ const formLogin = document.getElementById("form-login");
 const avisoLogin = document.getElementById("aviso-login");
 const botaoEntrar = document.getElementById("botao-entrar");
 
-if (formLogin) {
+if (formLogin && avisoLogin && botaoEntrar) {
   Api.get("/auth/me")
     .then(() => {
       window.location.href = "/admin/painel.html";
@@ -11,21 +11,22 @@ if (formLogin) {
 
   formLogin.addEventListener("submit", async (evento) => {
     evento.preventDefault();
-    if (!botaoEntrar) return;
+    const email = String(formLogin.elements.email?.value || "").trim();
+    const senha = String(formLogin.elements.senha?.value || "").trim();
+
+    if (!email || !senha) {
+      mostrarAviso(avisoLogin, "Informe e-mail e senha para continuar.", "erro");
+      return;
+    }
 
     botaoEntrar.disabled = true;
-    if (avisoLogin) avisoLogin.hidden = true;
+    avisoLogin.hidden = true;
 
     try {
-      await Api.post("/auth/login", {
-        email: formLogin.elements.email.value.trim(),
-        senha: formLogin.elements.senha.value,
-      });
+      await Api.post("/auth/login", { email, senha });
       window.location.href = "/admin/painel.html";
     } catch (erro) {
-      if (avisoLogin) {
-        mostrarAviso(avisoLogin, erro.message, "erro");
-      }
+      mostrarAviso(avisoLogin, erro.message || "Não foi possível entrar.", "erro");
       botaoEntrar.disabled = false;
     }
   });
