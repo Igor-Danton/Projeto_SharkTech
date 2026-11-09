@@ -1,8 +1,9 @@
-﻿/** Resultados da busca por palavra-chave — RF05. */
+/** Resultados da busca por palavra-chave — RF05. */
 
 function secaoResultado(titulo, itens, montarLink) {
   const dados = Array.isArray(itens) ? itens : [];
   if (!dados.length) return "";
+
   return `
     <h2 style="margin-top:var(--e-3)">${titulo} (${dados.length})</h2>
     <ul class="lista-limpa">
@@ -25,12 +26,14 @@ async function buscar(termo) {
 
   if (!alvo) return;
 
+  alvo.setAttribute("aria-busy", "true");
   alvo.innerHTML = "<p>Carregando resultados…</p>";
 
   try {
     if (!busca) {
+      alvo.setAttribute("aria-busy", "false");
       alvo.innerHTML =
-        '<div class="vazio">Digite uma palavra para buscar cursos, comunicados e documentos.</div>';
+        '<div class="vazio" role="status">Digite uma palavra para buscar cursos, comunicados e documentos.</div>';
       return;
     }
 
@@ -45,7 +48,8 @@ async function buscar(termo) {
     }
 
     if (total === 0) {
-      alvo.innerHTML = `<div class="vazio">
+      alvo.setAttribute("aria-busy", "false");
+      alvo.innerHTML = `<div class="vazio" role="status">
         Nenhum resultado para “${escapar(busca)}”. Tente uma palavra mais curta,
         ou veja a <a href="/cursos.html">lista completa de cursos</a>.
       </div>`;
@@ -69,8 +73,11 @@ async function buscar(termo) {
         (i) =>
           `<a href="${escapar(i.url_arquivo)}" target="_blank" rel="noopener">${escapar(i.titulo)}</a>`,
       );
+
+    alvo.setAttribute("aria-busy", "false");
   } catch (erro) {
-    alvo.innerHTML = `<div class="aviso aviso--erro">${escapar(
+    alvo.setAttribute("aria-busy", "false");
+    alvo.innerHTML = `<div class="aviso aviso--erro" role="alert">${escapar(
       erro && erro.message ? erro.message : "Não foi possível realizar a busca.",
     )}</div>`;
   }
@@ -84,8 +91,9 @@ document.addEventListener("layout-pronto", () => {
   if (!alvo) return;
 
   if (!termo) {
+    alvo.setAttribute("aria-busy", "false");
     alvo.innerHTML =
-      '<div class="vazio">Digite uma palavra para buscar cursos, comunicados e documentos.</div>';
+      '<div class="vazio" role="status">Digite uma palavra para buscar cursos, comunicados e documentos.</div>';
     return;
   }
 
