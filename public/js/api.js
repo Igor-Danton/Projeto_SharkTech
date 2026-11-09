@@ -1,31 +1,27 @@
-﻿/**
- * Camada de acesso à API.
- * Centraliza fetch, tratamento de erro e JSON em um lugar só.
- */
-const Api = (() => {
-  async function requisitar(caminho, opcoes = {}) {
-    const resposta = await fetch(`/api${caminho}`, {
-      headers: { "Content-Type": "application/json" },
+window.Api = (() => {
+  const requisitar = async (caminho, opcoes = {}) => {
+    const resposta = await fetch(caminho, {
+      headers: {
+        "Content-Type": "application/json",
+        ...(opcoes.headers || {}),
+      },
       credentials: "same-origin",
       ...opcoes,
     });
 
-    let dados = null;
-    try {
-      dados = await resposta.json();
-    } catch (_) {
-      /* resposta sem corpo */
-    }
+    const conteudo = await resposta.text();
+    const dados = conteudo ? JSON.parse(conteudo) : null;
 
     if (!resposta.ok) {
-      const erro = new Error(
-        (dados && dados.erro) || "Não foi possível concluir a operação.",
-      );
-      erro.status = resposta.status;
-      throw erro;
+      const mensagem =
+        dados && typeof dados === "object" && dados.erro
+          ? dados.erro
+          : `Erro na requisição (${resposta.status})`;
+      throw new Error(mensagem);
     }
+
     return dados;
-  }
+  };
 
   const get = (caminho) => requisitar(caminho);
   const post = (caminho, corpo) =>

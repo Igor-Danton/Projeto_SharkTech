@@ -10,7 +10,10 @@ const router = express.Router();
 /** GET /api/noticias?categoria=&limite= */
 router.get("/noticias", async (req, res, next) => {
   try {
-    const limite = Math.min(Number(req.query.limite) || 20, 50);
+    const limiteSolicitado = Number(req.query.limite);
+    const limite = Number.isSafeInteger(limiteSolicitado) && limiteSolicitado > 0
+      ? Math.min(limiteSolicitado, 50)
+      : 20;
     const categoria = req.query.categoria;
     const valores = [];
     let filtro = "WHERE publicada = 1";
@@ -20,12 +23,12 @@ router.get("/noticias", async (req, res, next) => {
       valores.push(categoria);
     }
 
-    const [linhas] = await pool.query(
+    const [linhas] = await pool.execute(
       `SELECT id_noticia, titulo, resumo, conteudo, categoria, data_publicacao
          FROM noticia ${filtro}
         ORDER BY data_publicacao DESC
-        LIMIT ${limite}`,
-      valores,
+        LIMIT ?`,
+      [...valores, limite],
     );
     res.json(linhas);
   } catch (erro) {
