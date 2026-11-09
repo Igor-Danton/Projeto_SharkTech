@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Código compartilhado por todas as páginas do site:
  * carrega header e footer, marca o link ativo, controla o menu do celular
  * e expõe utilitários usados pelos scripts de página.
@@ -51,7 +51,6 @@ function mostrarAviso(elemento, texto, tipo = "ok") {
   if (!elemento) return;
 
   elemento.className = `aviso ${tipo === "erro" ? "aviso--erro" : "aviso--ok"}`;
-
   elemento.textContent = texto;
   elemento.hidden = false;
 }
@@ -64,10 +63,15 @@ function parametro(nome) {
 async function carregarComponente(seletor, arquivo) {
   const alvo = document.querySelector(seletor);
 
-  if (!alvo) return;
+  if (!alvo || !arquivo) return;
 
   try {
     const resposta = await fetch(arquivo);
+
+    if (!resposta.ok) {
+      throw new Error(`Falha ao carregar ${arquivo}: ${resposta.status}`);
+    }
+
     alvo.innerHTML = await resposta.text();
   } catch (_) {
     alvo.innerHTML = "";
@@ -75,10 +79,14 @@ async function carregarComponente(seletor, arquivo) {
 }
 
 function marcarLinkAtivo() {
+  const navegacao = document.querySelector(".navegacao");
+  if (!navegacao) return;
+
   const atual = window.location.pathname.replace(/\/index\.html$/, "/");
 
   document.querySelectorAll(".navegacao a").forEach((link) => {
     const destino = link.getAttribute("href");
+    if (!destino) return;
 
     if (destino === atual || (destino !== "/" && atual.startsWith(destino))) {
       link.setAttribute("aria-current", "page");
@@ -94,7 +102,6 @@ function ativarMenu() {
 
   botao.addEventListener("click", () => {
     const aberto = menu.classList.toggle("aberto");
-
     botao.setAttribute("aria-expanded", String(aberto));
   });
 }
@@ -105,7 +112,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   marcarLinkAtivo();
   ativarMenu();
-  window.inicializarTema();
+  window.inicializarTema?.();
 
   const ano = document.getElementById("ano-atual");
 
@@ -118,7 +125,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     form.addEventListener("submit", (evento) => {
       evento.preventDefault();
 
-      const termo = form.querySelector('input[name="q"]').value.trim();
+      const input = form.querySelector('input[name="q"]');
+      const termo = input ? input.value.trim() : "";
 
       if (termo.length >= 2) {
         window.location.href = `/busca.html?q=${encodeURIComponent(termo)}`;
