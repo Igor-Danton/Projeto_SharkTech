@@ -1456,3 +1456,38 @@ html[data-tema="escuro"] .historico {
     grid-template-columns: minmax(0, 1fr);
   }
 }
+
+input,
+select,
+textarea,
+.botao {
+  min-height: 44px;
+}
+
+.campo input:focus-visible,
+.campo select:focus-visible,
+.campo textarea:focus-visible,
+.botao:focus-visible {
+  box-shadow: 0 0 0 3px rgba(27, 79, 122, 0.12);
+}
+
+@media (max-width: 640px) {
+  .filtros {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .formulario {
+    max-width: 100%;
+    padding: var(--e-2);
+  }
+
+  .hero__busca {
+    flex-direction: column;
+  }
+
+  .hero__busca .botao {
+    width: 100%;
+    justify-content: center;
+  }
+}

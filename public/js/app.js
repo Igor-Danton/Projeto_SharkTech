@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Código compartilhado por todas as páginas do site:
  * carrega header e footer, marca o link ativo, controla o menu do celular
  * e expõe utilitários usados pelos scripts de página.
@@ -51,6 +51,7 @@ function mostrarAviso(elemento, texto, tipo = "ok") {
   if (!elemento) return;
 
   elemento.className = `aviso ${tipo === "erro" ? "aviso--erro" : "aviso--ok"}`;
+
   elemento.textContent = texto;
   elemento.hidden = false;
 }
@@ -79,13 +80,11 @@ async function carregarComponente(seletor, arquivo) {
 }
 
 function marcarLinkAtivo() {
-  const navegacao = document.querySelector(".navegacao");
-  if (!navegacao) return;
-
   const atual = window.location.pathname.replace(/\/index\.html$/, "/");
 
   document.querySelectorAll(".navegacao a").forEach((link) => {
     const destino = link.getAttribute("href");
+
     if (!destino) return;
 
     if (destino === atual || (destino !== "/" && atual.startsWith(destino))) {
@@ -102,6 +101,7 @@ function ativarMenu() {
 
   botao.addEventListener("click", () => {
     const aberto = menu.classList.toggle("aberto");
+
     botao.setAttribute("aria-expanded", String(aberto));
   });
 }
@@ -112,7 +112,10 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   marcarLinkAtivo();
   ativarMenu();
-  window.inicializarTema?.();
+
+  if (window.inicializarTema) {
+    window.inicializarTema();
+  }
 
   const ano = document.getElementById("ano-atual");
 
@@ -120,13 +123,14 @@ document.addEventListener("DOMContentLoaded", async () => {
     ano.textContent = new Date().getFullYear();
   }
 
-  // busca do topo da home e da pagina de busca
   document.querySelectorAll("[data-busca]").forEach((form) => {
+    const campo = form.querySelector('input[name="q"]');
+    if (!campo) return;
+
     form.addEventListener("submit", (evento) => {
       evento.preventDefault();
 
-      const input = form.querySelector('input[name="q"]');
-      const termo = input ? input.value.trim() : "";
+      const termo = campo.value.trim();
 
       if (termo.length >= 2) {
         window.location.href = `/busca.html?q=${encodeURIComponent(termo)}`;
