@@ -2,11 +2,14 @@
 
 async function carregarCursosNoFormulario() {
   const select = document.getElementById("av-curso");
+  if (!select) return;
+
   const cursos = await Api.get("/cursos");
   select.innerHTML = ['<option value="">Selecione…</option>']
     .concat(
       cursos.map(
-        (c) => `<option value="${c.id_curso}">${escapar(c.nome)}</option>`,
+        (curso) =>
+          `<option value="${curso.id_curso}">${escapar(curso.nome)}</option>`,
       ),
     )
     .join("");
@@ -14,12 +17,14 @@ async function carregarCursosNoFormulario() {
 
 function montarSistemasOficiais() {
   const alvo = document.getElementById("sistemas-oficiais-lista");
-  if (!alvo) return;
-  alvo.innerHTML = DadosCeep.sistemasOficiais
+  const sistemas = window.DadosCeep?.sistemasOficiais;
+  if (!alvo || !Array.isArray(sistemas)) return;
+
+  alvo.innerHTML = sistemas
     .map(
-      (s) => `
+      (sistema) => `
     <li style="margin-bottom:var(--e-1)">
-      <a href="${s.url}" target="_blank" rel="noopener">${escapar(s.nome)}</a>
+      <a href="${escapar(sistema.url)}" target="_blank" rel="noopener">${escapar(sistema.nome)}</a>
     </li>`,
     )
     .join("");
@@ -27,9 +32,12 @@ function montarSistemasOficiais() {
 
 document.addEventListener("layout-pronto", async () => {
   const form = document.getElementById("form-avaliacao");
+  if (!form) return;
+
   const aviso = document.getElementById("aviso-avaliacao");
   const botao = document.getElementById("botao-enviar");
   const campoNota = document.getElementById("campo-nota");
+  const seletorTipo = form.elements.tipo;
 
   montarSistemasOficiais();
 
@@ -43,29 +51,33 @@ document.addEventListener("layout-pronto", async () => {
     );
   }
 
-  // depoimento nao tem nota
-  form.tipo.addEventListener("change", () => {
-    campoNota.hidden = form.tipo.value === "depoimento";
+  seletorTipo?.addEventListener("change", () => {
+    if (campoNota) campoNota.hidden = seletorTipo.value === "depoimento";
   });
 
   form.addEventListener("submit", async (evento) => {
     evento.preventDefault();
+    if (!botao) return;
+
     botao.disabled = true;
-    aviso.hidden = true;
+    if (aviso) aviso.hidden = true;
 
     try {
       const resposta = await Api.post("/avaliacoes", {
-        tipo: form.tipo.value,
-        id_curso: form.id_curso.value,
-        nota: form.tipo.value === "depoimento" ? null : Number(form.nota.value),
-        nome: form.nome.value,
-        email: form.email.value,
-        turma: form.turma.value,
-        comentario: form.comentario.value,
+        tipo: seletorTipo.value,
+        id_curso: form.elements.id_curso.value,
+        nota:
+          seletorTipo.value === "depoimento"
+            ? null
+            : Number(form.elements.nota.value),
+        nome: form.elements.nome.value,
+        email: form.elements.email.value,
+        turma: form.elements.turma.value,
+        comentario: form.elements.comentario.value,
       });
       mostrarAviso(aviso, resposta.mensagem, "ok");
       form.reset();
-      campoNota.hidden = false;
+      if (campoNota) campoNota.hidden = false;
     } catch (erro) {
       mostrarAviso(aviso, erro.message, "erro");
     } finally {
