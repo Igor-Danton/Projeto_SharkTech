@@ -52,7 +52,8 @@ async function buscar(termo) {
       secaoResultado(
         "Notícias e comunicados",
         r.noticias,
-        (i) => `<a href="/noticias.html#noticia-${i.id}">${escapar(i.titulo)}</a>`,
+        (i) =>
+          `<a href="/noticias.html#noticia-${i.id}">${escapar(i.titulo)}</a>`,
       ) +
       secaoResultado(
         "Documentos",

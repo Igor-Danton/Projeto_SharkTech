@@ -1,23 +1,30 @@
 window.Api = (() => {
   const requisitar = async (caminho, opcoes = {}) => {
-    const resposta = await fetch(caminho, {
+    const resposta = await fetch(`/api${caminho}`, {
+      ...opcoes,
       headers: {
         "Content-Type": "application/json",
         ...(opcoes.headers || {}),
       },
-      credentials: "same-origin",
-      ...opcoes,
+      credentials: opcoes.credentials || "same-origin",
     });
 
     const conteudo = await resposta.text();
-    const dados = conteudo ? JSON.parse(conteudo) : null;
+    let dados = null;
+    try {
+      dados = conteudo ? JSON.parse(conteudo) : null;
+    } catch (_) {
+      // Retain the HTTP status when the server returns a non-JSON response.
+    }
 
     if (!resposta.ok) {
       const mensagem =
         dados && typeof dados === "object" && dados.erro
           ? dados.erro
           : `Erro na requisição (${resposta.status})`;
-      throw new Error(mensagem);
+      const erro = new Error(mensagem);
+      erro.status = resposta.status;
+      throw erro;
     }
 
     return dados;

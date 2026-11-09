@@ -33,7 +33,9 @@ async function listar(parametros = "") {
     const cursos = await Api.get(`/cursos${parametros}`);
     alvo.setAttribute("aria-busy", "false");
     contador.textContent =
-      cursos.length === 1 ? "1 curso encontrado" : `${cursos.length} cursos encontrados`;
+      cursos.length === 1
+        ? "1 curso encontrado"
+        : `${cursos.length} cursos encontrados`;
 
     alvo.innerHTML = cursos.length
       ? cursos.map(cardCurso).join("")
