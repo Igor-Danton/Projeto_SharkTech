@@ -30,7 +30,7 @@ router.get("/", async (req, res, next) => {
     const [noticias] = await pool.execute(
       `SELECT id_noticia AS id, titulo, resumo
          FROM noticia
-        WHERE publicada = 1 AND (titulo LIKE ? OR conteudo LIKE ?)
+        WHERE publicada = 1 AND (titulo LIKE ? OR \`Conteúdo\` LIKE ?)
         ORDER BY data_publicacao DESC LIMIT 20`,
       [like, like],
     );
