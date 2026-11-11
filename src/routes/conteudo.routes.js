@@ -25,11 +25,11 @@ router.get("/noticias", async (req, res, next) => {
     }
 
     const [linhas] = await pool.execute(
-      `SELECT id_noticia, titulo, resumo, \`conteudo\` AS conteudo, categoria, data_publicacao
+      `SELECT id_noticia, titulo, resumo, conteudo, categoria, data_publicacao
          FROM noticia ${filtro}
         ORDER BY data_publicacao DESC
-        LIMIT ?`,
-      [...valores, limite],
+        LIMIT ${limite}`,
+      valores,
     );
     res.json(linhas);
   } catch (erro) {
