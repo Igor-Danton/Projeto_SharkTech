@@ -25,7 +25,7 @@ router.get("/noticias", async (req, res, next) => {
     }
 
     const [linhas] = await pool.execute(
-      `SELECT id_noticia, titulo, resumo, \`Conteúdo\` AS conteudo, categoria, data_publicacao
+      `SELECT id_noticia, titulo, resumo, \`conteudo\` AS conteudo, categoria, data_publicacao
          FROM noticia ${filtro}
         ORDER BY data_publicacao DESC
         LIMIT ?`,
@@ -41,7 +41,7 @@ router.get("/noticias", async (req, res, next) => {
 router.get("/noticias/:id", async (req, res, next) => {
   try {
     const [linhas] = await pool.execute(
-      `SELECT id_noticia, titulo, resumo, \`Conteúdo\` AS conteudo, categoria, data_publicacao
+      `SELECT id_noticia, titulo, resumo, \`conteudo\` AS conteudo, categoria, data_publicacao
          FROM noticia WHERE id_noticia = ? AND publicada = 1`,
       [Number(req.params.id)],
     );

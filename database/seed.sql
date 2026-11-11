@@ -34,7 +34,7 @@ INSERT INTO curso (nome, slug, id_area) VALUES
 -- ---------------------------------------------------------------------
 -- Conteúdo de demonstração — REMOVER ANTES DE PUBLICAR
 -- ---------------------------------------------------------------------
-INSERT INTO noticia (titulo, resumo, Conteúdo, categoria, publicada) VALUES
+INSERT INTO noticia (titulo, resumo, conteudo, categoria, publicada) VALUES
   ('[EXEMPLO] Periodo de matriculas para o proximo ano letivo',
    'Conteúdo de demonstração. Substituir por comunicado real da secretaria.',
    'Este registro existe apenas para demonstrar o funcionamento da pagina de noticias e comunicados. O texto definitivo deve ser fornecido pela secretaria do CEEP Curitiba.',

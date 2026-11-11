@@ -188,7 +188,7 @@ CREATE TABLE noticia (
   id_noticia      INT AUTO_INCREMENT PRIMARY KEY,
   titulo          VARCHAR(180) NOT NULL,
   resumo          VARCHAR(300) NULL,
-  Conteúdo        TEXT NOT NULL,
+  conteudo         TEXT NOT NULL,
   categoria       ENUM('noticia', 'comunicado', 'evento')
                   NOT NULL DEFAULT 'noticia',
   data_publicacao DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,

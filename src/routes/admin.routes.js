@@ -176,7 +176,7 @@ router.get("/noticias/:id", async (req, res, next) => {
       return res.status(400).json({ erro: "ID invalido." });
     }
     const [linhas] = await pool.execute(
-      `SELECT id_noticia, titulo, resumo, \`Conteúdo\` AS conteudo, categoria
+      `SELECT id_noticia, titulo, resumo, \`conteudo\` AS conteudo, categoria
          FROM noticia
         WHERE id_noticia = ? AND publicada = 0`,
       [id],
@@ -208,7 +208,7 @@ router.post("/noticias", async (req, res, next) => {
       : "noticia";
 
     const [r] = await pool.execute(
-      `INSERT INTO noticia (titulo, resumo, \`Conteúdo\`, categoria, publicada)
+      `INSERT INTO noticia (titulo, resumo, \`conteudo\`, categoria, publicada)
        VALUES (?, ?, ?, ?, ?)`,
       [
         titulo,
@@ -245,7 +245,7 @@ router.put("/noticias/:id", async (req, res, next) => {
 
     const [r] = await pool.execute(
       `UPDATE noticia
-          SET titulo = ?, resumo = ?, \`Conteúdo\` = ?, categoria = ?
+          SET titulo = ?, resumo = ?, \`conteudo\` = ?, categoria = ?
         WHERE id_noticia = ? AND publicada = 0`,
       [titulo, texto(req.body.resumo, 300), conteudo, req.body.categoria, id],
     );
